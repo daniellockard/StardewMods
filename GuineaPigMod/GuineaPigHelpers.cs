@@ -8,7 +8,7 @@ namespace GuineaPigMod
     {
         public static string GetGenericName(string key)
         {
-            // Handle guinea pig variants
+            // Handle guinea pig
             if (key.StartsWith("GuineaPigMod.GuineaPig"))
                 return "GuineaPigMod.GuineaPig";
             

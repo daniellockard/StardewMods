@@ -41,9 +41,17 @@ namespace GuineaPigMod
         /// </summary>
         private void OnAssetRequested(object sender, AssetRequestedEventArgs e)
         {
-            Monitor.Log($"=== ASSET REQUESTED: {e.Name} ===", LogLevel.Info);
-            Monitor.Log($"Asset type: {e.Name.GetType().Name}", LogLevel.Info);
-            Monitor.Log($"Asset name without locale: {e.NameWithoutLocale}", LogLevel.Info);
+            // Only log debug info for our guinea pig assets
+            bool isGuineaPigAsset = e.NameWithoutLocale.IsEquivalentTo("Mods/GuineaPigMod/assets/texture_1.png") ||
+                                   e.NameWithoutLocale.IsEquivalentTo("Mods/GuineaPigMod/assets/gpicon.png") ||
+                                   e.NameWithoutLocale.IsEquivalentTo("Mods/GuineaPigMod/assets/poop_pile.png");
+            
+            if (isGuineaPigAsset)
+            {
+                Monitor.Log($"=== GUINEA PIG ASSET REQUESTED: {e.Name} ===", LogLevel.Info);
+                Monitor.Log($"Asset type: {e.Name.GetType().Name}", LogLevel.Info);
+                Monitor.Log($"Asset name without locale: {e.NameWithoutLocale}", LogLevel.Info);
+            }
             
             try
             {
@@ -64,7 +72,7 @@ namespace GuineaPigMod
                         Monitor.Log($"ObjectInformation entries count after injection: {data.Count}", LogLevel.Info);
                     });
                 }
-                // Inject guinea pig animal with texture variants and shop icon into Data/FarmAnimals
+                // Inject guinea pig animal with custom texture and shop icon into Data/FarmAnimals
                 else if (e.Name.IsEquivalentTo("Data/FarmAnimals"))
                 {
                     Monitor.Log("Processing Data/FarmAnimals asset...", LogLevel.Info);
@@ -108,7 +116,7 @@ namespace GuineaPigMod
                         
                         var entryKey = "GuineaPigMod.GuineaPig";
                         data[entryKey] = guineaPigEntry;
-                        Monitor.Log($"Injected guinea pig with variants and shop icon into Data/FarmAnimals.", LogLevel.Info);
+                        Monitor.Log($"Injected guinea pig with custom texture and shop icon into Data/FarmAnimals.", LogLevel.Info);
                         Monitor.Log($"Entry key: {entryKey}", LogLevel.Info);
                         Monitor.Log($"FarmAnimals entries count after injection: {data.Count}", LogLevel.Info);
                         Monitor.Log($"FarmAnimals keys after injection: {string.Join(", ", data.Keys.Where(k => k.Contains("GuineaPig") || k.Contains("Pig")))}", LogLevel.Info);
@@ -134,21 +142,27 @@ namespace GuineaPigMod
                             ["DaysToMature"] = 3,
                             ["Sprite"] = "Mods/GuineaPigMod/assets/texture_1.png",
                             ["ShopIcon"] = "Mods/GuineaPigMod/assets/gpicon.png",
-                            ["Products"] = new List<object>
+                            // New: Use ProduceItemIds for 7-8 poops per day
+                            ["ProduceItemIds"] = new List<object>
                             {
                                 new Dictionary<string, object>
                                 {
-                                    ["Id"] = $"(O){AssetInjector.PoopPileId}",
-                                    ["Chance"] = 1.0
+                                    ["ItemId"] = AssetInjector.PoopPileId.ToString(),
+                                    ["MinAmount"] = 7,
+                                    ["MaxAmount"] = 8
                                 }
                             },
+                            ["DaysToProduce"] = 1,
+                            ["ProduceOnMature"] = true,
+                            ["ProduceWhenYoung"] = true,
+                            ["HarvestType"] = "DigUp",
                             ["Home"] = "Coop",
                             ["CanBePurchased"] = true
                         };
                         
                         var entryKey = "GuineaPigMod.GuineaPig";
                         data[entryKey] = guineaPigEntry;
-                        Monitor.Log($"Injected guinea pig with variants and shop icon into Data/Animals.", LogLevel.Info);
+                        Monitor.Log($"Injected guinea pig with custom texture and shop icon into Data/Animals.", LogLevel.Info);
                         Monitor.Log($"Entry key: {entryKey}", LogLevel.Info);
                         Monitor.Log($"Entry data: {System.Text.Json.JsonSerializer.Serialize(guineaPigEntry)}", LogLevel.Info);
                         Monitor.Log($"Animals entries count after injection: {data.Count}", LogLevel.Info);
@@ -174,6 +188,36 @@ namespace GuineaPigMod
                     Monitor.Log("Loading poop_pile.png asset...", LogLevel.Info);
                     e.LoadFrom(() => Helper.ModContent.Load<Texture2D>("assets/poop_pile.png"), AssetLoadPriority.Medium);
                     Monitor.Log("poop_pile.png asset loaded successfully", LogLevel.Info);
+                }
+                
+                // Add crafting recipes for fertilizer
+                if (e.Name.IsEquivalentTo("Data/CraftingRecipes"))
+                {
+                    Monitor.Log("Processing Data/CraftingRecipes asset...", LogLevel.Info);
+                    e.Edit(asset =>
+                    {
+                        Monitor.Log("Editing Data/CraftingRecipes asset...", LogLevel.Info);
+                        var data = asset.AsDictionary<string, string>().Data;
+                        Monitor.Log($"Current CraftingRecipes entries count: {data.Count}", LogLevel.Info);
+                        
+                        // Basic Fertilizer: 1 Poop Pile + 1 Sap = 3 Basic Fertilizer (Agriculture level 1)
+                        var basicFertilizerRecipe = $"Basic Fertilizer/3 1 {AssetInjector.PoopPileId} 1 92/1/false/Agriculture";
+                        data["Basic Fertilizer (Guinea Pig)"] = basicFertilizerRecipe;
+                        
+                        // Quality Fertilizer: 2 Poop Piles + 1 Sap = 2 Quality Fertilizer (Agriculture level 3)
+                        var qualityFertilizerRecipe = $"Quality Fertilizer/2 2 {AssetInjector.PoopPileId} 1 92/3/false/Agriculture";
+                        data["Quality Fertilizer (Guinea Pig)"] = qualityFertilizerRecipe;
+                        
+                        // Deluxe Fertilizer: 3 Poop Piles + 1 Sap = 1 Deluxe Fertilizer (Agriculture level 6)
+                        var deluxeFertilizerRecipe = $"Deluxe Fertilizer/1 3 {AssetInjector.PoopPileId} 1 92/6/false/Agriculture";
+                        data["Deluxe Fertilizer (Guinea Pig)"] = deluxeFertilizerRecipe;
+                        
+                        Monitor.Log($"Injected crafting recipes for fertilizer using guinea pig poop.", LogLevel.Info);
+                        Monitor.Log($"Basic Fertilizer recipe: {basicFertilizerRecipe}", LogLevel.Info);
+                        Monitor.Log($"Quality Fertilizer recipe: {qualityFertilizerRecipe}", LogLevel.Info);
+                        Monitor.Log($"Deluxe Fertilizer recipe: {deluxeFertilizerRecipe}", LogLevel.Info);
+                        Monitor.Log($"CraftingRecipes entries count after injection: {data.Count}", LogLevel.Info);
+                    });
                 }
             }
             catch (Exception ex)

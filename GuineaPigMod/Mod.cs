@@ -264,12 +264,13 @@ namespace GuineaPigMod
             {
                 Instance.Monitor.Log($"Teleporting {animal.type.Value} inside to prevent getting stuck.", LogLevel.Info);
                 animal.currentLocation = animal.home.indoors.Value;
-                animal.Position = animal.home.indoors.Value.getRandomTile().ToVector2() * 64f;
+                var tile = animal.home.indoors.Value.getRandomTile();
+                animal.Position = new Vector2(tile.X * 64f, tile.Y * 64f);
                 animal.setRandomPosition(animal.home.indoors.Value);
                 animal.controller = null;
                 animal.faceDirection(2); // face down
                 animal.forceUpdateTimer = 0;
-                animal.reload();
+                animal.reload(animal.home);
             }
 
             // If after 5pm and guinea pig is near the coop door, teleport inside

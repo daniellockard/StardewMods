@@ -1,0 +1,142 @@
+# Furniture
+
+**Summary:** Class purpose not automatically determined. Review members for details.
+
+## Public Members
+- - public const int chair = 0;
+- - public const int bench = 1;
+- - public const int couch = 2;
+- - public const int armchair = 3;
+- - public const int dresser = 4;
+- - public const int longTable = 5;
+- - public const int painting = 6;
+- - public const int lamp = 7;
+- - public const int decor = 8;
+- - public const int other = 9;
+- - public const int bookcase = 10;
+- - public const int table = 11;
+- - public const int rug = 12;
+- - public const int window = 13;
+- - public const int fireplace = 14;
+- - public const int bed = 15;
+- - public const int torch = 16;
+- - public const int sconce = 17;
+- - public const string furnitureTextureName = "TileSheets\\furniture";
+- - public readonly NetInt furniture_type = new NetInt();
+- - public readonly NetInt rotations = new NetInt();
+- - public readonly NetInt currentRotation = new NetInt();
+- - public readonly NetRectangle sourceRect = new NetRectangle();
+- - public readonly NetRectangle defaultSourceRect = new NetRectangle();
+- - public readonly NetRectangle defaultBoundingBox = new NetRectangle();
+- - public readonly NetBool drawHeldObjectLow = new NetBool();
+- - public NetLongDictionary<int, NetInt> sittingFarmers = new NetLongDictionary<int, NetInt>();
+- - public Vector2? lightGlowPosition;
+- - public bool AllowLocalRemoval = true;
+- - public static bool isDrawingLocationFurniture;
+- - public int placementRestriction
+- - public string description
+- - public override string TypeDefinitionId { get; } = "(F)";
+- - public override string Name => base.name;
+- - public Furniture()
+- - public Furniture(string itemId, Vector2 tile, int initialRotations)
+- - public virtual void OnAdded(GameLocation loc, Vector2 tilePos)
+- - public void OnRemoved(GameLocation loc, Vector2 tilePos)
+- - public override bool IsHeldOverHead()
+- - public virtual bool IsTable()
+- - public static Rectangle GetDefaultSourceRect(string itemId, Texture2D texture = null)
+- - public Furniture SetPlacement(int x, int y, int rotations = 0)
+- - public Furniture SetPlacement(Point tile, int rotations = 0)
+- - public Furniture SetPlacement(Vector2 tile, int rotations = 0)
+- - public Furniture SetHeldObject(Object obj)
+- - public void InitializeAtTile(Vector2 tile)
+- - public Furniture(string itemId, Vector2 tile)
+- - public override void RecalculateBoundingBox()
+- - public override string getDescription()
+- - public override Color getCategoryColor()
+- - public override bool performDropDownAction(Farmer who)
+- - public override void hoverAction()
+- - public override bool checkForAction(Farmer who, bool justCheckingForActivity = false)
+- - public virtual void setFireplace(bool playSound = true, bool broadcast = false)
+- - public virtual void AttemptRemoval(Action<Furniture> removal_action)
+- - public virtual bool canBeRemoved(Farmer who)
+- - public override bool clicked(Farmer who)
+- - public virtual int GetSeatCapacity()
+- - public virtual bool IsSeatHere(GameLocation location)
+- - public virtual bool IsSittingHere(Farmer who)
+- - public virtual Vector2? GetSittingPosition(Farmer who, bool ignore_offsets = false)
+- - public virtual bool HasSittingFarmers()
+- - public virtual void RemoveSittingFarmer(Farmer farmer)
+- - public virtual int GetSittingFarmerCount()
+- - public virtual Rectangle GetSeatBounds()
+- - public virtual int GetSittingDirection()
+- - public virtual Vector2? AddSittingFarmer(Farmer who)
+- - public virtual List<Vector2> GetSeatPositions(bool ignore_offsets = false)
+- - public bool timeToTurnOnLights()
+- - public override void DayUpdate()
+- - public virtual void AddLightGlow()
+- - public virtual void RemoveLightGlow()
+- - public override void actionOnPlayerEntry()
+- - public virtual void actionOnPlayerEntryOrPlacement(GameLocation environment, bool dropDown)
+- - public override bool performObjectDropInAction(Item dropInItem, bool probe, Farmer who, bool returnFalseIfItemConsumed = false)
+- - public virtual void addLights()
+- - public virtual void removeLights()
+- - public override bool minutesElapsed(int minutes)
+- - public override void performRemoveAction()
+- - public virtual void rotate()
+- - public virtual void updateRotation()
+- - public virtual bool isGroundFurniture()
+- - public override bool canBeGivenAsGift()
+- - public static Furniture GetFurnitureInstance(string itemId, Vector2? position = null)
+- - public virtual bool IsCloseEnoughToFarmer(Farmer f, int? override_tile_x = null, int? override_tile_y = null)
+- - public virtual int GetModifiedWallTilePosition(GameLocation l, int tile_x, int tile_y)
+- - public override bool canBePlacedHere(GameLocation l, Vector2 tile, CollisionMask collisionMask = CollisionMask.All, bool showError = false)
+- - public virtual void updateDrawPosition()
+- - public virtual int getTilesWide()
+- - public virtual int getTilesHigh()
+- - public override bool placementAction(GameLocation location, int x, int y, Farmer who = null)
+- - public virtual int GetAdditionalFurniturePlacementStatus(GameLocation location, int x, int y, Farmer who = null)
+- - public override bool isPassable()
+- - public override bool isPlaceable()
+- - public virtual bool AllowPlacementOnThisTile(int tile_x, int tile_y)
+- - public override Rectangle GetBoundingBoxAt(int x, int y)
+- - public static int getTypeNumberFromName(string typeName)
+- - public override int salePrice(bool ignoreProfitMargins = false)
+- - public override int maximumStackSize()
+- - public override void updateWhenCurrentLocation(GameTime time)
+- - public override void drawWhenHeld(SpriteBatch spriteBatch, Vector2 objectPosition, Farmer f)
+- - public override void drawInMenu(SpriteBatch spriteBatch, Vector2 location, float scaleSize, float transparency, float layerDepth, StackDrawType drawStackNumber, Color color, bool drawShadow)
+- - public override void draw(SpriteBatch spriteBatch, int x, int y, float alpha = 1f)
+- - public virtual void drawAtNonTileSpot(SpriteBatch spriteBatch, Vector2 location, float layerDepth, float alpha = 1f)
+- - public virtual int GetAdditionalTilePropertyRadius()
+- - public virtual bool DoesTileHaveProperty(int tile_x, int tile_y, string property_name, string layer_name, ref string property_value)
+- - public virtual bool IntersectsForCollision(Rectangle rect)
+
+## Private Members
+- - private readonly NetInt sourceIndexOffset = new NetInt();
+- - private int _placementRestriction = -1;
+- - private string _description;
+- - private void RecalculateBoundingBox(string[] data)
+- - private bool isLampStyleLightSource()
+- - private void addCauldronBubbles(float speed = -0.5f)
+
+## Protected Members
+- - protected readonly NetVector2 drawPosition = new NetVector2();
+- - protected static Dictionary<string, string> _frontTextureName;
+- - protected override void initNetFields()
+- - protected string[] getData()
+- - protected static string[] getData(string itemId)
+- - protected override string loadDisplayName()
+- - protected virtual string loadDescription()
+- - protected virtual string GenerateLightSourceId()
+- - protected static Rectangle getDefaultSourceRectForType(ParsedItemData itemData, int type, Texture2D texture = null)
+- - protected static Rectangle getDefaultSourceRect(ParsedItemData itemData, int spriteWidth, int spriteHeight, Texture2D texture = null)
+- - protected virtual Rectangle getDefaultBoundingBoxForType(int type)
+- - protected virtual float getScaleSize()
+- - protected override Item GetOneNew()
+- - protected override void GetOneCopyFrom(Item source)
+
+## Internal Members
+- *(None)*
+
+## Other Members
+- *(None)*

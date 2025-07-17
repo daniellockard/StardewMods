@@ -1,0 +1,262 @@
+# Outlaw
+
+**Summary:** Class purpose not automatically determined. Review members for details.
+
+## Public Members
+- - public const int talkingPhase = -1;
+- - public const int hidingPhase = 0;
+- - public const int dartOutAndShootPhase = 1;
+- - public const int runAndGunPhase = 2;
+- - public const int runGunAndPantPhase = 3;
+- - public const int shootAtPlayerPhase = 4;
+- - public int phase;
+- - public int phaseCountdown;
+- - public int shootTimer;
+- - public int phaseInternalTimer;
+- - public int phaseInternalCounter;
+- - public bool dartLeft;
+- - public int fullHealth;
+- - public Point homePosition;
+- - public Outlaw(Point position, int health)
+- - public override void draw(SpriteBatch b)
+- - public override bool move(Vector2 playerPosition, GameTime time)
+- - public override int getLootDrop()
+- - public override bool takeDamage(int damage)
+- - public const int mapWidth = 16;
+- - public const int mapHeight = 16;
+- - public const int pixelZoom = 3;
+- - public const int bulletSpeed = 8;
+- - public const double lootChance = 0.05;
+- - public const double coinChance = 0.05;
+- - public int lootDuration = 7500;
+- - public int powerupDuration = 10000;
+- - public const int abigailPortraitDuration = 6000;
+- - public const float playerSpeed = 3f;
+- - public const int baseTileSize = 16;
+- - public const int orcSpeed = 2;
+- - public const int ogreSpeed = 1;
+- - public const int ghostSpeed = 3;
+- - public const int spikeySpeed = 3;
+- - public const int spikeyHealth = 2;
+- - public const int cactusDanceDelay = 800;
+- - public const int playerMotionDelay = 100;
+- - public const int playerFootStepDelay = 200;
+- - public const int deathDelay = 3000;
+- - public const int MAP_BARRIER1 = 0;
+- - public const int MAP_BARRIER2 = 1;
+- - public const int MAP_ROCKY1 = 2;
+- - public const int MAP_DESERT = 3;
+- - public const int MAP_GRASSY = 4;
+- - public const int MAP_CACTUS = 5;
+- - public const int MAP_FENCE = 7;
+- - public const int MAP_TRENCH1 = 8;
+- - public const int MAP_TRENCH2 = 9;
+- - public const int MAP_BRIDGE = 10;
+- - public const int orc = 0;
+- - public const int ghost = 1;
+- - public const int ogre = 2;
+- - public const int mummy = 3;
+- - public const int devil = 4;
+- - public const int mushroom = 5;
+- - public const int spikey = 6;
+- - public const int dracula = 7;
+- - public const int desert = 0;
+- - public const int woods = 2;
+- - public const int graveyard = 1;
+- - public const int POWERUP_LOG = -1;
+- - public const int POWERUP_SKULL = -2;
+- - public const int coin1 = 0;
+- - public const int coin5 = 1;
+- - public const int POWERUP_SPREAD = 2;
+- - public const int POWERUP_RAPIDFIRE = 3;
+- - public const int POWERUP_NUKE = 4;
+- - public const int POWERUP_ZOMBIE = 5;
+- - public const int POWERUP_SPEED = 6;
+- - public const int POWERUP_SHOTGUN = 7;
+- - public const int POWERUP_LIFE = 8;
+- - public const int POWERUP_TELEPORT = 9;
+- - public const int POWERUP_SHERRIFF = 10;
+- - public const int POWERUP_HEART = -3;
+- - public const int ITEM_FIRESPEED1 = 0;
+- - public const int ITEM_FIRESPEED2 = 1;
+- - public const int ITEM_FIRESPEED3 = 2;
+- - public const int ITEM_RUNSPEED1 = 3;
+- - public const int ITEM_RUNSPEED2 = 4;
+- - public const int ITEM_LIFE = 5;
+- - public const int ITEM_AMMO1 = 6;
+- - public const int ITEM_AMMO2 = 7;
+- - public const int ITEM_AMMO3 = 8;
+- - public const int ITEM_SPREADPISTOL = 9;
+- - public const int ITEM_STAR = 10;
+- - public const int ITEM_SKULL = 11;
+- - public const int ITEM_LOG = 12;
+- - public const int option_retry = 0;
+- - public const int option_quit = 1;
+- - public int runSpeedLevel;
+- - public int fireSpeedLevel;
+- - public int ammoLevel;
+- - public int whichRound;
+- - public bool spreadPistol;
+- - public const int waveDuration = 80000;
+- - public const int betweenWaveDuration = 5000;
+- - public static List<CowboyMonster> monsters = new List<CowboyMonster>();
+- - public Vector2 playerPosition;
+- - public static Vector2 player2Position = default(Vector2);
+- - public Rectangle playerBoundingBox;
+- - public Rectangle merchantBox;
+- - public Rectangle player2BoundingBox;
+- - public Rectangle noPickUpBox;
+- - public static List<int> playerMovementDirections = new List<int>();
+- - public static List<int> playerShootingDirections = new List<int>();
+- - public List<int> player2MovementDirections = new List<int>();
+- - public List<int> player2ShootingDirections = new List<int>();
+- - public int shootingDelay = 300;
+- - public int shotTimer;
+- - public int motionPause;
+- - public int bulletDamage;
+- - public int lives = 3;
+- - public int coins;
+- - public int score;
+- - public int player2deathtimer;
+- - public int player2invincibletimer;
+- - public List<CowboyBullet> bullets = new List<CowboyBullet>();
+- - public static List<CowboyBullet> enemyBullets = new List<CowboyBullet>();
+- - public static int[,] map = new int[16, 16];
+- - public static int[,] nextMap = new int[16, 16];
+- - public List<Point>[] spawnQueue = new List<Point>[4];
+- - public static Vector2 topLeftScreenCoordinate;
+- - public float cactusDanceTimer;
+- - public float playerMotionAnimationTimer;
+- - public float playerFootstepSoundTimer = 200f;
+- - public behaviorAfterMotionPause behaviorAfterPause;
+- - public List<Vector2> monsterChances = new List<Vector2>
+- - public Rectangle shoppingCarpetNoPickup;
+- - public Dictionary<int, int> activePowerups = new Dictionary<int, int>();
+- - public NPC abigail;
+- - public static List<CowboyPowerup> powerups = new List<CowboyPowerup>();
+- - public string AbigailDialogue = "";
+- - public static TemporaryAnimatedSpriteList temporarySprites = new TemporaryAnimatedSpriteList();
+- - public CowboyPowerup heldItem;
+- - public static int world = 0;
+- - public int gameOverOption;
+- - public int gamerestartTimer;
+- - public int player2TargetUpdateTimer;
+- - public int player2shotTimer;
+- - public int player2AnimationTimer;
+- - public int fadethenQuitTimer;
+- - public int abigailPortraitYposition;
+- - public int abigailPortraitTimer;
+- - public int abigailPortraitExpression;
+- - public static int waveTimer = 80000;
+- - public static int betweenWaveTimer = 5000;
+- - public static int whichWave;
+- - public static int monsterConfusionTimer;
+- - public static int zombieModeTimer;
+- - public static int shoppingTimer;
+- - public static int holdItemTimer;
+- - public static int itemToHold;
+- - public static int newMapPosition;
+- - public static int playerInvincibleTimer;
+- - public static int screenFlash;
+- - public static int gopherTrainPosition;
+- - public static int endCutsceneTimer;
+- - public static int endCutscenePhase;
+- - public static int startTimer;
+- - public static float deathTimer;
+- - public static bool onStartMenu;
+- - public static bool shopping;
+- - public static bool gopherRunning;
+- - public static bool store;
+- - public static bool merchantLeaving;
+- - public static bool merchantArriving;
+- - public static bool merchantShopOpen;
+- - public static bool waitingForPlayerToMoveDownAMap;
+- - public static bool scrollingMap;
+- - public static bool hasGopherAppeared;
+- - public static bool shootoutLevel;
+- - public static bool gopherTrain;
+- - public static bool playerJumped;
+- - public static bool endCutscene;
+- - public static bool gameOver;
+- - public static bool playingWithAbigail;
+- - public static bool beatLevelWithAbigail;
+- - public Dictionary<Rectangle, int> storeItems = new Dictionary<Rectangle, int>();
+- - public bool quit;
+- - public bool died;
+- - public static Rectangle gopherBox;
+- - public Point gopherMotion;
+- - public CowboyMonster targetMonster;
+- - public static int TileSize => 48;
+- - public bool LoadGame()
+- - public void SaveGame()
+- - public AbigailGame(NPC abigail = null)
+- - public AbigailGame(int coins, int ammoLevel, int bulletDamage, int fireSpeedLevel, int runSpeedLevel, int lives, bool spreadPistol, int whichRound)
+- - public void ApplyNewGamePlus()
+- - public void reset(bool playingWithAbby)
+- - public float getMovementSpeed(float speed, int directions)
+- - public bool getPowerUp(CowboyPowerup c)
+- - public bool overrideFreeMouseMovement()
+- - public void usePowerup(int which)
+- - public static void addGuts(Point position, int whichGuts)
+- - public void endOfGopherAnimationBehavior2(int extraInfo)
+- - public void endOfGopherAnimationBehavior(int extrainfo)
+- - public void updateBullets(GameTime time)
+- - public void playerDie()
+- - public void afterPlayerDeathFunction(int extra)
+- - public void startAbigailPortrait(int whichExpression, string sayWhat)
+- - public void startNewRound()
+- - public virtual void SetupBinds()
+- - public Keys GetBoundKey(InputButton[] button)
+- - public bool IsBoundButtonDown(GameKeys game_key)
+- - public bool tick(GameTime time)
+- - public virtual void ApplyLevelSpecificStates()
+- - public void updateAbigail(GameTime time)
+- - public int[,] getMap(int wave)
+- - public void receiveLeftClick(int x, int y, bool playSound = true)
+- - public void leftClickHeld(int x, int y)
+- - public void receiveRightClick(int x, int y, bool playSound = true)
+- - public void releaseLeftClick(int x, int y)
+- - public void releaseRightClick(int x, int y)
+- - public void spawnBullets(IList<int> directions, Vector2 spawn)
+- - public bool isSpawnQueueEmpty()
+- - public static bool isMapTilePassable(int tileType)
+- - public static bool isMapTilePassableForMonsters(int tileType)
+- - public static bool isCollidingWithMonster(Rectangle r, CowboyMonster subject)
+- - public static bool isCollidingWithMapForMonsters(Rectangle positionToCheck)
+- - public static bool isCollidingWithMap(Rectangle positionToCheck)
+- - public static bool isCollidingWithMap(Point position)
+- - public void startShoppingLevel()
+- - public void receiveKeyPress(Keys k)
+- - public void receiveKeyRelease(Keys k)
+- - public int getPriceForItem(int whichItem)
+- - public void draw(SpriteBatch b)
+- - public void changeScreenSize()
+- - public void unload()
+- - public void receiveEventPoke(int data)
+- - public string minigameId()
+- - public bool doMainGameUpdates()
+- - public bool forceQuit()
+
+## Private Members
+- - private static ICue overworldSong;
+- - private static ICue outlawSong;
+- - private static ICue zombieSong;
+- - private int player2FootstepSoundTimer;
+- - private void addPlayer2MovementDirection(int direction)
+- - private void addPlayerMovementDirection(int direction)
+- - private void addPlayer2ShootingDirection(int direction)
+- - private void addPlayerShootingDirection(int direction)
+
+## Protected Members
+- - protected HashSet<Vector2> _borderTiles = new HashSet<Vector2>();
+- - protected Dictionary<GameKeys, List<Keys>> _binds;
+- - protected HashSet<GameKeys> _buttonHeldState = new HashSet<GameKeys>();
+- - protected Dictionary<GameKeys, int> _buttonHeldFrames;
+- - protected void _UpdateInput()
+- - protected void _ProcessInputs()
+
+## Internal Members
+- *(None)*
+
+## Other Members
+- *(None)*

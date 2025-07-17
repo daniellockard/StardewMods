@@ -1,0 +1,987 @@
+# Game1
+
+**Summary:** Main game logic and entry point.
+
+## Public Members
+- - public enum BundleType
+- - public enum MineChestType
+- - public delegate void afterFadeFunction();
+- - public const bool IncrementalLoadEnabled = false;
+- - public const int defaultResolutionX = 1280;
+- - public const int defaultResolutionY = 720;
+- - public const int pixelZoom = 4;
+- - public const int tileSize = 64;
+- - public const int smallestTileSize = 16;
+- - public const int up = 0;
+- - public const int right = 1;
+- - public const int down = 2;
+- - public const int left = 3;
+- - public const int dialogueBoxTileHeight = 5;
+- - public static int realMilliSecondsPerGameMinute;
+- - public static int realMilliSecondsPerGameTenMinutes;
+- - public const int rainDensity = 70;
+- - public const int rainLoopLength = 70;
+- - public static readonly int cursor_none;
+- - public static readonly int cursor_default;
+- - public static readonly int cursor_wait;
+- - public static readonly int cursor_grab;
+- - public static readonly int cursor_gift;
+- - public static readonly int cursor_talk;
+- - public static readonly int cursor_look;
+- - public static readonly int cursor_harvest;
+- - public static readonly int cursor_gamepad_pointer;
+- - public static readonly string asianSpacingRegexString;
+- - public const int legacy_weather_sunny = 0;
+- - public const int legacy_weather_rain = 1;
+- - public const int legacy_weather_debris = 2;
+- - public const int legacy_weather_lightning = 3;
+- - public const int legacy_weather_festival = 4;
+- - public const int legacy_weather_snow = 5;
+- - public const int legacy_weather_wedding = 6;
+- - public const string weather_sunny = "Sun";
+- - public const string weather_rain = "Rain";
+- - public const string weather_green_rain = "GreenRain";
+- - public const string weather_debris = "Wind";
+- - public const string weather_lightning = "Storm";
+- - public const string weather_festival = "Festival";
+- - public const string weather_snow = "Snow";
+- - public const string weather_wedding = "Wedding";
+- - public const string builder_robin = "Robin";
+- - public const string builder_wizard = "Wizard";
+- - public const string shop_adventurersGuild = "AdventureShop";
+- - public const string shop_adventurersGuildItemRecovery = "AdventureGuildRecovery";
+- - public const string shop_animalSupplies = "AnimalShop";
+- - public const string shop_blacksmith = "Blacksmith";
+- - public const string shop_blacksmithUpgrades = "ClintUpgrade";
+- - public const string shop_boxOffice = "BoxOffice";
+- - public const string shop_catalogue = "Catalogue";
+- - public const string shop_carpenter = "Carpenter";
+- - public const string shop_casino = "Casino";
+- - public const string shop_desertTrader = "DesertTrade";
+- - public const string shop_dwarf = "Dwarf";
+- - public const string shop_fish = "FishShop";
+- - public const string shop_furnitureCatalogue = "Furniture Catalogue";
+- - public const string shop_generalStore = "SeedShop";
+- - public const string shop_hatMouse = "HatMouse";
+- - public const string shop_hospital = "Hospital";
+- - public const string shop_iceCreamStand = "IceCreamStand";
+- - public const string shop_islandTrader = "IslandTrade";
+- - public const string shop_jojaMart = "Joja";
+- - public const string shop_krobus = "ShadowShop";
+- - public const string shop_qiGemShop = "QiGemShop";
+- - public const string shop_resortBar = "ResortBar";
+- - public const string shop_sandy = "Sandy";
+- - public const string shop_saloon = "Saloon";
+- - public const string shop_travelingCart = "Traveler";
+- - public const string shop_volcanoShop = "VolcanoShop";
+- - public const string shop_bookseller = "Bookseller";
+- - public const string shop_bookseller_trade = "BooksellerTrade";
+- - public const string shop_jojaCatalogue = "JojaFurnitureCatalogue";
+- - public const string shop_wizardCatalogue = "WizardFurnitureCatalogue";
+- - public const string shop_junimoCatalogue = "JunimoFurnitureCatalogue";
+- - public const string shop_retroCatalogue = "RetroFurnitureCatalogue";
+- - public const string shop_trashCatalogue = "TrashFurnitureCatalogue";
+- - public const string shop_petAdoption = "PetAdoption";
+- - public const byte singlePlayer = 0;
+- - public const byte multiplayerClient = 1;
+- - public const byte multiplayerServer = 2;
+- - public const byte logoScreenGameMode = 4;
+- - public const byte titleScreenGameMode = 0;
+- - public const byte loadScreenGameMode = 1;
+- - public const byte newGameMode = 2;
+- - public const byte playingGameMode = 3;
+- - public const byte loadingMode = 6;
+- - public const byte saveMode = 7;
+- - public const byte saveCompleteMode = 8;
+- - public const byte selectGameScreen = 9;
+- - public const byte creditsMode = 10;
+- - public const byte errorLogMode = 11;
+- - public static readonly string GameAssemblyName;
+- - public static readonly string version;
+- - public static readonly string versionLabel;
+- - public static readonly int versionBuildNumber;
+- - public const float keyPollingThreshold = 650f;
+- - public const float toolHoldPerPowerupLevel = 600f;
+- - public const float startingMusicVolume = 1f;
+- - public LocalizedContentManager xTileContent;
+- - public static DelayedAction morningSongPlayAction;
+- - public static GraphicsDeviceManager graphics;
+- - public static LocalizedContentManager content;
+- - public static SpriteBatch spriteBatch;
+- - public static float MusicDuckTimer;
+- - public static GamePadState oldPadState;
+- - public static float thumbStickSensitivity;
+- - public static float runThreshold;
+- - public static int rightStickHoldTime;
+- - public static int emoteMenuShowTime;
+- - public static int nextFarmerWarpOffsetX;
+- - public static int nextFarmerWarpOffsetY;
+- - public static KeyboardState oldKBState;
+- - public static MouseState oldMouseState;
+- - public static Game1 keyboardFocusInstance;
+- - public static NetFarmerRoot serverHost;
+- - public static bool hasLocalClientsOnly;
+- - public static bool isUsingBackToFrontSorting;
+- - public static Dictionary<string, GameLocation> _locationLookup;
+- - public IList<GameLocation> _locations = new List<GameLocation>();
+- - public static Regex asianSpacingRegex;
+- - public static Viewport defaultDeviceViewport;
+- - public static LocationRequest locationRequest;
+- - public static bool warpingForForcedRemoteEvent;
+- - public GameLocation instanceGameLocation;
+- - public static IDisplayDevice mapDisplayDevice;
+- - public static Rectangle viewport;
+- - public static Rectangle uiViewport;
+- - public static Texture2D objectSpriteSheet;
+- - public static Texture2D cropSpriteSheet;
+- - public static Texture2D emoteSpriteSheet;
+- - public static Texture2D debrisSpriteSheet;
+- - public static Texture2D rainTexture;
+- - public static Texture2D bigCraftableSpriteSheet;
+- - public static Texture2D buffsIcons;
+- - public static Texture2D daybg;
+- - public static Texture2D nightbg;
+- - public static Texture2D menuTexture;
+- - public static Texture2D uncoloredMenuTexture;
+- - public static Texture2D lantern;
+- - public static Texture2D windowLight;
+- - public static Texture2D sconceLight;
+- - public static Texture2D cauldronLight;
+- - public static Texture2D shadowTexture;
+- - public static Texture2D mouseCursors;
+- - public static Texture2D mouseCursors2;
+- - public static Texture2D mouseCursors_1_6;
+- - public static Texture2D giftboxTexture;
+- - public static Texture2D controllerMaps;
+- - public static Texture2D indoorWindowLight;
+- - public static Texture2D animations;
+- - public static Texture2D concessionsSpriteSheet;
+- - public static Texture2D birdsSpriteSheet;
+- - public static Texture2D objectSpriteSheet_2;
+- - public static Texture2D bobbersTexture;
+- - public static Dictionary<string, Stack<Dialogue>> npcDialogues;
+- - public static Queue<Action> morningQueue;
+- - public static InputState input;
+- - public const string concessionsSpriteSheetName = "LooseSprites\\Concessions";
+- - public const string cropSpriteSheetName = "TileSheets\\crops";
+- - public const string objectSpriteSheetName = "Maps\\springobjects";
+- - public const string animationsName = "TileSheets\\animations";
+- - public const string mouseCursorsName = "LooseSprites\\Cursors";
+- - public const string mouseCursors2Name = "LooseSprites\\Cursors2";
+- - public const string mouseCursors1_6Name = "LooseSprites\\Cursors_1_6";
+- - public const string giftboxName = "LooseSprites\\Giftbox";
+- - public const string toolSpriteSheetName = "TileSheets\\tools";
+- - public const string bigCraftableSpriteSheetName = "TileSheets\\Craftables";
+- - public const string debrisSpriteSheetName = "TileSheets\\debris";
+- - public const string parrotSheetName = "LooseSprites\\parrots";
+- - public const string hatsSheetName = "Characters\\Farmer\\hats";
+- - public const string bobbersTextureName = "TileSheets\\bobbers";
+- - public static Dictionary<Vector2, int> crabPotOverlayTiles;
+- - public static List<string> mailDeliveredFromMailForTomorrow;
+- - public static Texture2D[] dynamicPixelRects;
+- - public static Texture2D fadeToBlackRect;
+- - public static Texture2D staminaRect;
+- - public static Texture2D lightingRect;
+- - public static SpriteFont dialogueFont;
+- - public static SpriteFont smallFont;
+- - public static SpriteFont tinyFont;
+- - public static float screenGlowAlpha;
+- - public static float flashAlpha;
+- - public static float noteBlockTimer;
+- - public static int currentGemBirdIndex;
+- - public Dictionary<string, object> newGameSetupOptions = new Dictionary<string, object>();
+- - public static bool dialogueUp;
+- - public static bool dialogueTyping;
+- - public static bool isQuestion;
+- - public static bool newDay;
+- - public static bool eventUp;
+- - public static bool viewportFreeze;
+- - public static bool eventOver;
+- - public static bool screenGlow;
+- - public static bool screenGlowHold;
+- - public static bool screenGlowUp;
+- - public static bool killScreen;
+- - public static bool messagePause;
+- - public static bool weddingToday;
+- - public static bool exitToTitle;
+- - public static bool debugMode;
+- - public static bool displayHUD;
+- - public static bool displayFarmer;
+- - public static bool dialogueButtonShrinking;
+- - public static bool drawLighting;
+- - public static bool quit;
+- - public static bool drawGrid;
+- - public static bool freezeControls;
+- - public static bool saveOnNewDay;
+- - public static bool panMode;
+- - public static bool showingEndOfNightStuff;
+- - public static bool wasRainingYesterday;
+- - public static bool hasLoadedGame;
+- - public static bool isActionAtCurrentCursorTile;
+- - public static bool isInspectionAtCurrentCursorTile;
+- - public static bool isSpeechAtCurrentCursorTile;
+- - public static bool paused;
+- - public static bool isTimePaused;
+- - public static bool frameByFrame;
+- - public static bool lastCursorMotionWasMouse;
+- - public static bool showingHealth;
+- - public static bool cabinsSeparate;
+- - public static bool showingHealthBar;
+- - public static bool hasStartedDay;
+- - public static HashSet<string> eventsSeenSinceLastLocationChange;
+- - public bool wasAskedLeoMemory;
+- - public float controllerSlingshotSafeTime;
+- - public static BundleType bundleType;
+- - public static bool isRaining;
+- - public static bool isSnowing;
+- - public static bool isLightning;
+- - public static bool isDebrisWeather;
+- - public static Season? debrisWeatherSeason;
+- - public static string weatherForTomorrow;
+- - public float zoomModifier = 1f;
+- - public static Season season;
+- - public static SerializableDictionary<string, string> bannedUsers;
+- - public static string requestedMusicTrack;
+- - public static string messageAfterPause;
+- - public static string samBandName;
+- - public static string loadingMessage;
+- - public static string errorMessage;
+- - public static bool requestedMusicTrackOverrideable;
+- - public static bool currentTrackOverrideable;
+- - public static bool requestedMusicDirty;
+- - public bool instanceIsOverridingTrack;
+- - public static Queue<string> currentObjectDialogue;
+- - public static HashSet<string> worldStateIDs;
+- - public static List<Response> questionChoices;
+- - public static int xLocationAfterWarp;
+- - public static int yLocationAfterWarp;
+- - public static int gameTimeInterval;
+- - public static int currentQuestionChoice;
+- - public static int currentDialogueCharacterIndex;
+- - public static int dialogueTypingInterval;
+- - public static int dayOfMonth;
+- - public static int year;
+- - public static int timeOfDay;
+- - public static int timeOfDayAfterFade;
+- - public static int dialogueWidth;
+- - public static int facingDirectionAfterWarp;
+- - public static int mouseClickPolling;
+- - public static int gamePadXButtonPolling;
+- - public static int gamePadAButtonPolling;
+- - public static int weatherIcon;
+- - public static int hitShakeTimer;
+- - public static int staminaShakeTimer;
+- - public static int pauseThenDoFunctionTimer;
+- - public static int cursorTileHintCheckTimer;
+- - public static int timerUntilMouseFade;
+- - public static int whichFarm;
+- - public static int startingCabins;
+- - public static ModFarmType whichModFarm;
+- - public static ulong? startingGameSeed;
+- - public static int elliottPiano;
+- - public static Rectangle viewportClampArea;
+- - public static SaveFixes lastAppliedSaveFix;
+- - public static Color eveningColor;
+- - public static Color unselectedOptionColor;
+- - public static Color screenGlowColor;
+- - public static NPC currentSpeaker;
+- - public static Random random;
+- - public static Random recentMultiplayerRandom;
+- - public static Dictionary<int, string> achievements;
+- - public static IDictionary<string, BigCraftableData> bigCraftableData;
+- - public static IDictionary<string, BuildingData> buildingData;
+- - public static IDictionary<string, CharacterData> characterData;
+- - public static IDictionary<string, CropData> cropData;
+- - public static IDictionary<string, FarmAnimalData> farmAnimalData;
+- - public static IDictionary<string, FloorPathData> floorPathData;
+- - public static IDictionary<string, FruitTreeData> fruitTreeData;
+- - public static IDictionary<string, JukeboxTrackData> jukeboxTrackData;
+- - public static IDictionary<string, LocationData> locationData;
+- - public static IDictionary<string, LocationContextData> locationContextData;
+- - public static IDictionary<string, string> NPCGiftTastes;
+- - public static IDictionary<string, ObjectData> objectData;
+- - public static IDictionary<string, PantsData> pantsData;
+- - public static IDictionary<string, PetData> petData;
+- - public static IDictionary<string, ShirtData> shirtData;
+- - public static IDictionary<string, ToolData> toolData;
+- - public static IDictionary<string, WeaponData> weaponData;
+- - public static List<HUDMessage> hudMessages;
+- - public static float musicPlayerVolume;
+- - public static float ambientPlayerVolume;
+- - public static float pauseAccumulator;
+- - public static float pauseTime;
+- - public static float upPolling;
+- - public static float downPolling;
+- - public static float rightPolling;
+- - public static float leftPolling;
+- - public static float debrisSoundInterval;
+- - public static float windGust;
+- - public static float dialogueButtonScale;
+- - public ICue instanceCurrentSong;
+- - public static IAudioCategory musicCategory;
+- - public static IAudioCategory soundCategory;
+- - public static IAudioCategory ambientCategory;
+- - public static IAudioCategory footstepCategory;
+- - public PlayerIndex instancePlayerOneIndex;
+- - public static IAudioEngine audioEngine;
+- - public static WaveBank waveBank;
+- - public static WaveBank waveBank1_4;
+- - public static ISoundBank soundBank;
+- - public static Vector2 previousViewportPosition;
+- - public static Vector2 currentCursorTile;
+- - public static Vector2 lastCursorTile;
+- - public static Vector2 snowPos;
+- - public Rectangle localMultiplayerWindow;
+- - public static RainDrop[] rainDrops;
+- - public static ICue chargeUpSound;
+- - public static ICue wind;
+- - public static LoopingCueManager loopingLocationCues;
+- - public static ISoundsHelper sounds;
+- - public static AudioCueModificationManager CueModification;
+- - public static List<WeatherDebris> debrisWeather;
+- - public static TemporaryAnimatedSpriteList screenOverlayTempSprites;
+- - public static TemporaryAnimatedSpriteList uiOverlayTempSprites;
+- - public static IHashUtility hash;
+- - public static byte multiplayerMode;
+- - public static IEnumerator<int> currentLoader;
+- - public static ulong uniqueIDForThisGame;
+- - public static int[] directionKeyPolling;
+- - public static Dictionary<string, LightSource> currentLightSources;
+- - public static Color ambientLight;
+- - public static Color outdoorLight;
+- - public static Color textColor;
+- - public static Color textShadowColor;
+- - public static Color textShadowDarkerColor;
+- - public static IClickableMenu overlayMenu;
+- - public static List<IClickableMenu> nextClickableMenu;
+- - public static List<Action> actionsWhenPlayerFree;
+- - public static bool isCheckingNonMousePlacement;
+- - public static IList<IClickableMenu> onScreenMenus;
+- - public static BuffsDisplay buffsDisplay;
+- - public static DayTimeMoneyBox dayTimeMoneyBox;
+- - public static NetRootDictionary<long, Farmer> otherFarmers;
+- - public static IGameServer server;
+- - public static Client client;
+- - public KeyboardDispatcher instanceKeyboardDispatcher;
+- - public static Background background;
+- - public static FarmEvent farmEvent;
+- - public static FarmEvent farmEventOverride;
+- - public static afterFadeFunction afterFade;
+- - public static afterFadeFunction afterDialogues;
+- - public static afterFadeFunction afterViewport;
+- - public static afterFadeFunction viewportReachedTarget;
+- - public static afterFadeFunction afterPause;
+- - public static GameTime currentGameTime;
+- - public static IList<DelayedAction> delayedActions;
+- - public static Stack<IClickableMenu> endOfNightMenus;
+- - public Options instanceOptions;
+- - public static SerializableDictionary<long, Options> splitscreenOptions;
+- - public static Game1 game1;
+- - public static Point lastMousePositionBeforeFade;
+- - public static int ticks;
+- - public static EmoteMenu emoteMenu;
+- - public static SerializableDictionary<string, string> CustomData;
+- - public static ReadySynchronizer netReady;
+- - public static DedicatedServer dedicatedServer;
+- - public static NetRoot<NetWorldState> netWorldState;
+- - public static ChatBox chatBox;
+- - public TextEntryMenu instanceTextEntry;
+- - public static SpecialCurrencyDisplay specialCurrencyDisplay;
+- - public static List<Action> remoteEventQueue;
+- - public static List<long> weddingsToday;
+- - public int instanceIndex;
+- - public int instanceId;
+- - public static bool overrideGameMenuReset;
+- - public static Point viewportCenter;
+- - public static Vector2 viewportTarget;
+- - public static float viewportSpeed;
+- - public static int viewportHold;
+- - public static bool toggleFullScreen;
+- - public static string whereIsTodaysFest;
+- - public const string NO_LETTER_MAIL = "%&NL&%";
+- - public const string BROADCAST_MAIL_FOR_TOMORROW_PREFIX = "%&MFT&%";
+- - public const string BROADCAST_SEEN_MAIL_PREFIX = "%&SM&%";
+- - public const string BROADCAST_MAILBOX_PREFIX = "%&MB&%";
+- - public bool isLocalMultiplayerNewDayActive;
+- - public static NewDaySynchronizer newDaySync;
+- - public static bool forceSnapOnNextViewportUpdate;
+- - public static Vector2 currentViewportTarget;
+- - public static Vector2 viewportPositionLerp;
+- - public static float screenGlowRate;
+- - public static float screenGlowMax;
+- - public static bool haltAfterCheck;
+- - public static bool uiMode;
+- - public static RenderTarget2D nonUIRenderTarget;
+- - public static int uiModeCount;
+- - public static bool conventionMode;
+- - public static bool isRunningMacro;
+- - public static int thumbstickMotionMargin;
+- - public static float thumbstickMotionAccell;
+- - public static int triggerPolling;
+- - public static int rightClickPolling;
+- - public static Color bgColor;
+- - public bool isDrawing;
+- - public static bool isRenderingScreenBuffer;
+- - public static int mouseCursor;
+- - public static bool wasMouseVisibleThisFrame;
+- - public static NPC objectDialoguePortraitPerson;
+- - public bool ScreenshotBusy;
+- - public bool takingMapScreenshot;
+- - public bool IsActiveNoOverlay
+- - public static LocalizedContentManager temporaryContent
+- - public static Farmer player
+- - public static bool IsPlayingBackgroundMusic
+- - public static bool IsPlayingOutdoorsAmbience
+- - public static bool IsPlayingNightAmbience
+- - public static bool IsPlayingTownMusic
+- - public static bool IsPlayingMorningSong
+- - public static bool isWarping => _isWarping;
+- - public static IList<GameLocation> locations => game1._locations;
+- - public static GameLocation currentLocation
+- - public static Texture2D toolSpriteSheet
+- - public static RenderTarget2D lightmap => _lightmap;
+- - public static bool IsHudDrawn
+- - public static bool isGreenRain
+- - public static bool spawnMonstersAtNight
+- - public static bool UseLegacyRandom
+- - public static bool fadeToBlack
+- - public static bool fadeIn
+- - public static bool globalFade
+- - public static bool nonWarpFade
+- - public static float fadeToBlackAlpha
+- - public static float globalFadeSpeed
+- - public static string CurrentSeasonDisplayName => content.LoadString("Strings\\StringsFromCSFiles:" + currentSeason);
+- - public static string currentSeason
+- - public static int seasonIndex => (int)season;
+- - public static string debugOutput
+- - public static string elliottBookName
+- - public static bool isOverridingTrack
+- - public bool useUnscaledLighting
+- - public static IList<string> mailbox => player.mailbox;
+- - public static ICue currentSong
+- - public static PlayerIndex playerOneIndex
+- - public static int gameModeTicks { get; private set; }
+- - public static byte gameMode
+- - public bool IsSaving
+- - public static Multiplayer Multiplayer => multiplayer;
+- - public static Stats stats => player.stats;
+- - public static Quest questOfTheDay => netWorldState.Value.QuestOfTheDay;
+- - public static IClickableMenu activeClickableMenu
+- - public static IMinigame currentMinigame
+- - public static Object dishOfTheDay
+- - public static KeyboardDispatcher keyboardDispatcher
+- - public static Options options
+- - public static TextEntryMenu textEntry
+- - public static WorldDate Date => netWorldState.Value.Date;
+- - public static bool NetTimePaused => netWorldState.Get().IsTimePaused;
+- - public static bool HostPaused => netWorldState.Get().IsPaused;
+- - public static bool IsMultiplayer => otherFarmers.Count > 0;
+- - public static bool IsClient => multiplayerMode == 1;
+- - public static bool IsServer => multiplayerMode == 2;
+- - public static bool IsMasterGame
+- - public static bool HasDedicatedHost
+- - public static bool IsDedicatedHost
+- - public static Farmer MasterPlayer
+- - public static bool IsChatting
+- - public static Event CurrentEvent
+- - public static MineShaft mine => (locationRequest?.Location as MineShaft) ?? (currentLocation as MineShaft);
+- - public static int CurrentMineLevel => (currentLocation as MineShaft)?.mineLevel ?? 0;
+- - public static int CurrentPlayerLimit
+- - public static bool isFullscreen => graphics.IsFullScreen;
+- - public static bool IsSummer => (int)season == 1;
+- - public static bool IsSpring => (int)season == 0;
+- - public static bool IsFall => (int)season == 2;
+- - public static bool IsWinter => (int)season == 3;
+- - public RenderTarget2D screen
+- - public RenderTarget2D uiScreen
+- - public static float mouseCursorTransparency
+- - public static void GetHasRoomAnotherFarmAsync(ReportHasRoomAnotherFarmDelegate callback)
+- - public static string GetVersionString()
+- - public static void ResetToolSpriteSheet()
+- - public static void SetSaveName(string new_save_name)
+- - public static string GetSaveGameName(bool set_value = true)
+- - public static bool canHaveWeddingOnDay(int day, Season season)
+- - public static void RefreshQuestOfTheDay()
+- - public static void ExitToTitle(Action postExitCallback = null)
+- - public Game1(PlayerIndex player_index, int index)
+- - public Game1()
+- - public void TranslateFields()
+- - public void exitEvent(object sender, EventArgs e)
+- - public void refreshWindowSettings()
+- - public void Window_ClientSizeChanged(object sender, EventArgs e)
+- - public virtual void SetWindowSize(int w, int h)
+- - public static void setGameMode(byte mode)
+- - public static void updateViewportForScreenSizeChange(bool fullscreenChange, int width, int height)
+- - public void Instance_Initialize()
+- - public static bool IsFading()
+- - public static bool IsFakedBlackScreen()
+- - public static void pauseThenDoFunction(int pauseTime, afterFadeFunction function)
+- - public void Instance_LoadContent()
+- - public static void resetPlayer()
+- - public static void resetVariables()
+- - public static bool playSound(string cueName, int? pitch = null)
+- - public static bool playSound(string cueName, out ICue cue)
+- - public static bool playSound(string cueName, int pitch, out ICue cue)
+- - public static void setRichPresence(string friendlyName, object argument = null)
+- - public static void GenerateBundles(BundleType bundle_type, bool use_seed = true)
+- - public void SetNewGameOption<T>(string key, T val)
+- - public T GetNewGameOption<T>(string key)
+- - public virtual void loadForNewGame(bool loadedGame = false)
+- - public bool IsLocalCoopJoinable()
+- - public static void StartLocalMultiplayerIfNecessary()
+- - public static void EndLocalMultiplayer()
+- - public static void UpdatePassiveFestivalStates()
+- - public void Instance_UnloadContent()
+- - public static void showRedMessage(string message, bool playSound = true)
+- - public static void showRedMessageUsingLoadString(string loadString, bool playSound = true)
+- - public static bool didPlayerJustLeftClick(bool ignoreNonMouseHeldInput = false)
+- - public static bool didPlayerJustRightClick(bool ignoreNonMouseHeldInput = false)
+- - public static bool didPlayerJustClickAtAll(bool ignoreNonMouseHeldInput = false)
+- - public static void showGlobalMessage(string message)
+- - public static void globalFadeToBlack(afterFadeFunction afterFade = null, float fadeSpeed = 0.02f)
+- - public static void globalFadeToClear(afterFadeFunction afterFade = null, float fadeSpeed = 0.02f)
+- - public void CheckGamepadMode()
+- - public void Instance_Update(GameTime gameTime)
+- - public void Instance_OnActivated(object sender, EventArgs args)
+- - public bool HasKeyboardFocus()
+- - public static void OnDayStarted()
+- - public static void PerformPassiveFestivalSetup()
+- - public static void showTextEntry(TextBox text_box)
+- - public static void closeTextEntry()
+- - public static bool isDarkOut(GameLocation location)
+- - public static bool isTimeToTurnOffLighting(GameLocation location)
+- - public static bool isStartingToGetDarkOut(GameLocation location)
+- - public static int getStartingToGetDarkTime(GameLocation location)
+- - public static void updateCellarAssignments()
+- - public static int getModeratelyDarkTime(GameLocation location)
+- - public static int getTrulyDarkTime(GameLocation location)
+- - public static void playMorningSong(bool ignoreDelay = false)
+- - public static void doMorningStuff()
+- - public static void addMorningFluffFunction(Action action)
+- - public static void afterFadeReturnViewportToPlayer()
+- - public static bool isViewportOnCustomPath()
+- - public static void moveViewportTo(Vector2 target, float speed, int holdTimer = 0, afterFadeFunction reachedTarget = null, afterFadeFunction endFunction = null)
+- - public static Farm getFarm()
+- - public static void setMousePosition(int x, int y, bool ui_scale)
+- - public static void setMousePosition(int x, int y)
+- - public static void setMousePosition(Point position, bool ui_scale)
+- - public static void setMousePosition(Point position)
+- - public static void setMousePositionRaw(int x, int y)
+- - public static Point getMousePositionRaw()
+- - public static Point getMousePosition(bool ui_scale)
+- - public static Point getMousePosition()
+- - public static void ResetFreeCursorDrag()
+- - public static void SetFreeCursorDrag()
+- - public static void updateActiveMenu(GameTime gameTime)
+- - public bool ShowLocalCoopJoinMenu()
+- - public static void updateTextEntry(GameTime gameTime)
+- - public static string DateCompiled()
+- - public static void updatePause(GameTime gameTime)
+- - public static void CheckValidFullscreenResolution(ref int width, ref int height)
+- - public static void toggleNonBorderlessWindowedFullscreen()
+- - public static void toggleFullscreen()
+- - public static bool IsPressEvent(ref KeyboardState state, Keys key)
+- - public static bool IsPressEvent(ref GamePadState state, Buttons btn)
+- - public static bool isOneOfTheseKeysDown(KeyboardState state, InputButton[] keys)
+- - public static bool areAllOfTheseKeysUp(KeyboardState state, InputButton[] keys)
+- - public static bool IsThereABuildingUnderConstruction(string builder = "Robin")
+- - public static Building GetBuildingUnderConstruction(string builder = "Robin")
+- - public static bool IsBuildingConstructed(string name)
+- - public static int GetNumberBuildingsConstructed(bool includeUnderConstruction = false)
+- - public static int GetNumberBuildingsConstructed(string name, bool includeUnderConstruction = false)
+- - public static void performTenMinuteClockUpdate()
+- - public static bool shouldPlayMorningSong(bool loading_game = false)
+- - public static void UpdateGameClock(GameTime time)
+- - public static Event getAvailableWeddingEvent()
+- - public static void exitActiveMenu()
+- - public static void PerformActionWhenPlayerFree(Action action)
+- - public static void fadeScreenToBlack()
+- - public static void fadeClear()
+- - public static void OnLocationChanged(GameLocation oldLocation, GameLocation newLocation)
+- - public static void UpdateOther(GameTime time)
+- - public static void updateWeather(GameTime time)
+- - public static void updateCursorTileHint()
+- - public static void updateMusic()
+- - public static int GetDefaultSongPriority(string song_name, bool is_playing_override, Game1 instance)
+- - public static void updateRainDropPositionForPlayerMovement(int direction, float speed)
+- - public static void initializeVolumeLevels()
+- - public static void updateDebrisWeatherForMovement(List<WeatherDebris> debris, int direction, float speed)
+- - public static Vector2 updateFloatingObjectPositionForMovement(Vector2 w, Vector2 current, Vector2 previous, float speed)
+- - public static void updateRaindropPosition()
+- - public static void updateDebrisWeatherForMovement(List<WeatherDebris> debris)
+- - public static void randomizeRainPositions()
+- - public static void randomizeDebrisWeatherPositions(List<WeatherDebris> debris)
+- - public static void eventFinished()
+- - public static void populateDebrisWeatherArray()
+- - public static void prepareSpouseForWedding(Farmer farmer)
+- - public static bool AddCharacterIfNecessary(string characterId, bool bypassConditions = false)
+- - public static GameLocation CreateGameLocation(string id)
+- - public static GameLocation CreateGameLocation(string id, CreateLocationData createData)
+- - public static void AddLocations()
+- - public static void AddNPCs()
+- - public static void AddModNPCs()
+- - public static void fixProblems()
+- - public static void newDayAfterFade(Action after)
+- - public static bool CanAcceptDailyQuest()
+- - public static void UpdateDishOfTheDay()
+- - public static void UpdateFarmPerfection()
+- - public static bool IsGreenRainingHere(GameLocation location = null)
+- - public static bool IsRainingHere(GameLocation location = null)
+- - public static bool IsLightningHere(GameLocation location = null)
+- - public static bool IsSnowingHere(GameLocation location = null)
+- - public static bool IsDebrisWeatherHere(GameLocation location = null)
+- - public static string getWeatherModificationsForDate(WorldDate date, string default_weather)
+- - public static void UpdateWeatherForNewDay()
+- - public static void ApplyWeatherForNewDay()
+- - public static void UpdateShopPlayerItemInventory(string location_name, HashSet<NPC> purchased_item_npcs)
+- - public static void ReceiveMailForTomorrow(string mail_to_transfer = null)
+- - public static void RemoveDeliveredMailForTomorrow()
+- - public static void queueWeddingsForToday()
+- - public static bool PollForEndOfNewDaySync()
+- - public static void updateWeatherIcon()
+- - public static void showEndOfNightStuff()
+- - public static void setGraphicsForSeason(bool onLoad = false)
+- - public static void pauseThenMessage(int millisecondsPause, string message)
+- - public static bool IsVisitingIslandToday(string npc_name)
+- - public static bool shouldTimePass(bool ignore_multiplayer = false)
+- - public static Farmer getPlayerOrEventFarmer()
+- - public static void UpdateViewPort(bool overrideFreeze, Point centerPoint)
+- - public static void addMail(string mailName, bool noLetter = false, bool sendToEveryone = false)
+- - public static void addMailForTomorrow(string mailName, bool noLetter = false, bool sendToEveryone = false)
+- - public static void drawDialogue(NPC speaker)
+- - public static void multipleDialogues(string[] messages)
+- - public static void drawDialogueNoTyping(string dialogue)
+- - public static void drawDialogueNoTyping(List<string> dialogues)
+- - public static void DrawAnsweringMachineDialogue(NPC npc, string translationKey, params object[] substitutions)
+- - public static void DrawDialogue(NPC npc, string translationKey)
+- - public static void DrawDialogue(NPC npc, string translationKey, params object[] substitutions)
+- - public static void DrawDialogue(Dialogue dialogue)
+- - public static void drawLetterMessage(string message)
+- - public static void drawObjectDialogue(string dialogue)
+- - public static void drawObjectDialogue(List<string> dialogue)
+- - public static void drawObjectQuestionDialogue(string dialogue, Response[] choices, int width)
+- - public static void drawObjectQuestionDialogue(string dialogue, Response[] choices)
+- - public static void warpCharacter(NPC character, string targetLocationName, Point position)
+- - public static void warpCharacter(NPC character, string targetLocationName, Vector2 position)
+- - public static void warpCharacter(NPC character, GameLocation targetLocation, Vector2 position)
+- - public static LocationRequest getLocationRequest(string locationName, bool isStructure = false)
+- - public static void warpHome()
+- - public static void warpFarmer(string locationName, int tileX, int tileY, bool flip)
+- - public static void warpFarmer(string locationName, int tileX, int tileY, int facingDirectionAfterWarp)
+- - public static void warpFarmer(string locationName, int tileX, int tileY, int facingDirectionAfterWarp, bool isStructure)
+- - public virtual bool ShouldDismountOnWarp(Horse mount, GameLocation old_location, GameLocation new_location)
+- - public static void warpFarmer(LocationRequest locationRequest, int tileX, int tileY, int facingDirectionAfterWarp)
+- - public static void requestLocationInfoFromServer()
+- - public static T GetCharacterWhere<T>(Func<T, bool> check, bool includeEventActors = false) where T : NPC
+- - public static T GetCharacterOfType<T>(bool includeEventActors = false) where T : NPC
+- - public static T getCharacterFromName<T>(string name, bool mustBeVillager = true, bool includeEventActors = false) where T : NPC
+- - public static NPC getCharacterFromName(string name, bool mustBeVillager = true, bool includeEventActors = false)
+- - public static NPC RequireCharacter(string name, bool mustBeVillager = true)
+- - public static T RequireCharacter<T>(string name, bool mustBeVillager = true) where T : NPC
+- - public static GameLocation RequireLocation(string name, bool isStructure = false)
+- - public static TLocation RequireLocation<TLocation>(string name, bool isStructure = false) where TLocation : GameLocation
+- - public static GameLocation getLocationFromName(string name)
+- - public static GameLocation getLocationFromName(string name, bool isStructure)
+- - public static GameLocation getLocationFromNameInLocationsList(string name, bool isStructure = false)
+- - public static void flushLocationLookup()
+- - public static void removeLocationFromLocationLookup(string nameOrUniqueName)
+- - public static void removeLocationFromLocationLookup(GameLocation location)
+- - public static GameLocation findStructure(GameLocation parentLocation, string name)
+- - public static void addNewFarmBuildingMaps()
+- - public static void PassOutNewDay()
+- - public static void NewDay(float timeToPause)
+- - public static void screenGlowOnce(Color glowColor, bool hold, float rate = 0.005f, float maxAlpha = 0.3f)
+- - public static string shortDayNameFromDayOfSeason(int dayOfSeason)
+- - public static string shortDayDisplayNameFromDayOfSeason(int dayOfSeason)
+- - public static void runTestEvent()
+- - public static bool isMusicContextActiveButNotPlaying(MusicContext music_context = (MusicContext)0)
+- - public static bool IsMusicContextActive(MusicContext music_context = (MusicContext)0)
+- - public static bool doesMusicContextHaveTrack(MusicContext music_context = (MusicContext)0)
+- - public static string getMusicTrackName(MusicContext music_context = (MusicContext)0)
+- - public static void stopMusicTrack(MusicContext music_context)
+- - public static void changeMusicTrack(string newTrackName, bool track_interruptable = false, MusicContext music_context = (MusicContext)0)
+- - public static void UpdateRequestedMusicTrack()
+- - public static void enterMine(int whatLevel, int? forceLayout = null)
+- - public static Season GetSeasonForLocation(GameLocation location)
+- - public static int GetSeasonIndexForLocation(GameLocation location)
+- - public static string GetSeasonKeyForLocation(GameLocation location)
+- - public static void getPlatformAchievement(string which)
+- - public static void getSteamAchievement(string which)
+- - public static void getAchievement(int which, bool allowBroadcasting = true)
+- - public static void createMultipleObjectDebris(string id, int xTile, int yTile, int number)
+- - public static void createMultipleObjectDebris(string id, int xTile, int yTile, int number, GameLocation location)
+- - public static void createMultipleObjectDebris(string id, int xTile, int yTile, int number, float velocityMultiplier)
+- - public static void createMultipleObjectDebris(string id, int xTile, int yTile, int number, long who)
+- - public static void createMultipleObjectDebris(string id, int xTile, int yTile, int number, long who, GameLocation location)
+- - public static void createDebris(int debrisType, int xTile, int yTile, int numberOfChunks)
+- - public static void createDebris(int debrisType, int xTile, int yTile, int numberOfChunks, GameLocation location)
+- - public static Debris createItemDebris(Item item, Vector2 pixelOrigin, int direction, GameLocation location = null, int groundLevel = -1, bool flopFish = false)
+- - public static void createMultipleItemDebris(Item item, Vector2 pixelOrigin, int direction, GameLocation location = null, int groundLevel = -1, bool flopFish = false)
+- - public static void createRadialDebris(GameLocation location, int debrisType, int xTile, int yTile, int numberOfChunks, bool resource, int groundLevel = -1, bool item = false, Color? color = null)
+- - public static void createRadialDebris(GameLocation location, string texture, Rectangle sourcerectangle, int xTile, int yTile, int numberOfChunks)
+- - public static void createRadialDebris(GameLocation location, string texture, Rectangle sourcerectangle, int xTile, int yTile, int numberOfChunks, int groundLevelTile)
+- - public static void createRadialDebris(GameLocation location, string texture, Rectangle sourcerectangle, int sizeOfSourceRectSquares, int xPosition, int yPosition, int numberOfChunks, int groundLevelTile)
+- - public static void createRadialDebris_MoreNatural(GameLocation location, string texture, Rectangle sourcerectangle, int sizeOfSourceRectSquares, int xPosition, int yPosition, int numberOfChunks, int groundLevel)
+- - public static void createRadialDebris(GameLocation location, string texture, Rectangle sourcerectangle, int sizeOfSourceRectSquares, int xPosition, int yPosition, int numberOfChunks, int groundLevelTile, Color color)
+- - public static void createRadialDebris(GameLocation location, string texture, Rectangle sourcerectangle, int sizeOfSourceRectSquares, int xPosition, int yPosition, int numberOfChunks, int groundLevelTile, Color color, float scale)
+- - public static void createObjectDebris(string id, int xTile, int yTile, long whichPlayer)
+- - public static void createObjectDebris(string id, int xTile, int yTile, long whichPlayer, GameLocation location)
+- - public static void createObjectDebris(string id, int xTile, int yTile, GameLocation location)
+- - public static void createObjectDebris(string id, int xTile, int yTile, int groundLevel = -1, int itemQuality = 0, float velocityMultiplyer = 1f, GameLocation location = null)
+- - public static Farmer getFarmer(long id)
+- - public static Farmer getFarmerMaybeOffline(long id)
+- - public static Farmer? GetPlayer(long id, bool onlyOnline = false)
+- - public static IEnumerable<Farmer> getAllFarmers()
+- - public static FarmerCollection getOnlineFarmers()
+- - public static IEnumerable<Farmer> getAllFarmhands()
+- - public static IEnumerable<Farmer> getOfflineFarmhands()
+- - public static void farmerFindsArtifact(string itemId)
+- - public static bool doesHUDMessageExist(string s)
+- - public static void addHUDMessage(HUDMessage message)
+- - public static void showSwordswipeAnimation(int direction, Vector2 source, float animationSpeed, bool flip)
+- - public static void removeDebris(Debris.DebrisType type)
+- - public static void toolAnimationDone(Farmer who)
+- - public static bool pressActionButton(KeyboardState currentKBState, MouseState currentMouseState, GamePadState currentPadState)
+- - public static bool IsPerformingMousePlacement()
+- - public static Vector2 GetPlacementGrabTile()
+- - public static bool tryToCheckAt(Vector2 grabTile, Farmer who)
+- - public static void pressSwitchToolButton()
+- - public static bool pressUseToolButton()
+- - public static bool CanPlayerStowItem(Vector2 position)
+- - public static int getMouseXRaw()
+- - public static int getMouseYRaw()
+- - public static bool IsOnMainThread()
+- - public static void PushUIMode()
+- - public static void PopUIMode()
+- - public static void SetRenderTarget(RenderTarget2D target)
+- - public static void InUIMode(Action action)
+- - public static void StartWorldDrawInUI(SpriteBatch b)
+- - public static void EndWorldDrawInUI(SpriteBatch b)
+- - public static int getMouseX()
+- - public static int getMouseX(bool ui_scale)
+- - public static int getOldMouseX()
+- - public static int getOldMouseX(bool ui_scale)
+- - public static int getMouseY()
+- - public static int getMouseY(bool ui_scale)
+- - public static int getOldMouseY()
+- - public static int getOldMouseY(bool ui_scale)
+- - public static bool PlayEvent(string eventId, GameLocation location, out bool validEvent, bool checkPreconditions = true, bool checkSeen = true)
+- - public static bool PlayEvent(string eventId, bool checkPreconditions = true, bool checkSeen = true)
+- - public static int numberOfPlayers()
+- - public static bool isFestival()
+- - public bool parseDebugInput(string debugInput, IGameLogger log = null)
+- - public void RecountWalnuts()
+- - public void ResetIslandLocations()
+- - public void ShowTelephoneMenu()
+- - public void requestDebugInput()
+- - public static bool isLocationAccessible(string locationName)
+- - public static bool isDPadPressed()
+- - public static bool isDPadPressed(GamePadState pad_state)
+- - public static bool isGamePadThumbstickInMotion(double threshold = 0.2)
+- - public static bool isAnyGamePadButtonBeingPressed()
+- - public static bool isAnyGamePadButtonBeingHeld()
+- - public static KeyboardState GetKeyboardState()
+- - public static bool CanShowPauseMenu()
+- - public static void checkForRunButton(KeyboardState kbState, bool ignoreKeyPressQualifier = false)
+- - public static Vector2 getMostRecentViewportMotion()
+- - public static void setBGColor(byte r, byte g, byte b)
+- - public void Instance_Draw(GameTime gameTime)
+- - public virtual bool ShouldDrawOnBuffer()
+- - public static bool ShouldShowOnscreenUsernames()
+- - public virtual bool checkCharacterTilesForShadowDrawFlag(Character character)
+- - public virtual void DrawLoadScreen(GameTime time, RenderTarget2D target_screen)
+- - public virtual void DrawMenu(GameTime time, RenderTarget2D target_screen)
+- - public virtual void DrawScreenOverlaySprites(GameTime time, RenderTarget2D target_screen)
+- - public virtual void DrawWorld(GameTime time, RenderTarget2D target_screen)
+- - public virtual void DrawCharacterEmotes(GameTime time, RenderTarget2D target_screen)
+- - public virtual void DrawLightmapOnScreen(GameTime time, RenderTarget2D target_screen)
+- - public virtual void DrawDebugUIs(GameTime time, RenderTarget2D target_screen)
+- - public virtual void DrawGlobalFade(GameTime time, RenderTarget2D target_screen)
+- - public virtual void DrawLighting(GameTime time, RenderTarget2D target_screen)
+- - public virtual void drawWeather(GameTime time, RenderTarget2D target_screen)
+- - public virtual void DrawSplitScreenWindow()
+- - public static void drawWithBorder(string message, Color borderColor, Color insideColor, Vector2 position)
+- - public static void drawWithBorder(string message, Color borderColor, Color insideColor, Vector2 position, float rotate, float scale, float layerDepth)
+- - public static void drawWithBorder(string message, Color borderColor, Color insideColor, Vector2 position, float rotate, float scale, float layerDepth, bool tiny)
+- - public static bool isOutdoorMapSmallerThanViewport()
+- - public static void InvalidateOldMouseMovement()
+- - public static bool IsRenderingNonNativeUIScale()
+- - public virtual void drawMouseCursor()
+- - public static void panScreen(int x, int y)
+- - public static void clampViewportToGameMap()
+- - public static void drawDialogueBox(string message)
+- - public static void drawDialogueBox(int centerX, int centerY, bool speaker, bool drawOnlyBox, string message)
+- - public static void DrawBox(int x, int y, int width, int height, Color? color = null)
+- - public static void drawDialogueBox(int x, int y, int width, int height, bool speaker, bool drawOnlyBox, string message = null, bool objectDialogueWithPortrait = false, bool ignoreTitleSafe = true, int r = -1, int g = -1, int b = -1)
+- - public static void drawPlayerHeldObject(Farmer f)
+- - public static void drawTool(Farmer f)
+- - public static void drawTool(Farmer f, int currentToolIndex)
+- - public static Vector2 GlobalToLocal(Rectangle viewport, Vector2 globalPosition)
+- - public static bool IsEnglish()
+- - public static Vector2 GlobalToLocal(Vector2 globalPosition)
+- - public static Rectangle GlobalToLocal(Rectangle viewport, Rectangle globalPosition)
+- - public static string parseText(string text, SpriteFont whichFont, int width)
+- - public static void UpdateHorseOwnership()
+- - public static string LoadStringByGender(Gender npcGender, string key)
+- - public static string LoadStringByGender(Gender npcGender, string key, params object[] substitutions)
+- - public static string parseText(string text)
+- - public static Rectangle getSourceRectForStandardTileSheet(Texture2D tileSheet, int tilePosition, int width = -1, int height = -1)
+- - public static Rectangle getSquareSourceRectForNonStandardTileSheet(Texture2D tileSheet, int tileWidth, int tileHeight, int tilePosition)
+- - public static Rectangle getArbitrarySourceRect(Texture2D tileSheet, int tileWidth, int tileHeight, int tilePosition)
+- - public static string getTimeOfDayString(int time)
+- - public static bool[,] getCircleOutlineGrid(int radius)
+- - public static string GetFarmTypeID()
+- - public static string GetFarmTypeKey()
+- - public void _PerformRemoveNormalItemFromWorldOvernight(string itemId)
+- - public static bool GetHasRoomAnotherFarm()
+- - public virtual void ResetGameStateOnTitleScreen()
+- - public virtual void CleanupReturningToTitle()
+- - public bool CanTakeScreenshots()
+- - public string GetScreenshotFolder(bool createIfMissing = true)
+- - public bool CanBrowseScreenshots()
+- - public bool CanZoomScreenshots()
+- - public void BrowseScreenshots()
+- - public string takeMapScreenshot(float? in_scale, string screenshot_name, Action onDone)
+
+## Private Members
+- - private static LocalizedContentManager _temporaryContent;
+- - private static bool FinishedIncrementalLoad;
+- - private static bool FinishedFirstLoadContent;
+- - private static volatile bool FinishedFirstInitSounds;
+- - private static volatile bool FinishedFirstInitSerializers;
+- - private static IEnumerator<int> LoadContentEnumerator;
+- - private static Farmer _player;
+- - private static Texture2D _toolSpriteSheet;
+- - private static RenderTarget2D _lightmap;
+- - private static Action postExitToTitleCallback;
+- - private static bool _isGreenRain;
+- - private static ScreenFade screenFade;
+- - private static object _debugOutputLock;
+- - private static string _debugOutput;
+- - private static string[] _shortDayDisplayName;
+- - private static byte _gameMode;
+- - private bool _isSaving;
+- - private static IClickableMenu _activeClickableMenu;
+- - private static IMinigame _currentMinigame;
+- - private static readonly FarmerCollection _onlineFarmers;
+- - private static string debugPresenceString;
+- - private static bool _cursorDragEnabled;
+- - private static bool _cursorDragPrevEnabled;
+- - private static bool _cursorSpeedDirty;
+- - private const float CursorBaseSpeed = 16f;
+- - private static float _cursorSpeed;
+- - private static float _cursorSpeedScale;
+- - private static float _cursorUpdateElapsedSec;
+- - private static int thumbstickPollingTimer;
+- - private static Action _afterNewDayAction;
+- - private RenderTarget2D _screen;
+- - private RenderTarget2D _uiScreen;
+- - private static float _mouseCursorTransparency;
+- - private bool ShouldLoadIncrementally => false;
+- - private static float thumbstickToMouseModifier
+- - private static string GameModeToString(byte mode)
+- - private static void allocateLightmap(int width, int height)
+- - private void Game1_Exiting(object sender, EventArgs e)
+- - private void DoThreadedInitTask(ThreadStart initTask)
+- - private void InitializeSounds()
+- - private void InitializeSerializers()
+- - private void AfterLoadContent()
+- - private IEnumerator<int> GetLoadContentEnumerator()
+- - private void _update(GameTime gameTime)
+- - private Point getViewportCenter()
+- - private static void ComputeCursorSpeed()
+- - private static void SetFreeCursorElapsed(float elapsedSec)
+- - private void checkForEscapeKeys()
+- - private void UpdateLocations(GameTime time)
+- - private bool onFadeToBlackComplete()
+- - private static void onFadedBackInComplete()
+- - private static void OnNewSeason()
+- - private static void checkIsMissingTool(Dictionary<Type, int> missingTools, ref int missingScythes, Item item)
+- - private static IEnumerator<int> _newDayAfterFade()
+- - private static void handlePostFarmEventActions()
+- - private void UpdateCharacters(GameTime time)
+- - private static void checkIfDialogueIsQuestion()
+- - private static void performWarpFarmer(LocationRequest locationRequest, int tileX, int tileY, int facingDirectionAfterWarp)
+- - private static void notifyServerOfWarp(bool needsLocationInfo)
+- - private void panModeSuccess(KeyboardState currentKBState)
+- - private void updatePanModeControls(MouseState currentMouseState, KeyboardState currentKBState)
+- - private static void UpdateChatBox()
+- - private void UpdateControlInput(GameTime time)
+- - private unsafe string takeMapScreenshot(GameLocation screenshotLocation, float scale, string screenshot_name, Action onDone)
+- - private static void GetScreenshotRegion(GameLocation screenshotLocation, out int startX, out int startY, out int width, out int height)
+
+## Protected Members
+- - protected static bool _isWarping;
+- - protected bool _instanceIsPlayingBackgroundMusic;
+- - protected bool _instanceIsPlayingOutdoorsAmbience;
+- - protected bool _instanceIsPlayingNightAmbience;
+- - protected bool _instanceIsPlayingTownMusic;
+- - protected bool _instanceIsPlayingMorningSong;
+- - protected static StringBuilder _debugStringBuilder;
+- - protected static GameLocation _PreviousNonNullLocation;
+- - protected readonly List<Farmer> _farmerShadows = new List<Farmer>();
+- - protected internal static ModHooks hooks;
+- - protected internal static IInputSimulator inputSimulator;
+- - protected static bool _setSaveName;
+- - protected static string _currentSaveName;
+- - protected int _lastUsedDisplay = -1;
+- - protected Dictionary<MusicContext, KeyValuePair<string, bool>> _instanceRequestedMusicTracks = new Dictionary<MusicContext, KeyValuePair<string, bool>>();
+- - protected MusicContext _instanceActiveMusicContext;
+- - protected bool _useUnscaledLighting;
+- - protected bool _didInitiateItemStow;
+- - protected internal static IGameLogger log;
+- - protected internal static Multiplayer multiplayer;
+- - protected bool _windowResizing;
+- - protected Point _oldMousePosition;
+- - protected bool _oldGamepadConnectedState;
+- - protected int _oldScrollWheelValue;
+- - protected static Task _newDayTask;
+- - protected static int _oldUIModeCount;
+- - protected readonly BlendState lightingBlend = new BlendState
+- - protected bool _lastDrewMouseCursor;
+- - protected static int _activatedTick;
+- - protected static StringBuilder _ParseTextStringBuilder;
+- - protected static StringBuilder _ParseTextStringBuilderLine;
+- - protected static StringBuilder _ParseTextStringBuilderWord;
+- - protected static Dictionary<MusicContext, KeyValuePair<string, bool>> _requestedMusicTracks
+- - protected static MusicContext _activeMusicContext
+- - protected override void Initialize()
+- - protected internal virtual LocalizedContentManager CreateContentManager(IServiceProvider serviceProvider, string rootDirectory)
+- - protected internal virtual IDisplayDevice CreateDisplayDevice(ContentManager content, GraphicsDevice graphicsDevice)
+- - protected override void LoadContent()
+- - protected override void UnloadContent()
+- - protected override void Update(GameTime gameTime)
+- - protected override void OnActivated(object sender, EventArgs args)
+- - protected void _UpdateLocation(GameLocation location, GameTime time)
+- - protected virtual void DrawOverlays(GameTime time, RenderTarget2D target_screen)
+- - protected override void Draw(GameTime gameTime)
+- - protected virtual void _draw(GameTime gameTime, RenderTarget2D target_screen)
+- - protected virtual void renderScreenBuffer(RenderTarget2D target_screen)
+- - protected virtual void drawHUD()
+- - protected void drawDialogueBox()
+- - protected virtual void _PerformRemoveNormalItemFromFarmerOvernight(Farmer farmer, string itemId)
+- - protected virtual bool _RecursiveRemoveThisNormalItemItem(Item this_item, string itemId)
+- - protected virtual void _RecursiveRemoveThisNormalItemDirt(HoeDirt dirt, GameLocation location, Vector2 coord, string itemId)
+- - protected virtual void _RecursiveRemoveThisNormalItemLocation(GameLocation l, string itemId)
+
+## Internal Members
+- - internal static readonly DebugTimings debugTimings;
+- - internal static bool hasApplied1_3_UpdateChanges;
+- - internal static bool hasApplied1_4_UpdateChanges;
+- - internal static bool wasGreenRain;
+- - internal static bool greenRainNeedsCleanup;
+- - internal string panModeString;
+- - internal static EventTest eventTest;
+- - internal bool panFacingDirectionWait;
+- - internal set
+- - internal void UpdateTitleScreen(GameTime time)
+- - internal void UpdateTitleScreenDuringLoadingMode()
+- - internal static void addHour()
+- - internal static void addMinute()
+
+## Other Members
+- - static Game1()
+- - static void PlayDefault()
+- - static void PlayRain()
+- - static void AfterEventOver()
+- - static void AfterNewDay()

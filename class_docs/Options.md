@@ -1,0 +1,217 @@
+# Options
+
+**Summary:** Class purpose not automatically determined. Review members for details.
+
+## Public Members
+- - public enum ItemStowingModes
+- - public enum GamepadModes
+- - public const float minZoom = 0.75f;
+- - public const float maxZoom = 2f;
+- - public const float minUIZoom = 0.75f;
+- - public const float maxUIZoom = 1.5f;
+- - public const int toggleAutoRun = 0;
+- - public const int musicVolume = 1;
+- - public const int soundVolume = 2;
+- - public const int toggleDialogueTypingSounds = 3;
+- - public const int toggleFullscreen = 4;
+- - public const int screenResolution = 6;
+- - public const int showPortraitsToggle = 7;
+- - public const int showMerchantPortraitsToggle = 8;
+- - public const int menuBG = 9;
+- - public const int toggleFootsteps = 10;
+- - public const int alwaysShowToolHitLocationToggle = 11;
+- - public const int hideToolHitLocationWhenInMotionToggle = 12;
+- - public const int windowMode = 13;
+- - public const int pauseWhenUnfocused = 14;
+- - public const int pinToolbar = 15;
+- - public const int toggleRumble = 16;
+- - public const int ambientOnly = 17;
+- - public const int zoom = 18;
+- - public const int zoomButtonsToggle = 19;
+- - public const int ambientVolume = 20;
+- - public const int footstepVolume = 21;
+- - public const int invertScrollDirectionToggle = 22;
+- - public const int snowTransparencyToggle = 23;
+- - public const int screenFlashToggle = 24;
+- - public const int toggleHardwareCursor = 26;
+- - public const int toggleShowPlacementTileGamepad = 27;
+- - public const int stowingModeSelect = 28;
+- - public const int toggleSnappyMenus = 29;
+- - public const int toggleIPConnections = 30;
+- - public const int serverMode = 31;
+- - public const int toggleFarmhandCreation = 32;
+- - public const int toggleShowAdvancedCraftingInformation = 34;
+- - public const int toggleMPReadyStatus = 35;
+- - public const int mapScreenshot = 36;
+- - public const int toggleVsync = 37;
+- - public const int gamepadModeSelect = 38;
+- - public const int uiScaleSlider = 39;
+- - public const int moveBuildingPermissions = 40;
+- - public const int slingshotModeSelect = 41;
+- - public const int biteChime = 42;
+- - public const int toggleMuteAnimalSounds = 43;
+- - public const int toggleUseChineseSmoothFont = 44;
+- - public const int dialogueFontToggle = 45;
+- - public const int toggleUseAlternateFont = 46;
+- - public const int input_actionButton = 7;
+- - public const int input_cancelButton = 9;
+- - public const int input_useToolButton = 10;
+- - public const int input_moveUpButton = 11;
+- - public const int input_moveRightButton = 12;
+- - public const int input_moveDownButton = 13;
+- - public const int input_moveLeftButton = 14;
+- - public const int input_menuButton = 15;
+- - public const int input_runButton = 16;
+- - public const int input_chatButton = 17;
+- - public const int input_journalButton = 18;
+- - public const int input_mapButton = 19;
+- - public const int input_slot1 = 20;
+- - public const int input_slot2 = 21;
+- - public const int input_slot3 = 22;
+- - public const int input_slot4 = 23;
+- - public const int input_slot5 = 24;
+- - public const int input_slot6 = 25;
+- - public const int input_slot7 = 26;
+- - public const int input_slot8 = 27;
+- - public const int input_slot9 = 28;
+- - public const int input_slot10 = 29;
+- - public const int input_slot11 = 30;
+- - public const int input_slot12 = 31;
+- - public const int input_toolbarSwap = 32;
+- - public const int input_emoteButton = 33;
+- - public const float defaultZoomLevel = 1f;
+- - public const int defaultLightingQuality = 8;
+- - public const float defaultSplitScreenZoomLevel = 1f;
+- - public bool autoRun;
+- - public bool dialogueTyping;
+- - public bool showPortraits;
+- - public bool showMerchantPortraits;
+- - public bool showMenuBackground;
+- - public bool playFootstepSounds;
+- - public bool alwaysShowToolHitLocation;
+- - public bool hideToolHitLocationWhenInMotion;
+- - public bool pauseWhenOutOfFocus;
+- - public bool pinToolbarToggle;
+- - public bool mouseControls;
+- - public bool gamepadControls;
+- - public bool rumble;
+- - public bool ambientOnlyToggle;
+- - public bool zoomButtons;
+- - public bool invertScrollDirection;
+- - public bool screenFlash;
+- - public bool showPlacementTileForGamepad;
+- - public bool snappyMenus;
+- - public bool showAdvancedCraftingInformation;
+- - public bool showMPEndOfNightReadyStatus;
+- - public bool muteAnimalSounds;
+- - public bool vsyncEnabled;
+- - public bool fullscreen;
+- - public bool windowedBorderlessFullscreen;
+- - public bool showClearBackgrounds;
+- - public bool useChineseSmoothFont;
+- - public bool useAlternateFont;
+- - public bool ipConnectionsEnabled;
+- - public bool enableServer;
+- - public bool enableFarmhandCreation;
+- - public ItemStowingModes stowingMode;
+- - public GamepadModes gamepadMode;
+- - public bool useLegacySlingshotFiring;
+- - public float musicVolumeLevel;
+- - public float soundVolumeLevel;
+- - public float footstepVolumeLevel;
+- - public float ambientVolumeLevel;
+- - public float snowTransparency;
+- - public float dialogueFontScale = 1f;
+- - public float baseZoomLevel = 1f;
+- - public float singlePlayerBaseZoomLevel = 1f;
+- - public float localCoopBaseZoomLevel = 1f;
+- - public float singlePlayerDesiredUIScale = -1f;
+- - public float localCoopDesiredUIScale = 1.5f;
+- - public float baseUIScale = 1f;
+- - public int preferredResolutionX;
+- - public int preferredResolutionY;
+- - public ServerPrivacy serverPrivacy = ServerPrivacy.FriendsOnly;
+- - public InputButton[] actionButton = new InputButton[2]
+- - public InputButton[] cancelButton = new InputButton[1]
+- - public InputButton[] useToolButton = new InputButton[2]
+- - public InputButton[] moveUpButton = new InputButton[1]
+- - public InputButton[] moveRightButton = new InputButton[1]
+- - public InputButton[] moveDownButton = new InputButton[1]
+- - public InputButton[] moveLeftButton = new InputButton[1]
+- - public InputButton[] menuButton = new InputButton[2]
+- - public InputButton[] runButton = new InputButton[1]
+- - public InputButton[] tmpKeyToReplace = new InputButton[1]
+- - public InputButton[] chatButton = new InputButton[2]
+- - public InputButton[] mapButton = new InputButton[1]
+- - public InputButton[] journalButton = new InputButton[1]
+- - public InputButton[] inventorySlot1 = new InputButton[1]
+- - public InputButton[] inventorySlot2 = new InputButton[1]
+- - public InputButton[] inventorySlot3 = new InputButton[1]
+- - public InputButton[] inventorySlot4 = new InputButton[1]
+- - public InputButton[] inventorySlot5 = new InputButton[1]
+- - public InputButton[] inventorySlot6 = new InputButton[1]
+- - public InputButton[] inventorySlot7 = new InputButton[1]
+- - public InputButton[] inventorySlot8 = new InputButton[1]
+- - public InputButton[] inventorySlot9 = new InputButton[1]
+- - public InputButton[] inventorySlot10 = new InputButton[1]
+- - public InputButton[] inventorySlot11 = new InputButton[1]
+- - public InputButton[] inventorySlot12 = new InputButton[1]
+- - public InputButton[] toolbarSwap = new InputButton[1]
+- - public InputButton[] emoteButton = new InputButton[1]
+- - public bool optionsDirty;
+- - public bool hardwareCursor
+- - public int lightingQuality => 8;
+- - public float zoomLevel
+- - public float desiredBaseZoomLevel
+- - public float desiredUIScale
+- - public float uiScale => baseUIScale * Game1.game1.zoomModifier;
+- - public bool allowStowing
+- - public bool SnappyMenus
+- - public Options()
+- - public string GetFilePathForDefaultOptions()
+- - public virtual void LoadDefaultOptions()
+- - public virtual void SaveDefaultOptions()
+- - public void platformClampValues()
+- - public Keys getFirstKeyboardKeyFromInputButtonList(InputButton[] inputButton)
+- - public void reApplySetOptions()
+- - public void setToDefaults()
+- - public void setControlsToDefault()
+- - public string getNameOfOptionFromIndex(int index)
+- - public void changeCheckBoxOption(int which, bool value)
+- - public void changeSliderOption(int which, int value)
+- - public void loadChineseFonts()
+- - public void setBackgroundMode(string setting)
+- - public void setStowingMode(string setting)
+- - public void setSlingshotMode(string setting)
+- - public void setBiteChime(string setting)
+- - public void setGamepadMode(string setting)
+- - public void setMoveBuildingPermissions(string setting)
+- - public void setServerMode(string setting)
+- - public void setWindowedOption(string setting)
+- - public void setWindowedOption(int setting)
+- - public void changeDropDownOption(int which, string value)
+- - public bool isKeyInUse(Keys key)
+- - public List<InputButton> getAllUsedInputButtons()
+- - public void setCheckBoxToProperValue(OptionsCheckbox checkbox)
+- - public void setPlusMinusToProperValue(OptionsPlusMinus plusMinus)
+- - public void setSliderToProperValue(OptionsSlider slider)
+- - public bool doesInputListContain(InputButton[] list, Keys key)
+- - public void changeInputListenerValue(int whichListener, Keys key)
+- - public void setInputListenerToProperValue(OptionsInputListener inputListener)
+- - public void setDropDownToProperValue(OptionsDropDown dropDown)
+- - public bool isCurrentlyWindowedBorderless()
+- - public bool isCurrentlyFullscreen()
+- - public bool isCurrentlyWindowed()
+
+## Private Members
+- - private XmlSerializer defaultSettingsSerializer = SaveSerializer.GetSerializer(typeof(Options));
+- - private int appliedLightingQuality = -1;
+
+## Protected Members
+- - protected bool _hardwareCursor;
+
+## Internal Members
+- *(None)*
+
+## Other Members
+- *(None)*

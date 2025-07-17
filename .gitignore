@@ -1,0 +1,29 @@
+# Build outputs
+bin/
+obj/
+*.dll
+*.pdb
+*.deps.json
+
+# Release packages
+GuineaPigMod-Release/
+*.zip
+
+# IDE files
+.vs/
+.vscode/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp 

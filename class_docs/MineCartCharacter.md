@@ -1,0 +1,245 @@
+# MineCartCharacter
+
+**Summary:** Class purpose not automatically determined. Review members for details.
+
+## Public Members
+- - public float minecartBumpOffset;
+- - public float jumpStrength = 300f;
+- - public float maxFallSpeed = 150f;
+- - public float jumpGravity = 3400f;
+- - public float fallGravity = 3000f;
+- - public float jumpFloatDuration = 0.1f;
+- - public float gravity;
+- - public float jumpGracePeriod;
+- - public float rotation;
+- - public Vector2 cartScale = Vector2.One;
+- - public Track.TrackType currentTrackType = Track.TrackType.None;
+- - public float characterExtraHeight;
+- - public float forcedJumpTime;
+- - public void QueueJump()
+- - public virtual void OnDie()
+- - public void SnapToFloor()
+- - public Track GetTrack(Vector2 offset = default(Vector2))
+- - public float GetMaxFallSpeed()
+- - public virtual void OnLand()
+- - public virtual void OnTrackChange()
+- - public virtual void OnFall()
+- - public virtual void OnJump()
+- - public void ReleaseJump()
+- - public bool IsJumping()
+- - public bool IsGrounded()
+- - public void Bounce(float forced_bounce_time = 0f)
+- - public void Jump()
+- - public void ForceGrounded()
+- - public override void _Draw(SpriteBatch b)
+- - public GameStates gameState;
+- - public const int followDistance = 96;
+- - public float pixelScale = 4f;
+- - public const int tilesBeyondViewportToSimulate = 4;
+- - public const int bgLoopWidth = 96;
+- - public const float gravity = 0.21f;
+- - public const int brownArea = 0;
+- - public const int frostArea = 1;
+- - public const int darkArea = 3;
+- - public const int waterArea = 2;
+- - public const int lavaArea = 4;
+- - public const int heavenlyArea = 5;
+- - public const int sunsetArea = 6;
+- - public const int endingCutscene = 7;
+- - public const int bonusLevel1 = 8;
+- - public const int mushroomArea = 9;
+- - public const int LAST_LEVEL = 6;
+- - public readonly int[] infiniteModeLevels = new int[8] { 0, 1, 2, 3, 5, 9, 4, 6 };
+- - public float shakeMagnitude;
+- - public const int infiniteMode = 2;
+- - public const int progressMode = 3;
+- - public const int respawnTime = 1400;
+- - public static float maxJumpGraceTime = 0.1f;
+- - public float slimeBossPosition = -100f;
+- - public float slimeBossSpeed;
+- - public float secondsOnThisLevel;
+- - public int fruitEatCount;
+- - public int currentFruitCheckIndex = -1;
+- - public float currentFruitCheckMagnitude;
+- - public const int checkpointScanDistance = 16;
+- - public int coinCount;
+- - public bool gamePaused;
+- - public Vector2 upperLeft;
+- - public int tileSize;
+- - public float fadeDelta;
+- - public LevelTransition[] LEVEL_TRANSITIONS;
+- - public float screenLeftBound;
+- - public Point generatorPosition;
+- - public int bottomTile;
+- - public int topTile;
+- - public float deathTimer;
+- - public int slimeResetPosition = -80;
+- - public float checkpointPosition;
+- - public int furthestGeneratedCheckpoint;
+- - public bool isJumpPressed;
+- - public float stateTimer;
+- - public int cutsceneTick;
+- - public float pauseBeforeTitleFadeOutTimer;
+- - public float mapTimer;
+- - public float scoreUpdateTimer;
+- - public List<int> checkpointPositions;
+- - public bool _wasJustChatting;
+- - public double totalTime => _totalTime;
+- - public double totalTimeMS => _totalTime * 1000.0;
+- - public MineCart(int whichTheme, int mode)
+- - public void initLevelTransitions()
+- - public void ShowTitle()
+- - public void RefreshHighScore()
+- - public Obstacle AddObstacle(Track track, ObstacleTypes obstacle_type)
+- - public virtual T AddEntity<T>(T new_entity) where T : Entity
+- - public Track GetTrackForXPosition(float x)
+- - public void AddCheckpoint(int tile_x)
+- - public List<Track> GetTracksForXPosition(float x)
+- - public Track AddTrack(int x, int y, Track.TrackType type = Track.TrackType.Straight)
+- - public Track AddTrack(Track track_object)
+- - public bool overrideFreeMouseMovement()
+- - public void UpdateMapTick(float time)
+- - public void UpdateCutsceneTick()
+- - public void UpdateCutSceneForBrownArea()
+- - public void UpdateCutsceneForFrostArea()
+- - public void UpdateCutsceneForLavaArea()
+- - public void UpdateCutsceneForWaterArea()
+- - public void UpdateCutsceneForDarkArea()
+- - public void UpdateCutsceneForMushroomArea()
+- - public void UpdateCutsceneForSunsetArea()
+- - public void UpdateCutsceneForHeavenlyArea()
+- - public void UpdateCutsceneForEnding(ref int fadeOutTimer)
+- - public void UpdateFruitsSummary(float time)
+- - public void UpdateInput()
+- - public virtual bool CanPause()
+- - public bool tick(GameTime time)
+- - public void UpdateScoreState()
+- - public int GetValidCheckpointPosition(int x_pos)
+- - public virtual void CollectFruit(CollectableFruits fruit_type)
+- - public virtual void CollectCoin(int amount)
+- - public void submitHighScore()
+- - public void Die()
+- - public void ReapEntities()
+- - public void receiveLeftClick(int x, int y, bool playSound = true)
+- - public void releaseLeftClick(int x, int y)
+- - public void releaseRightClick(int x, int y)
+- - public void receiveRightClick(int x, int y, bool playSound = true)
+- - public unsafe void receiveKeyPress(Keys k)
+- - public void receiveKeyRelease(Keys k)
+- - public void ResetState()
+- - public void QuitGame()
+- - public void ShowFruitsSummary()
+- - public void ShowMap()
+- - public void ShowCutscene()
+- - public void PlayLevelMusic()
+- - public void EndCutscene()
+- - public void createSparkShower(Vector2 position)
+- - public void createSparkShower()
+- - public void CreateLakeDecor()
+- - public void CreateBGDecor()
+- - public void createBeginningOfLevel()
+- - public void setGameModeParameters()
+- - public void AddValidObstacle(ObstacleTypes obstacle_type, Type type)
+- - public void setUpTheme(int whichTheme)
+- - public int KeepTileInBounds(int y)
+- - public bool IsTileInBounds(int y)
+- - public T GetOverlap<T>(ICollideable source) where T : Entity
+- - public List<T> GetOverlaps<T>(ICollideable source) where T : Entity
+- - public Pickup CreatePickup(Vector2 position, bool fruit_only = false)
+- - public void draw(SpriteBatch b)
+- - public float GetPixelScale()
+- - public Rectangle TransformDraw(Rectangle dest)
+- - public static int Mod(int x, int m)
+- - public Vector2 TransformDraw(Vector2 dest)
+- - public void changeScreenSize()
+- - public void unload()
+- - public bool forceQuit()
+- - public void leftClickHeld(int x, int y)
+- - public void receiveEventPoke(int data)
+- - public string minigameId()
+- - public bool doMainGameUpdates()
+- - public interface IMinigame
+
+## Private Members
+- - private SparklingText perfectText;
+- - private float lakeSpeedAccumulator;
+- - private float backBGPosition;
+- - private float midBGPosition;
+- - private float waterFallPosition;
+- - private Stopwatch musicSW;
+- - private bool titleJunimoStartedBobbing;
+- - private bool lastLevelWasPerfect;
+- - private bool completelyPerfect = true;
+- - private int screenWidth;
+- - private int screenHeight;
+- - private int waterfallWidth = 1;
+- - private int ytileOffset;
+- - private int score;
+- - private int levelsBeat;
+- - private int gameMode;
+- - private int livesLeft;
+- - private int distanceToTravel = -1;
+- - private int respawnCounter;
+- - private int currentTheme;
+- - private bool reachedFinish;
+- - private bool gameOver;
+- - private float screenDarkness;
+- - private ICue minecartLoop;
+- - private Texture2D texture;
+- - private Dictionary<int, List<Track>> _tracks;
+- - private List<LakeDecor> lakeDecor = new List<LakeDecor>();
+- - private List<Point> obstacles = new List<Point>();
+- - private List<Spark> sparkShower = new List<Spark>();
+- - private List<int> levelThemesFinishedThisRun = new List<int>();
+- - private Color backBGTint;
+- - private Color midBGTint;
+- - private Color caveTint;
+- - private Color lakeTint;
+- - private Color waterfallTint;
+- - private Color trackShadowTint;
+- - private Color trackTint;
+- - private Rectangle midBGSource = new Rectangle(64, 0, 96, 162);
+- - private Rectangle backBGSource = new Rectangle(64, 162, 96, 111);
+- - private Rectangle lakeBGSource = new Rectangle(0, 80, 16, 97);
+- - private int backBGYOffset;
+- - private int midBGYOffset;
+- - private MineCartCharacter player;
+- - private MineCartCharacter trackBuilderCharacter;
+- - private MineDebris titleScreenJunimo;
+- - private List<Entity> _entities;
+- - private BaseTrackGenerator _trackGenerator;
+- - private List<KeyValuePair<string, int>> _currentHighScores;
+- - private int currentHighScore;
+- - private bool _trackAddedFlip;
+- - private void restartLevel(bool new_game = false)
+
+## Protected Members
+- - protected float _jumpBuffer;
+- - protected float _jumpFloatAge;
+- - protected float _speedMultiplier = 1f;
+- - protected float _jumpMomentumThreshhold = -30f;
+- - protected bool _grounded = true;
+- - protected bool _jumping;
+- - protected bool _hasJustSnapped;
+- - protected override void _Update(float time)
+- - protected Vector2 _shakeOffset = Vector2.Zero;
+- - protected string cutsceneText = "";
+- - protected double _totalTime;
+- - protected BaseTrackGenerator _lastGenerator;
+- - protected BaseTrackGenerator _forcedNextGenerator;
+- - protected GoalIndicator _goalIndicator;
+- - protected int _lastTilePosition = -1;
+- - protected HashSet<CollectableFruits> _spawnedFruit;
+- - protected HashSet<CollectableFruits> _collectedFruit;
+- - protected Dictionary<ObstacleTypes, List<Type>> _validObstacles;
+- - protected List<GeneratorRoll> _generatorRolls;
+- - protected bool _buttonState;
+- - protected bool _IsGeneratingOnUpperHalf()
+- - protected bool _IsGeneratingOnLowerHalf()
+- - protected void _GenerateMoreTrack()
+
+## Internal Members
+- *(None)*
+
+## Other Members
+- *(None)*

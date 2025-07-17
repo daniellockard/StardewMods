@@ -1,0 +1,144 @@
+# TitleMenu
+
+**Summary:** Represents a UI menu or screen.
+
+## Public Members
+- - public static bool SkipSplashScreens = false;
+- - public const int region_muteMusic = 81111;
+- - public const int region_windowedButton = 81112;
+- - public const int region_aboutButton = 81113;
+- - public const int region_backButton = 81114;
+- - public const int region_newButton = 81115;
+- - public const int region_loadButton = 81116;
+- - public const int region_coopButton = 81119;
+- - public const int region_exitButton = 81117;
+- - public const int region_languagesButton = 81118;
+- - public const int fadeFromWhiteDuration = 2000;
+- - public const int viewportFinalPosition = -1000;
+- - public const int logoSwipeDuration = 1000;
+- - public const int numberOfButtons = 4;
+- - public const int spaceBetweenButtons = 8;
+- - public const float bigCloudDX = 0.1f;
+- - public const float mediumCloudDX = 0.2f;
+- - public const float smallCloudDX = 0.3f;
+- - public const float bgmountainsParallaxSpeed = 0.66f;
+- - public const float mountainsParallaxSpeed = 1f;
+- - public const float foregroundJungleParallaxSpeed = 2f;
+- - public const float cloudsParallaxSpeed = 0.5f;
+- - public static int pixelZoom = 3;
+- - public const string titleButtonsTextureName = "Minigames\\TitleButtons";
+- - public LocalizedContentManager menuContent = Game1.content.CreateTemporary();
+- - public Texture2D cloudsTexture;
+- - public Texture2D titleButtonsTexture;
+- - public bool specialSurprised;
+- - public float specialSurprisedTimeStamp;
+- - public List<ClickableTextureComponent> buttons = new List<ClickableTextureComponent>();
+- - public ClickableTextureComponent backButton;
+- - public ClickableTextureComponent muteMusicButton;
+- - public ClickableTextureComponent aboutButton;
+- - public ClickableTextureComponent languageButton;
+- - public ClickableTextureComponent windowedButton;
+- - public ClickableComponent skipButton;
+- - public TemporaryAnimatedSpriteList birds = new TemporaryAnimatedSpriteList();
+- - public readonly StartupPreferences startupPreferences;
+- - public int globalXOffset;
+- - public float viewportY;
+- - public float viewportDY;
+- - public float logoSwipeTimer;
+- - public float globalCloudAlpha = 1f;
+- - public float cornerClickEndTimer;
+- - public float cornerClickParrotTimer;
+- - public float cornerClickSoundEffectTimer;
+- - public int fadeFromWhiteTimer;
+- - public int pauseBeforeViewportRiseTimer;
+- - public int buttonsToShow;
+- - public int showButtonsTimer;
+- - public int logoFadeTimer;
+- - public int logoSurprisedTimer;
+- - public int clicksOnE;
+- - public int clicksOnLeaf;
+- - public int clicksOnScrew;
+- - public int cornerClicks;
+- - public int buttonsDX;
+- - public bool titleInPosition;
+- - public bool isTransitioningButtons;
+- - public bool shades;
+- - public bool cornerPhaseHolding;
+- - public bool showCornerClickEasterEgg;
+- - public bool transitioningCharacterCreationMenu;
+- - public string startupMessage = "";
+- - public Color startupMessageColor = Color.DeepSkyBlue;
+- - public string debugSaveFileToTry;
+- - public static int ticksUntilLanguageLoad = 1;
+- - public static IClickableMenu subMenu
+- - public bool HasActiveUser => true;
+- - public static event Action OnCreatedNewCharacter;
+- - public static void ReturnToMainTitleScreen()
+- - public void ForceSubmenu(IClickableMenu menu)
+- - public TitleMenu()
+- - public void applyPreferences()
+- - public void skipToTitleButtons()
+- - public void setUpIcons()
+- - public override void snapToDefaultClickableComponent()
+- - public void populateLeafRects()
+- - public override void receiveRightClick(int x, int y, bool playSound = true)
+- - public override bool readyToClose()
+- - public override bool overrideSnappyMenuCursorMovementBan()
+- - public override void leftClickHeld(int x, int y)
+- - public override void releaseLeftClick(int x, int y)
+- - public override void receiveKeyPress(Keys key)
+- - public override void receiveGamePadButton(Buttons button)
+- - public override void gamePadButtonHeld(Buttons b)
+- - public void backButtonPressed()
+- - public override void receiveLeftClick(int x, int y, bool playSound = true)
+- - public void performButtonAction(string which)
+- - public bool ShouldShrinkLogo()
+- - public void createdNewCharacter(bool skipIntro)
+- - public override void update(GameTime time)
+- - public override void receiveScrollWheelAction(int direction)
+- - public override void performHoverAction(int x, int y)
+- - public override void draw(SpriteBatch b)
+- - public override void gameWindowSizeChanged(Rectangle oldBounds, Rectangle newBounds)
+- - public void Dispose()
+
+## Private Members
+- - private Texture2D amuzioTexture;
+- - private List<float> bigClouds = new List<float>();
+- - private List<float> smallClouds = new List<float>();
+- - private TemporaryAnimatedSpriteList tempSprites = new TemporaryAnimatedSpriteList();
+- - private TemporaryAnimatedSpriteList behindSignTempSprites = new TemporaryAnimatedSpriteList();
+- - private Rectangle eRect;
+- - private Rectangle screwRect;
+- - private Rectangle cornerRect;
+- - private Rectangle r_hole_rect;
+- - private Rectangle r_hole_rect2;
+- - private List<Rectangle> leafRects;
+- - private bool? hasRoomAnotherFarm = false;
+- - private int amuzioTimer;
+- - private int bCount;
+- - private string whichSubMenu = "";
+- - private int quitTimer;
+- - private bool transitioningFromLoadScreen;
+- - private bool disposedValue;
+- - private bool alternativeTitleGraphic()
+- - private void OnLanguageChange(LocalizedContentManager.LanguageCode code)
+- - private void UpdateHasRoomAnotherFarm()
+- - private void addRightLeafGust()
+- - private void addLeftLeafGust()
+- - private void moveFeatures(int dx, int dy)
+- - private void showButterflies()
+
+## Protected Members
+- - protected bool _movedCursor;
+- - protected override void customSnapBehavior(int direction, int oldRegion, int oldID)
+- - protected void CloseSubMenu()
+- - protected bool ShouldAllowInteraction()
+- - protected bool ShouldDrawCursor()
+- - protected virtual void Dispose(bool disposing)
+
+## Internal Members
+- - internal static IClickableMenu _subMenu;
+- - internal static int windowNumber = 3;
+
+## Other Members
+- *(None)*

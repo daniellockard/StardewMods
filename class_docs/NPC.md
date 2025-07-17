@@ -1,0 +1,368 @@
+# NPC
+
+**Summary:** Represents a non-player character (villager, merchant, etc.).
+
+## Public Members
+- - public const int minimum_square_pause = 6000;
+- - public const int maximum_square_pause = 12000;
+- - public const int portrait_width = 64;
+- - public const int portrait_height = 64;
+- - public const int portrait_neutral_index = 0;
+- - public const int portrait_happy_index = 1;
+- - public const int portrait_sad_index = 2;
+- - public const int portrait_custom_index = 3;
+- - public const int portrait_blush_index = 4;
+- - public const int portrait_angry_index = 5;
+- - public const int startingFriendship = 0;
+- - public const int defaultSpeed = 2;
+- - public const int maxGiftsPerWeek = 2;
+- - public const int friendshipPointsPerHeartLevel = 250;
+- - public const int maxFriendshipPoints = 2500;
+- - public const int gift_taste_love = 0;
+- - public const int gift_taste_like = 2;
+- - public const int gift_taste_neutral = 8;
+- - public const int gift_taste_dislike = 4;
+- - public const int gift_taste_hate = 6;
+- - public const int gift_taste_stardroptea = 7;
+- - public const int textStyle_shake = 0;
+- - public const int textStyle_none = 2;
+- - public const int adult = 0;
+- - public const int teen = 1;
+- - public const int child = 2;
+- - public const int neutral = 0;
+- - public const int polite = 1;
+- - public const int rude = 2;
+- - public const int outgoing = 0;
+- - public const int shy = 1;
+- - public const int positive = 0;
+- - public const int negative = 1;
+- - public const string region_desert = "Desert";
+- - public const string region_town = "Town";
+- - public const string region_other = "Other";
+- - public const int defaultSpriteWidth = 16;
+- - public const int defaultSpriteHeight = 32;
+- - public Rectangle lastCrossroad;
+- - public string LastAppearanceId;
+- - public int shakeTimer;
+- - public int daysAfterLastBirth = -1;
+- - public readonly NetString birthday_Season = new NetString();
+- - public readonly NetInt birthday_Day = new NetInt();
+- - public readonly NetInt age = new NetInt();
+- - public readonly NetInt manners = new NetInt();
+- - public readonly NetInt socialAnxiety = new NetInt();
+- - public readonly NetInt optimism = new NetInt();
+- - public readonly NetEnum<Gender> gender = new NetEnum<Gender>();
+- - public readonly NetBool breather = new NetBool(value: true);
+- - public readonly NetBool isSleeping = new NetBool(value: false);
+- - public readonly NetBool sleptInBed = new NetBool(value: true);
+- - public readonly NetBool hideShadow = new NetBool();
+- - public readonly NetBool isInvisible = new NetBool(value: false);
+- - public readonly NetInt lastSeenMovieWeek = new NetInt(-1);
+- - public bool? datingFarmer;
+- - public bool? divorcedFromFarmer;
+- - public readonly NetBool datable = new NetBool();
+- - public bool updatedDialogueYet;
+- - public bool immediateSpeak;
+- - public bool ignoreScheduleToday;
+- - public readonly NetString defaultMap = new NetString();
+- - public string loveInterest;
+- - public int id = -1;
+- - public int daysUntilNotInvisible;
+- - public bool followSchedule = true;
+- - public PathFindController temporaryController;
+- - public readonly NetInt moveTowardPlayerThreshold = new NetInt();
+- - public float rotation;
+- - public float yOffset;
+- - public float swimTimer;
+- - public float timerSinceLastMovement;
+- - public string mapBeforeEvent;
+- - public Vector2 positionBeforeEvent;
+- - public Vector2 lastPosition;
+- - public float currentScheduleDelay;
+- - public float scheduleDelaySeconds;
+- - public bool layingDown;
+- - public Vector2 appliedRouteAnimationOffset = Vector2.Zero;
+- - public string[] routeAnimationMetadata;
+- - public static bool hasSomeoneWateredCrops;
+- - public static bool hasSomeoneFedThePet;
+- - public static bool hasSomeoneFedTheAnimals;
+- - public static bool hasSomeoneRepairedTheFences = false;
+- - public static HashSet<string> invalidDialogueFiles = new HashSet<string>();
+- - public Stack<Dialogue> TemporaryDialogue;
+- - public readonly NetList<MarriageDialogueReference, NetRef<MarriageDialogueReference>> currentMarriageDialogue = new NetList<MarriageDialogueReference, NetRef<MarriageDialogueReference>>();
+- - public readonly NetBool hasBeenKissedToday = new NetBool(value: false);
+- - public readonly NetRef<MarriageDialogueReference> marriageDefaultDialogue = new NetRef<MarriageDialogueReference>(null);
+- - public readonly NetBool shouldSayMarriageDialogue = new NetBool(value: false);
+- - public readonly NetEvent0 removeHenchmanEvent = new NetEvent0();
+- - public readonly NetBool shouldPlayRobinHammerAnimation = new NetBool();
+- - public readonly NetBool shouldPlaySpousePatioAnimation = new NetBool();
+- - public readonly NetBool shouldWearIslandAttire = new NetBool();
+- - public readonly NetBool isMovingOnPathFindPath = new NetBool();
+- - public bool portraitOverridden;
+- - public bool spriteOverridden;
+- - public List<SchedulePathDescription> queuedSchedulePaths = new List<SchedulePathDescription>();
+- - public int lastAttemptedSchedule = -1;
+- - public readonly NetBool doingEndOfRouteAnimation = new NetBool();
+- - public readonly NetBool goingToDoEndOfRouteAnimation = new NetBool();
+- - public readonly NetString endOfRouteMessage = new NetString();
+- - public readonly NetString dayScheduleName = new NetString();
+- - public readonly NetString islandScheduleName = new NetString();
+- - public string nextEndOfRouteMessage;
+- - public readonly NetString endOfRouteBehaviorName = new NetString();
+- - public Point previousEndPoint;
+- - public int squareMovementFacingPreference;
+- - public SchedulePathDescription DirectionsToNewLocation
+- - public int DefaultFacingDirection
+- - public Dictionary<string, string> Dialogue
+- - public string LoadedDialogueKey { get; private set; }
+- - public string DefaultMap
+- - public Vector2 DefaultPosition
+- - public Texture2D Portrait
+- - public bool AllowDynamicAppearance { get; set; } = true;
+- - public override bool IsVillager => true;
+- - public Dictionary<int, SchedulePathDescription> Schedule { get; private set; }
+- - public string ScheduleKey => dayScheduleName.Value;
+- - public bool IsWalkingInSquare
+- - public bool IsWalkingTowardPlayer
+- - public virtual Stack<Dialogue> CurrentDialogue
+- - public string Birthday_Season
+- - public int Birthday_Day
+- - public int Age
+- - public int Manners
+- - public int SocialAnxiety
+- - public int Optimism
+- - public override Gender Gender
+- - public bool Breather
+- - public bool HideShadow
+- - public bool HasPartnerForDance
+- - public bool IsInvisible
+- - public virtual bool CanSocialize
+- - public NPC()
+- - public NPC(AnimatedSprite sprite, Vector2 position, int facingDir, string name, LocalizedContentManager content = null)
+- - public NPC(AnimatedSprite sprite, Vector2 position, string defaultMap, int facingDirection, string name, bool datable, Texture2D portrait)
+- - public NPC(AnimatedSprite sprite, Vector2 position, string defaultMap, int facingDir, string name, Texture2D portrait, bool eventActor)
+- - public virtual void reloadData()
+- - public virtual void reloadDefaultLocation()
+- - public static bool ReadNpcHomeData(CharacterData data, GameLocation currentLocation, out string locationName, out Point tile, out int direction)
+- - public virtual bool canTalk()
+- - public virtual void ChooseAppearance(LocalizedContentManager content = null)
+- - public string getName()
+- - public virtual string getTextureName()
+- - public static string getTextureNameForCharacter(string character_name)
+- - public void resetSeasonalDialogue()
+- - public void performSpecialScheduleChanges()
+- - public virtual void reloadSprite(bool onlyAppearance = false)
+- - public bool TryLoadPortraits(string assetName, out string error, LocalizedContentManager content = null)
+- - public bool TryLoadSprites(string assetName, out string error, LocalizedContentManager content = null)
+- - public void showTextAboveHead(string text, Color? spriteTextColor = null, int style = 2, int duration = 3000, int preTimer = 0)
+- - public virtual bool hitWithTool(Tool t)
+- - public bool CanReceiveGifts()
+- - public int getGiftTasteForThisItem(Item item)
+- - public bool CheckTaste(IEnumerable<string> list, Item item)
+- - public virtual bool CheckTasteContextTags(Item item, string[] list)
+- - public virtual bool tryToReceiveActiveObject(Farmer who, bool probe = false)
+- - public string GetDispositionModifiedString(string path, params object[] substitutions)
+- - public void haltMe(Farmer who)
+- - public virtual bool checkAction(Farmer who, GameLocation l)
+- - public void grantConversationFriendship(Farmer who, int amount = 20)
+- - public virtual void AskLeoMemoryPrompt()
+- - public bool CanRevisitLeoMemory(KeyValuePair<string, string>? event_data)
+- - public KeyValuePair<string, string>? GetUnseenLeoEvent()
+- - public void OnLeoMemoryResponse(Farmer who, string whichAnswer)
+- - public bool isDivorcedFrom(Farmer who)
+- - public static bool IsDivorcedFrom(Farmer player, string npcName)
+- - public override void MovePosition(GameTime time, Rectangle viewport, GameLocation currentLocation)
+- - public GameLocation getHome()
+- - public override bool canPassThroughActionTiles()
+- - public virtual void behaviorOnFarmerPushing()
+- - public virtual void behaviorOnFarmerLocationEntry(GameLocation location, Farmer who)
+- - public virtual void behaviorOnLocalFarmerLocationEntry(GameLocation location)
+- - public override void updateMovement(GameLocation location, GameTime time)
+- - public void facePlayer(Farmer who)
+- - public void doneFacingPlayer(Farmer who)
+- - public override void update(GameTime time, GameLocation location)
+- - public virtual void wearIslandAttire()
+- - public virtual void wearNormalClothes()
+- - public virtual void performTenMinuteUpdate(int timeOfDay, GameLocation location)
+- - public void sayHiTo(Character c)
+- - public string getHi(string nameToGreet)
+- - public bool isFacingToward(Vector2 tileLocation)
+- - public virtual void arriveAt(GameLocation l)
+- - public override void Halt()
+- - public void addExtraDialogue(Dialogue dialogue)
+- - public void PerformDivorce()
+- - public Dialogue tryToGetMarriageSpecificDialogue(string dialogueKey)
+- - public void resetCurrentDialogue()
+- - public bool checkForNewCurrentDialogue(int heartLevel, bool noPreface = false)
+- - public Dialogue TryGetDialogue(string key)
+- - public Dialogue TryGetDialogueByGiftTaste(int giftTaste, Func<string, string> getKey)
+- - public Dialogue TryGetDialogue(string key, params object[] substitutions)
+- - public Dialogue tryToRetrieveDialogue(string preface, int heartLevel, string appendToEnd = "")
+- - public virtual void checkSchedule(int timeOfDay)
+- - public void checkForMarriageDialogue(int timeOfDay, GameLocation location)
+- - public bool isOnSilentTemporaryMessage()
+- - public bool hasTemporaryMessageAvailable()
+- - public bool setTemporaryMessages(Farmer who)
+- - public void playSleepingAnimation()
+- - public bool IsReturningToEndPoint()
+- - public void StartActivityWalkInSquare(int square_width, int square_height, int pause_offset)
+- - public void EndActivityRouteEndBehavior()
+- - public void StartActivityRouteEndBehavior(string behavior_name, string end_message)
+- - public void shake(int duration)
+- - public void setNewDialogue(string translationKey, bool add = false, bool clearOnMovement = false)
+- - public void setNewDialogue(Dialogue dialogue, bool add = false, bool clearOnMovement = false)
+- - public string GetDialogueSheetName()
+- - public void setSpouseRoomMarriageDialogue()
+- - public void setRandomAfternoonMarriageDialogue(int time, GameLocation location, bool countAsDailyAfternoon = false)
+- - public bool isBirthday()
+- - public Item getFavoriteItem()
+- - public CharacterData GetData()
+- - public static bool TryGetData(string name, out CharacterData data)
+- - public static string GetDisplayName(string name)
+- - public static bool CanSocializePerData(string name, GameLocation location)
+- - public string GetTokenizedDisplayName()
+- - public bool SpeaksDwarvish()
+- - public virtual void receiveGift(Object o, Farmer giver, bool updateGiftLimitInfo = true, float friendshipChangeMultiplier = 1f, bool showResponse = true)
+- - public virtual Dialogue GetGiftReaction(Farmer giver, Object gift, int taste)
+- - public override void draw(SpriteBatch b, float alpha = 1f)
+- - public virtual void DrawBreathing(SpriteBatch b, float alpha = 1f)
+- - public virtual void DrawGlow(SpriteBatch b)
+- - public virtual void DrawEmote(SpriteBatch b)
+- - public override void drawAboveAlwaysFrontLayer(SpriteBatch b)
+- - public bool NeedsBirdieEmoteHack()
+- - public void warpToPathControllerDestination()
+- - public virtual Rectangle getMugShotSourceRect()
+- - public void getHitByPlayer(Farmer who, GameLocation location)
+- - public void walkInSquare(int squareWidth, int squareHeight, int squarePauseOffset)
+- - public void moveTowardPlayer(int threshold)
+- - public virtual bool withinPlayerThreshold()
+- - public virtual bool withinPlayerThreshold(int threshold)
+- - public virtual SchedulePathDescription pathfindToNextScheduleLocation(string scheduleKey, string startingLocation, int startingX, int startingY, string endingLocation, int endingX, int endingY, int finalFacingDirection, string endBehavior, string endMessage)
+- - public virtual Dictionary<int, SchedulePathDescription> parseMasterSchedule(string scheduleKey, string rawData)
+- - public static string[] SplitScheduleCommands(string rawScript)
+- - public bool TryLoadSchedule()
+- - public bool TryLoadSchedule(string key)
+- - public bool TryLoadSchedule(string key, string rawSchedule)
+- - public bool TryLoadSchedule(string key, Dictionary<int, SchedulePathDescription> schedule)
+- - public void ClearSchedule()
+- - public virtual void handleMasterScheduleFileLoadError(Exception e)
+- - public virtual void InvalidateMasterSchedule()
+- - public Dictionary<string, string> getMasterScheduleRawData()
+- - public string getMasterScheduleEntry(string schedule_key)
+- - public bool hasMasterScheduleEntry(string key)
+- - public virtual bool isRoommate()
+- - public bool isMarried()
+- - public bool isMarriedOrEngaged()
+- - public virtual void dayUpdate(int dayOfMonth)
+- - public void OnDayStarted()
+- - public virtual void resetForNewDay(int dayOfMonth)
+- - public void returnHomeFromFarmPosition(Farm farm)
+- - public virtual Vector2 GetSpousePatioPosition()
+- - public void setUpForOutdoorPatioActivity()
+- - public virtual bool hasDarkSkin()
+- - public bool isAdoptionSpouse()
+- - public bool canGetPregnant()
+- - public void marriageDuties()
+- - public virtual void popOffAnyNonEssentialItems()
+- - public static bool checkTileOccupancyForSpouse(GameLocation location, Vector2 point, string characterToIgnore = "")
+- - public void addMarriageDialogue(string dialogue_file, string dialogue_key, bool gendered = false, params string[] substitutions)
+- - public void clearTextAboveHead()
+- - public bool isVillager()
+- - public override bool shouldCollideWithBuildingLayer(GameLocation location)
+- - public virtual void arriveAtFarmHouse(FarmHouse farmHouse)
+- - public Farmer getSpouse()
+- - public string getTermOfSpousalEndearment(bool happy = true)
+- - public bool spouseObstacleCheck(MarriageDialogueReference backToBedMessage, GameLocation currentLocation, bool force = false)
+- - public void setTilePosition(Point p)
+- - public void setTilePosition(int x, int y)
+- - public void randomSquareMovement(GameTime time)
+- - public void returnToEndPoint()
+- - public void SetMovingOnlyUp()
+- - public void SetMovingOnlyRight()
+- - public void SetMovingOnlyDown()
+- - public void SetMovingOnlyLeft()
+- - public virtual int getTimeFarmerMustPushBeforePassingThrough()
+- - public virtual int getTimeFarmerMustPushBeforeStartShaking()
+- - public int CompareTo(object obj)
+- - public virtual void Removed()
+
+## Private Members
+- - private Dictionary<string, string> dialogue;
+- - private SchedulePathDescription directionsToNewLocation;
+- - private int lengthOfWalkingSquareX;
+- - private int lengthOfWalkingSquareY;
+- - private int squarePauseAccumulation;
+- - private int squarePauseTotal;
+- - private int squarePauseOffset;
+- - private Texture2D portrait;
+- - private string LastLocationNameForAppearance;
+- - private Vector2 nextSquarePosition;
+- - private bool isWalkingInSquare;
+- - private readonly NetBool isWalkingTowardPlayer = new NetBool();
+- - private readonly NetVector2 defaultPosition = new NetVector2();
+- - private NetBool hasSaidAfternoonDialogue = new NetBool(value: false);
+- - private bool isPlayingSleepingAnimation;
+- - private bool isPlayingRobinHammerAnimation;
+- - private bool isPlayingSpousePatioAnimation;
+- - private bool isWearingIslandAttire;
+- - private bool currentlyDoingEndOfRouteAnimation;
+- - private int[] routeEndIntro;
+- - private int[] routeEndAnimation;
+- - private int[] routeEndOutro;
+- - private string loadedEndOfRouteBehavior;
+- - private bool wasKissedYesterday;
+- - private void updateConstructionAnimation()
+- - private void doPlayRobinHammerAnimation()
+- - private void goblinDoorEndBehavior(Character c, GameLocation l)
+- - private void performRemoveHenchman()
+- - private void engagementResponse(Farmer who, bool asRoommate = false)
+- - private Stack<Dialogue> loadCurrentDialogue()
+- - private void finishEndOfRouteAnimation()
+- - private void routeEndAnimationFinished(Farmer who)
+- - private void walkInSquareAtEndOfRoute(Character c, GameLocation l)
+- - private void doAnimationAtEndOfScheduleRoute(Character c, GameLocation l)
+- - private void reallyDoAnimationAtEndOfScheduleRoute()
+- - private void doMiddleAnimation(Farmer who)
+- - private void startRouteBehavior(string behaviorName)
+- - private void finishRouteBehavior(string behaviorName)
+- - private void loadEndOfRouteBehavior(string name)
+- - private void setNewDialogue(string dialogueSheetName, string dialogueSheetKey, bool clearOnMovement = false)
+- - private Stack<Point> addToStackForSchedule(Stack<Point> original, Stack<Point> toAdd)
+- - private string[] getLocationRoute(string startingLocation, string endingLocation)
+- - private bool changeScheduleForLocationAccessibility(ref string locationName, ref int tileX, ref int tileY, ref int facingDirection)
+- - private void doPlaySpousePatioAnimation()
+- - private void clintHammerSound(Farmer who)
+- - private void robinHammerSound(Farmer who)
+- - private void robinVariablePause(Farmer who)
+
+## Protected Members
+- - protected string textAboveHead;
+- - protected int textAboveHeadPreTimer;
+- - protected int textAboveHeadTimer;
+- - protected int textAboveHeadStyle;
+- - protected Color? textAboveHeadColor;
+- - protected float textAboveHeadAlpha;
+- - protected Dialogue extraDialogueMessageToAddThisMorning;
+- - protected int defaultFacingDirection;
+- - protected bool _skipRouteEndIntro;
+- - protected bool _hasLoadedMasterScheduleData;
+- - protected Dictionary<string, string> _masterScheduleData;
+- - protected static Stack<Dialogue> _EmptyDialogue = new Stack<Dialogue>();
+- - protected string _startedEndOfRouteBehavior;
+- - protected string _finishingEndOfRouteBehavior;
+- - protected int _beforeEndOfRouteAnimationFrame;
+- - protected bool returningToEndPoint;
+- - protected override void initNetFields()
+- - protected override string translateName()
+- - protected virtual void prepareToDisembarkOnNewSchedulePath()
+- - protected void _PushTemporaryDialogue(string translationKey)
+- - protected PathFindController.endBehavior getRouteEndBehaviorFunction(string behaviorName, string endMessage)
+- - protected virtual Farmer findPlayer()
+- - protected virtual Dictionary<int, SchedulePathDescription> parseMasterScheduleImpl(string scheduleKey, string rawData, List<string> visited)
+- - protected void UpdateInvisibilityOnNewDay()
+
+## Internal Members
+- *(None)*
+
+## Other Members
+- *(None)*

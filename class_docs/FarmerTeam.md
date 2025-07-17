@@ -1,0 +1,161 @@
+# FarmerTeam
+
+**Summary:** Represents the player character, including stats, inventory, and actions.
+
+## Public Members
+- - public enum RemoteBuildingPermissions
+- - public enum SleepAnnounceModes
+- - public const string GlobalInventoryId_LostItemsShop = "LostItemsShop";
+- - public const string GlobalInventoryId_JunimoChest = "JunimoChests";
+- - public readonly NetIntDelta money = new NetIntDelta(500)
+- - public readonly NetLongDictionary<NetIntDelta, NetRef<NetIntDelta>> individualMoney = new NetLongDictionary<NetIntDelta, NetRef<NetIntDelta>>();
+- - public readonly NetIntDelta totalMoneyEarned = new NetIntDelta(0);
+- - public readonly NetBool useSeparateWallets = new NetBool();
+- - public readonly NetBool newLostAndFoundItems = new NetBool();
+- - public readonly NetBool toggleMineShrineOvernight = new NetBool();
+- - public readonly NetBool mineShrineActivated = new NetBool();
+- - public readonly NetBool toggleSkullShrineOvernight = new NetBool();
+- - public readonly NetBool skullShrineActivated = new NetBool();
+- - public readonly NetBool farmPerfect = new NetBool();
+- - public readonly NetList<string, NetString> specialRulesRemovedToday = new NetList<string, NetString>();
+- - public readonly NetList<string, NetString> itemsToRemoveOvernight = new NetList<string, NetString>();
+- - public readonly NetList<string, NetString> mailToRemoveOvernight = new NetList<string, NetString>();
+- - public NetIntDictionary<long, NetLong> cellarAssignments = new NetIntDictionary<long, NetLong>();
+- - public NetStringHashSet broadcastedMail = new NetStringHashSet();
+- - public readonly NetStringHashSet constructedBuildings = new NetStringHashSet();
+- - public NetStringHashSet collectedNutTracker = new NetStringHashSet();
+- - public NetStringHashSet completedSpecialOrders = new NetStringHashSet();
+- - public NetList<SpecialOrder, NetRef<SpecialOrder>> specialOrders = new NetList<SpecialOrder, NetRef<SpecialOrder>>();
+- - public NetList<SpecialOrder, NetRef<SpecialOrder>> availableSpecialOrders = new NetList<SpecialOrder, NetRef<SpecialOrder>>();
+- - public NetStringHashSet acceptedSpecialOrderTypes = new NetStringHashSet();
+- - public readonly NetCollection<Item> returnedDonations = new NetCollection<Item>();
+- - public readonly NetStringDictionary<Inventory, NetRef<Inventory>> globalInventories = new NetStringDictionary<Inventory, NetRef<Inventory>>();
+- - public readonly NetStringDictionary<NetMutex, NetRef<NetMutex>> globalInventoryMutexes = new NetStringDictionary<NetMutex, NetRef<NetMutex>>();
+- - public readonly NetFarmerCollection announcedSleepingFarmers = new NetFarmerCollection();
+- - public readonly NetEnum<SleepAnnounceModes> sleepAnnounceMode = new NetEnum<SleepAnnounceModes>(SleepAnnounceModes.All);
+- - public readonly NetEnum<RemoteBuildingPermissions> farmhandsCanMoveBuildings = new NetEnum<RemoteBuildingPermissions>(RemoteBuildingPermissions.Off);
+- - public readonly NetList<MovieInvitation, NetRef<MovieInvitation>> movieInvitations = new NetList<MovieInvitation, NetRef<MovieInvitation>>();
+- - public readonly NetCollection<Item> luauIngredients = new NetCollection<Item>();
+- - public readonly NetCollection<Item> grangeDisplay = new NetCollection<Item>();
+- - public readonly NetMutex grangeMutex = new NetMutex();
+- - public readonly NetMutex returnedDonationsMutex = new NetMutex();
+- - public readonly NetMutex ordersBoardMutex = new NetMutex();
+- - public readonly NetMutex qiChallengeBoardMutex = new NetMutex();
+- - public readonly NetEvent1Field<int, NetInt> addQiGemsToTeam = new NetEvent1Field<int, NetInt>();
+- - public readonly NetEvent1Field<string, NetString> addCharacterEvent = new NetEvent1Field<string, NetString>();
+- - public readonly NetEvent1Field<string, NetString> requestAddCharacterEvent = new NetEvent1Field<string, NetString>();
+- - public readonly NetEvent0 requestLeoMove = new NetEvent0();
+- - public readonly NetEvent1Field<int, NetInt> kickOutOfMinesEvent = new NetEvent1Field<int, NetInt>();
+- - public readonly NetEvent1Field<string, NetString> requestNPCGoHome = new NetEvent1Field<string, NetString>
+- - public readonly NetEvent1Field<long, NetLong> requestSpouseSleepEvent = new NetEvent1Field<long, NetLong>
+- - public readonly NetEvent1Field<string, NetString> ringPhoneEvent = new NetEvent1Field<string, NetString>();
+- - public readonly NetEvent1Field<long, NetLong> requestHorseWarpEvent = new NetEvent1Field<long, NetLong>
+- - public readonly NetEvent1Field<long, NetLong> requestPetWarpHomeEvent = new NetEvent1Field<long, NetLong>
+- - public readonly NetEvent1Field<long, NetLong> requestMovieEndEvent = new NetEvent1Field<long, NetLong>();
+- - public readonly NetEvent1Field<long, NetLong> endMovieEvent = new NetEvent1Field<long, NetLong>();
+- - public readonly NetEventBinary buildingConstructedEvent = new NetEventBinary();
+- - public readonly NetEventBinary buildingMovedEvent = new NetEventBinary();
+- - public readonly NetEventBinary buildingDemolishedEvent = new NetEventBinary();
+- - public readonly NetStringDictionary<int, NetInt> limitedNutDrops = new NetStringDictionary<int, NetInt>();
+- - public readonly NetFarmerPairDictionary<Friendship, NetRef<Friendship>> friendshipData = new NetFarmerPairDictionary<Friendship, NetRef<Friendship>>();
+- - public readonly NetWitnessedLock demolishLock = new NetWitnessedLock();
+- - public readonly NetMutex buildLock = new NetMutex();
+- - public readonly NetMutex movieMutex = new NetMutex();
+- - public readonly NetMutex goldenCoconutMutex = new NetMutex();
+- - public readonly SynchronizedShopStock synchronizedShopStock = new SynchronizedShopStock();
+- - public readonly NetLong theaterBuildDate = new NetLong(-1L);
+- - public readonly NetInt lastDayQueenOfSauceRerunUpdated = new NetInt(0);
+- - public readonly NetInt queenOfSauceRerunWeek = new NetInt(1);
+- - public readonly NetDouble sharedDailyLuck = new NetDouble(0.0010000000474974513);
+- - public readonly NetBool spawnMonstersAtNight = new NetBool(value: false);
+- - public readonly NetBool useLegacyRandom = new NetBool(value: false);
+- - public readonly NetInt calicoEggSkullCavernRating = new NetInt(0);
+- - public readonly NetInt highestCalicoEggRatingToday = new NetInt(0);
+- - public readonly NetIntDictionary<int, NetInt> calicoStatueEffects = new NetIntDictionary<int, NetInt>();
+- - public readonly NetLeaderboards junimoKartScores = new NetLeaderboards();
+- - public PlayerStatusList junimoKartStatus = new PlayerStatusList();
+- - public PlayerStatusList endOfNightStatus = new PlayerStatusList();
+- - public PlayerStatusList festivalScoreStatus = new PlayerStatusList();
+- - public PlayerStatusList sleepStatus = new PlayerStatusList();
+- - public NetFields NetFields { get; } = new NetFields("FarmerTeam");
+- - public FarmerTeam()
+- - public void AddCalicoStatueEffect(int effectId)
+- - public virtual void OnKickOutOfMinesEvent(int mineshaftType)
+- - public virtual void OnRequestHorseWarp(long uid)
+- - public virtual void OnRequestLeoMoveEvent()
+- - public virtual void MarkCollectedNut(string key)
+- - public int GetIndividualMoney(Farmer who)
+- - public void AddIndividualMoney(Farmer who, int value)
+- - public void SetIndividualMoney(Farmer who, int value)
+- - public NetIntDelta GetMoney(Farmer who)
+- - public bool SpecialOrderActive(string special_order_key)
+- - public bool SpecialOrderRuleActive(string special_rule, SpecialOrder order_to_ignore = null)
+- - public void AddSpecialOrder(string id, int? generationSeed = null, bool forceRepeatable = false)
+- - public SpecialOrder GetAvailableSpecialOrder(int index = 0, string type = "")
+- - public void CheckReturnedDonations()
+- - public bool OnDonatedItemWithdrawn(ISalable salable, Farmer who, int countTaken, ItemStockInformation stock)
+- - public bool OnReturnedDonationDeposited(ISalable deposited_salable)
+- - public void OnRequestMovieEndEvent(long uid)
+- - public void OnRequestPetWarpHomeEvent(long uid)
+- - public void OnRequestNPCGoHome(string npc_name)
+- - public void OnRequestSpouseSleepEvent(long uid)
+- - public virtual void OnRequestAddCharacterEvent(string character_name)
+- - public virtual void OnAddCharacterEvent(string character_name)
+- - public void RequestLimitedNutDrops(string key, GameLocation location, int x, int y, int limit, int rewardAmount = 1)
+- - public int GetDroppedLimitedNutCount(string key)
+- - public void RequestSetSimpleFlag(SimpleFlagType flag, PlayerActionTarget target, string flagId, bool flagState, long? onlyPlayerId = null)
+- - public void RequestSetMail(PlayerActionTarget playerTarget, string mailId, MailType mailType, bool add, long? onlyPlayerId = null)
+- - public void OnRingPhoneEvent(string callId)
+- - public void OnEndMovieEvent(long uid)
+- - public void SendBuildingConstructedEvent(GameLocation location, Building building, Farmer who)
+- - public void OnBuildingConstructedEvent(BinaryReader reader)
+- - public void SendBuildingMovedEvent(GameLocation location, Building building)
+- - public void OnBuildingMovedEvent(BinaryReader reader)
+- - public void SendBuildingDemolishedEvent(GameLocation location, Building building)
+- - public void OnBuildingDemolishedEvent(BinaryReader reader)
+- - public void DeleteFarmhand(Farmer farmhand)
+- - public Friendship GetFriendship(long farmer1, long farmer2)
+- - public void AddAnyBroadcastedMail()
+- - public bool IsMarried(long farmer)
+- - public bool IsEngaged(long farmer)
+- - public long? GetSpouse(long farmer)
+- - public void FestivalPropsRemoved(Rectangle rect)
+- - public void SendProposal(Farmer receiver, ProposalType proposalType, Item gift = null)
+- - public Proposal GetOutgoingProposal()
+- - public void RemoveOutgoingProposal()
+- - public Proposal GetIncomingProposal()
+- - public double AverageDailyLuck(GameLocation inThisLocation = null)
+- - public double AverageLuckLevel(GameLocation inThisLocation = null)
+- - public double AverageSkillLevel(int skillIndex, GameLocation inThisLocation = null)
+- - public void Update()
+- - public bool playerIsOnline(long uid)
+- - public Inventory GetOrCreateGlobalInventory(string id)
+- - public NetMutex GetOrCreateGlobalInventoryMutex(string id)
+- - public void NewDay()
+- - public enum FriendshipStatus
+
+## Private Members
+- - private readonly NetLongDictionary<Proposal, NetRef<Proposal>> proposals = new NetLongDictionary<Proposal, NetRef<Proposal>>();
+- - private readonly NetEvent1Field<Rectangle, NetRectangle> festivalPropRemovalEvent = new NetEvent1Field<Rectangle, NetRectangle>();
+- - private readonly NetEvent1<NutDropRequest> requestNutDrop = new NetEvent1<NutDropRequest>();
+- - private readonly NetEvent1<SetSimpleFlagRequest> requestSetSimpleFlag = new NetEvent1<SetSimpleFlagRequest>();
+- - private readonly NetEvent1<SetMailRequest> requestSetMail = new NetEvent1<SetMailRequest>();
+- - private void OnCalicoStatueEffectAdded(int key)
+- - private void OnCalicoEggRatingChanged(NetInt field, int oldValue, int newValue)
+- - private bool locationsMatch(GameLocation location1, GameLocation location2)
+- - private string genderedKey(string baseKey, Farmer farmer)
+- - private bool handleIncomingProposal(Proposal proposal)
+- - private void RequestPlayerAction<T>(T request, NetEvent1<T> @event) where T : BasePlayerActionRequest, new()
+- - private void OnRequestPlayerAction(BasePlayerActionRequest request)
+
+## Protected Members
+- - protected virtual void _AddQiGemsToTeam(int amount)
+- - protected void OnRequestNutDrop(NutDropRequest request)
+
+## Internal Members
+- - internal readonly ChestHitSynchronizer chestHit = new ChestHitSynchronizer();
+- - internal readonly NetBool allowChatCheats = new NetBool(value: false);
+- - internal readonly NetBool hasDedicatedHost = new NetBool(value: false);
+
+## Other Members
+- *(None)*

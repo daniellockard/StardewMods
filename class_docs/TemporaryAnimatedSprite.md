@@ -1,0 +1,158 @@
+# TemporaryAnimatedSprite
+
+**Summary:** Represents a 2D image or animation.
+
+## Public Members
+- - public delegate void endBehavior(int extraInfo);
+- - public const int FireworkType_Heart = 0;
+- - public const int FireworkType_Star = 1;
+- - public const int FireworkType_Junimo = 2;
+- - public static float[] FireworksLifetimeMultiplier = new float[3] { 1f, 1f, 1.3f };
+- - public static Color[] FireworksColors = (Color[])(object)new Color[3]
+- - public static Vector2[][] FireworksLights = new Vector2[3][]
+- - public static Vector2[][] FireworksPoints = new Vector2[3][]
+- - public float timer;
+- - public float interval = 200f;
+- - public int currentParentTileIndex;
+- - public int oldCurrentParentTileIndex;
+- - public int initialParentTileIndex;
+- - public int totalNumberOfLoops;
+- - public int currentNumberOfLoops;
+- - public int xStopCoordinate = -1;
+- - public int yStopCoordinate = -1;
+- - public int animationLength;
+- - public int bombRadius;
+- - public int pingPongMotion = 1;
+- - public int bombDamage = -1;
+- - public int fireworkType = -1;
+- - public bool flicker;
+- - public bool timeBasedMotion;
+- - public bool overrideLocationDestroy;
+- - public bool pingPong;
+- - public bool holdLastFrame;
+- - public bool pulse;
+- - public int extraInfoForEndBehavior;
+- - public string lightId;
+- - public int id;
+- - public bool bigCraftable;
+- - public bool swordswipe;
+- - public bool flash;
+- - public bool flipped;
+- - public bool verticalFlipped;
+- - public bool local;
+- - public bool hasLit;
+- - public bool xPeriodic;
+- - public bool yPeriodic;
+- - public bool destroyable = true;
+- - public bool paused;
+- - public bool stopAcceleratingWhenVelocityIsZero;
+- - public bool positionFollowsAttachedCharacter;
+- - public bool usePreciseTiming;
+- - public float rotation;
+- - public float alpha = 1f;
+- - public float alphaFade;
+- - public float layerDepth = -1f;
+- - public float scale = 1f;
+- - public float scaleChange;
+- - public float scaleChangeChange;
+- - public float rotationChange;
+- - public float lightRadius;
+- - public float xPeriodicRange;
+- - public float yPeriodicRange;
+- - public float xPeriodicLoopTime;
+- - public float yPeriodicLoopTime;
+- - public float shakeIntensityChange;
+- - public float shakeIntensity;
+- - public float pulseTime;
+- - public float pulseAmount = 1.1f;
+- - public float alphaFadeFade;
+- - public int lightFade = -1;
+- - public float afterAccelStopMotionX;
+- - public float afterAccelStopMotionY;
+- - public float layerDepthOffset;
+- - public Vector2 position;
+- - public Vector2 sourceRectStartingPos;
+- - public string textureName;
+- - public Texture2D texture;
+- - public Rectangle sourceRect;
+- - public Color color = Color.White;
+- - public Color lightcolor = Color.White;
+- - public Farmer owner;
+- - public Vector2 motion = Vector2.Zero;
+- - public Vector2 acceleration = Vector2.Zero;
+- - public Vector2 accelerationChange = Vector2.Zero;
+- - public Vector2 initialPosition;
+- - public Vector2 vectorScale;
+- - public int delayBeforeAnimationStart;
+- - public int ticksBeforeAnimationStart;
+- - public string startSound;
+- - public string endSound;
+- - public string text;
+- - public endBehavior endFunction;
+- - public endBehavior reachedStopCoordinate;
+- - public Action<TemporaryAnimatedSprite> reachedStopCoordinateSprite;
+- - public TemporaryAnimatedSprite parentSprite;
+- - public Character attachedCharacter;
+- - public bool drawAboveAlwaysFront;
+- - public bool dontClearOnAreaEntry;
+- - public static List<TemporaryAnimatedSprite> _pool;
+- - public bool Pooled => _pooled;
+- - public Vector2 Position
+- - public Texture2D Texture => texture;
+- - public GameLocation Parent
+- - public static float GetFireworkLifetimeMultiplier(int id)
+- - public static Color GetFireworkColor(int id)
+- - public static Vector2[] GetFireworkLights(int id)
+- - public static Vector2[] GetFireworkPoints(int id)
+- - public TemporaryAnimatedSprite getClone()
+- - public virtual void Pool()
+- - public static TemporaryAnimatedSprite GetTemporaryAnimatedSprite()
+- - public TemporaryAnimatedSprite()
+- - public static TemporaryAnimatedSprite GetTemporaryAnimatedSprite(int initialParentTileIndex, float animationInterval, int animationLength, int numberOfLoops, Vector2 position, bool flicker, bool flipped)
+- - public TemporaryAnimatedSprite(int initialParentTileIndex, float animationInterval, int animationLength, int numberOfLoops, Vector2 position, bool flicker, bool flipped)
+- - public static TemporaryAnimatedSprite GetTemporaryAnimatedSprite(int rowInAnimationTexture, Vector2 position, Color color, int animationLength = 8, bool flipped = false, float animationInterval = 100f, int numberOfLoops = 0, int sourceRectWidth = -1, float layerDepth = -1f, int sourceRectHeight = -1, int delay = 0)
+- - public TemporaryAnimatedSprite(int rowInAnimationTexture, Vector2 position, Color color, int animationLength = 8, bool flipped = false, float animationInterval = 100f, int numberOfLoops = 0, int sourceRectWidth = -1, float layerDepth = -1f, int sourceRectHeight = -1, int delay = 0)
+- - public static TemporaryAnimatedSprite GetTemporaryAnimatedSprite(int initialParentTileIndex, float animationInterval, int animationLength, int numberOfLoops, Vector2 position, bool flicker, bool flipped, bool verticalFlipped, float rotation)
+- - public TemporaryAnimatedSprite(int initialParentTileIndex, float animationInterval, int animationLength, int numberOfLoops, Vector2 position, bool flicker, bool flipped, bool verticalFlipped, float rotation)
+- - public static TemporaryAnimatedSprite GetTemporaryAnimatedSprite(int initialParentTileIndex, float animationInterval, int animationLength, int numberOfLoops, Vector2 position, bool flicker, bool bigCraftable, bool flipped)
+- - public TemporaryAnimatedSprite(int initialParentTileIndex, float animationInterval, int animationLength, int numberOfLoops, Vector2 position, bool flicker, bool bigCraftable, bool flipped)
+- - public TemporaryAnimatedSprite GetTemporaryAnimatedSprite(string textureName, Rectangle sourceRect, float animationInterval, int animationLength, int numberOfLoops, Vector2 position, bool flicker, bool flipped)
+- - public TemporaryAnimatedSprite(string textureName, Rectangle sourceRect, float animationInterval, int animationLength, int numberOfLoops, Vector2 position, bool flicker, bool flipped)
+- - public static TemporaryAnimatedSprite GetTemporaryAnimatedSprite(string textureName, Rectangle sourceRect, float animationInterval, int animationLength, int numberOfLoops, Vector2 position, bool flicker, bool flipped, float layerDepth, float alphaFade, Color color, float scale, float scaleChange, float rotation, float rotationChange, bool local = false)
+- - public TemporaryAnimatedSprite(string textureName, Rectangle sourceRect, float animationInterval, int animationLength, int numberOfLoops, Vector2 position, bool flicker, bool flipped, float layerDepth, float alphaFade, Color color, float scale, float scaleChange, float rotation, float rotationChange, bool local = false)
+- - public virtual void CopyAppearanceFromItemId(string itemId, int offset = 0)
+- - public static TemporaryAnimatedSprite GetTemporaryAnimatedSprite(string textureName, Rectangle sourceRect, Vector2 position, bool flipped, float alphaFade, Color color)
+- - public TemporaryAnimatedSprite(string textureName, Rectangle sourceRect, Vector2 position, bool flipped, float alphaFade, Color color)
+- - public static TemporaryAnimatedSprite GetTemporaryAnimatedSprite(int initialParentTileIndex, float animationInterval, int animationLength, int numberOfLoops, Vector2 position, bool flicker, bool flipped, GameLocation parent, Farmer owner)
+- - public TemporaryAnimatedSprite(int initialParentTileIndex, float animationInterval, int animationLength, int numberOfLoops, Vector2 position, bool flicker, bool flipped, GameLocation parent, Farmer owner)
+- - public void Read(BinaryReader reader, GameLocation location)
+- - public void Write(BinaryWriter writer, GameLocation location)
+- - public virtual void draw(SpriteBatch spriteBatch, bool localPosition = false, int xOffset = 0, int yOffset = 0, float extraAlpha = 1f)
+- - public void bounce(int extraInfo)
+- - public void unload()
+- - public void reset()
+- - public void resetEnd()
+- - public virtual bool update(GameTime time)
+- - public bool clearOnAreaEntry()
+- - public static TemporaryAnimatedSprite CreateFromData(TemporaryAnimatedSpriteDefinition temporarySprite, float x, float y, float sortLayer)
+
+## Private Members
+- - private float pulseTimer;
+- - private float originalScale;
+- - private Stopwatch stopWatch;
+- - private long previousStopwatchTime;
+- - private float totalTimer;
+- - private void loadTexture()
+- - private void checkDirty<T>(BitArray dirtyBits, ref int i, T value, T defaultValue = default(T))
+- - private void setSourceRectToCurrentTileIndex()
+- - private void PlaySound(string sound)
+
+## Protected Members
+- - protected GameLocation parent;
+- - protected bool _pooled;
+
+## Internal Members
+- *(None)*
+
+## Other Members
+- *(None)*

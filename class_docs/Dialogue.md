@@ -1,0 +1,139 @@
+# Dialogue
+
+**Summary:** Handles in-game dialogue or conversations.
+
+## Public Members
+- - public delegate bool onAnswerQuestion(int whichResponse);
+- - public const string dialogueHappy = "$h";
+- - public const string dialogueSad = "$s";
+- - public const string dialogueUnique = "$u";
+- - public const string dialogueNeutral = "$neutral";
+- - public const string dialogueLove = "$l";
+- - public const string dialogueAngry = "$a";
+- - public const string dialogueEnd = "$e";
+- - public const char dialogueCommandPrefix = '$';
+- - public const string dialogueBreak = "$b";
+- - public const string dialogueBreakDelimited = "#$b#";
+- - public const string multipleDialogueDelineator = "||";
+- - public const string dialogueKill = "$k";
+- - public const string dialogueChance = "$c";
+- - public const string dialogueDependingOnWorldState = "$d";
+- - public const string dialogueEvent = "$v";
+- - public const string dialogueQuickResponse = "$y";
+- - public const string dialoguePrerequisite = "$p";
+- - public const string dialogueSingle = "$1";
+- - public const string dialogueGameStateQuery = "$query";
+- - public const string dialogueGenderSwitch_startBlock = "${";
+- - public const string dialogueGenderSwitch_endBlock = "}$";
+- - public const string dialogueRunAction = "$action";
+- - public const string dialogueStartConversationTopic = "$t";
+- - public const string dialogueQuestion = "$q";
+- - public const string dialogueResponse = "$r";
+- - public const string breakSpecialCharacter = "{";
+- - public const string playerNameSpecialCharacter = "@";
+- - public const char genderDialogueSplitCharacter = '^';
+- - public const char genderDialogueSplitCharacter2 = '¦';
+- - public const string quickResponseDelineator = "*";
+- - public const string randomAdjectiveSpecialCharacter = "%adj";
+- - public const string randomNounSpecialCharacter = "%noun";
+- - public const string randomPlaceSpecialCharacter = "%place";
+- - public const string spouseSpecialCharacter = "%spouse";
+- - public const string randomNameSpecialCharacter = "%name";
+- - public const string firstNameLettersSpecialCharacter = "%firstnameletter";
+- - public const string timeSpecialCharacter = "%time";
+- - public const string bandNameSpecialCharacter = "%band";
+- - public const string bookNameSpecialCharacter = "%book";
+- - public const string petSpecialCharacter = "%pet";
+- - public const string farmNameSpecialCharacter = "%farm";
+- - public const string favoriteThingSpecialCharacter = "%favorite";
+- - public const string eventForkSpecialCharacter = "%fork";
+- - public const string yearSpecialCharacter = "%year";
+- - public const string kid1specialCharacter = "%kid1";
+- - public const string kid2SpecialCharacter = "%kid2";
+- - public const string revealTasteCharacter = "%revealtaste";
+- - public const string seasonCharacter = "%season";
+- - public const string dontfacefarmer = "%noturn";
+- - public const char noPortraitPrefix = '%';
+- - public const string FallbackDialogueForErrorKey = "Strings\\Characters:FallbackDialogueForError";
+- - public static readonly string[] percentTokens = new string[18]
+- - public static string[] adjectives = new string[20]
+- - public static string[] nouns = new string[23]
+- - public static string[] verbs = new string[13]
+- - public static string[] positional = new string[13]
+- - public static string[] places = new string[12]
+- - public static string[] colors = new string[16]
+- - public List<DialogueLine> dialogues = new List<DialogueLine>();
+- - public HashSet<int> indexesWithoutPortrait = new HashSet<int>();
+- - public bool isCurrentStringContinuedOnNextScreen;
+- - public bool showPortrait;
+- - public bool removeOnNextMove;
+- - public bool dontFaceFarmer;
+- - public string temporaryDialogueKey;
+- - public int currentDialogueIndex;
+- - public NPC speaker;
+- - public onAnswerQuestion answerQuestionBehavior;
+- - public Texture2D overridePortrait;
+- - public Action onFinish;
+- - public readonly string TranslationKey;
+- - public string CurrentEmotion
+- - public bool CurrentEmotionSetExplicitly => currentEmotion != null;
+- - public Farmer farmer
+- - public Dialogue(NPC speaker, string translationKey, string dialogueText)
+- - public Dialogue(NPC speaker, string translationKey, bool isGendered = false)
+- - public Dialogue(Dialogue other)
+- - public static Dialogue TryGetDialogue(NPC speaker, string translationKey)
+- - public static Dialogue FromTranslation(NPC speaker, string translationKey)
+- - public static Dialogue FromTranslation(NPC speaker, string translationKey, object sub1)
+- - public static Dialogue FromTranslation(NPC speaker, string translationKey, object sub1, object sub2)
+- - public static Dialogue FromTranslation(NPC speaker, string translationKey, object sub1, object sub2, object sub3)
+- - public static Dialogue FromTranslation(NPC speaker, string translationKey, params object[] substitutions)
+- - public static Dialogue GetFallbackForError(NPC speaker)
+- - public static string GetFallbackTextForError()
+- - public static string getRandomVerb()
+- - public static string getRandomAdjective()
+- - public static string getRandomNoun()
+- - public static string getRandomPositional()
+- - public int getPortraitIndex()
+- - public virtual void prepareDialogueForDisplay()
+- - public virtual void prepareCurrentDialogueForDisplay()
+- - public virtual string getCurrentDialogue()
+- - public bool isItemGrabDialogue()
+- - public bool isOnFinalDialogue()
+- - public bool isDialogueFinished()
+- - public string ReplacePlayerEnteredStrings(string str)
+- - public string checkForSpecialCharacters(string str)
+- - public string applyGenderSwitch(string str, bool altTokenOnly = false)
+- - public static string applyGenderSwitch(Gender gender, string str, bool altTokenOnly = false)
+- - public static string applyGenderSwitchBlocks(Gender gender, string str)
+- - public void applyAndSkipPlainSideEffects()
+- - public static string randomName()
+- - public static string ReplaceBadRandomName(string name)
+- - public virtual string exitCurrentDialogue()
+- - public List<NPCDialogueResponse> getNPCResponseOptions()
+- - public Response[] getResponseOptions()
+- - public bool isCurrentDialogueAQuestion()
+- - public virtual bool chooseResponse(Response response)
+- - public void performDialogueResponseExtraArgument(Farmer farmer, string argument)
+- - public void convertToDwarvish()
+- - public static string convertToDwarvish(string str)
+
+## Private Members
+- - private static bool nameArraysTranslated = false;
+- - private List<NPCDialogueResponse> playerResponses;
+- - private List<string> quickResponses;
+- - private bool isLastDialogueInteractive;
+- - private bool quickResponse;
+- - private bool finishedLastDialogue;
+- - private string currentEmotion;
+- - private static void TranslateArraysOfStrings()
+- - private void checkForSpecialDialogueAttributes()
+- - private void checkEmotions()
+
+## Protected Members
+- - protected virtual void parseDialogueString(string masterString, string translationKey)
+
+## Internal Members
+- *(None)*
+
+## Other Members
+- *(None)*

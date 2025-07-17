@@ -1,0 +1,375 @@
+# DefaultCommands
+
+**Summary:** Class purpose not automatically determined. Review members for details.
+
+## Public Members
+- - public static void IgnoreEventTileOffset(Event @event, string[] args, EventContext context)
+- - public static void Move(Event @event, string[] args, EventContext context)
+- - public static void Action(Event @event, string[] args, EventContext context)
+- - public static void Speak(Event @event, string[] args, EventContext context)
+- - public static void BeginSimultaneousCommand(Event @event, string[] args, EventContext context)
+- - public static void EndSimultaneousCommand(Event @event, string[] args, EventContext context)
+- - public static void MineDeath(Event @event, string[] args, EventContext context)
+- - public static void HospitalDeath(Event @event, string[] args, EventContext context)
+- - public static void ShowItemsLost(Event @event, string[] args, EventContext context)
+- - public static void End(Event @event, string[] args, EventContext context)
+- - public static void LocationSpecificCommand(Event @event, string[] args, EventContext context)
+- - public static void Unskippable(Event @event, string[] args, EventContext context)
+- - public static void Skippable(Event @event, string[] args, EventContext context)
+- - public static void SetSkipActions(Event @event, string[] args, EventContext context)
+- - public static void Emote(Event @event, string[] args, EventContext context)
+- - public static void StopMusic(Event @event, string[] args, EventContext context)
+- - public static void PlayPetSound(Event @event, string[] args, EventContext context)
+- - public static void PlaySound(Event @event, string[] args, EventContext context)
+- - public static void StopSound(Event @event, string[] args, EventContext context)
+- - public static void TossConcession(Event @event, string[] args, EventContext context)
+- - public static void Pause(Event @event, string[] args, EventContext context)
+- - public static void PrecisePause(Event @event, string[] args, EventContext context)
+- - public static void ResetVariable(Event @event, string[] args, EventContext context)
+- - public static void FaceDirection(Event @event, string[] args, EventContext context)
+- - public static void Warp(Event @event, string[] args, EventContext context)
+- - public static void WarpFarmers(Event @event, string[] args, EventContext context)
+- - public static void Speed(Event @event, string[] args, EventContext context)
+- - public static void StopAdvancedMoves(Event @event, string[] args, EventContext context)
+- - public static void DoAction(Event @event, string[] args, EventContext context)
+- - public static void RemoveTile(Event @event, string[] args, EventContext context)
+- - public static void TextAboveHead(Event @event, string[] args, EventContext context)
+- - public static void ShowFrame(Event @event, string[] args, EventContext context)
+- - public static void FarmerAnimation(Event @event, string[] args, EventContext context)
+- - public static void IgnoreMovementAnimation(Event @event, string[] args, EventContext context)
+- - public static void Animate(Event @event, string[] args, EventContext context)
+- - public static void StopAnimation(Event @event, string[] args, EventContext context)
+- - public static void ChangeLocation(Event @event, string[] args, EventContext context)
+- - public static void Halt(Event @event, string[] args, EventContext context)
+- - public static void Message(Event @event, string[] args, EventContext context)
+- - public static void AddCookingRecipe(Event @event, string[] args, EventContext context)
+- - public static void ItemAboveHead(Event @event, string[] args, EventContext context)
+- - public static void AddCraftingRecipe(Event @event, string[] args, EventContext context)
+- - public static void HostMail(Event @event, string[] args, EventContext context)
+- - public static void Mail(Event @event, string[] args, EventContext context)
+- - public static void MailToday(Event @event, string[] args, EventContext context)
+- - public static void Shake(Event @event, string[] args, EventContext context)
+- - public static void TemporaryAnimatedSprite(Event @event, string[] args, EventContext context)
+- - public static void TemporarySprite(Event @event, string[] args, EventContext context)
+- - public static void RemoveTemporarySprites(Event @event, string[] args, EventContext context)
+- - public static void Null(Event @event, string[] args, EventContext context)
+- - public static void SpecificTemporarySprite(Event @event, string[] args, EventContext context)
+- - public static void PlayMusic(Event @event, string[] args, EventContext context)
+- - public static void MakeInvisible(Event @event, string[] args, EventContext context)
+- - public static void AddObject(Event @event, string[] args, EventContext context)
+- - public static void AddBigProp(Event @event, string[] args, EventContext context)
+- - public static void AddFloorProp(Event @event, string[] args, EventContext context)
+- - public static void AddProp(Event @event, string[] args, EventContext context)
+- - public static void RemoveObject(Event @event, string[] args, EventContext context)
+- - public static void Glow(Event @event, string[] args, EventContext context)
+- - public static void StopGlowing(Event @event, string[] args, EventContext context)
+- - public static void AddQuest(Event @event, string[] args, EventContext context)
+- - public static void RemoveQuest(Event @event, string[] args, EventContext context)
+- - public static void AddSpecialOrder(Event @event, string[] args, EventContext context)
+- - public static void RemoveSpecialOrder(Event @event, string[] args, EventContext context)
+- - public static void AddItem(Event @event, string[] args, EventContext context)
+- - public static void AwardFestivalPrize(Event @event, string[] args, EventContext context)
+- - public static void AttachCharacterToTempSprite(Event @event, string[] args, EventContext context)
+- - public static void Fork(Event @event, string[] args, EventContext context)
+- - public static void SwitchEvent(Event @event, string[] args, EventContext context)
+- - public static void GlobalFade(Event @event, string[] args, EventContext context)
+- - public static void GlobalFadeToClear(Event @event, string[] args, EventContext context)
+- - public static void Cutscene(Event @event, string[] args, EventContext context)
+- - public static void WaitForTempSprite(Event @event, string[] args, EventContext context)
+- - public static void Cave(Event @event, string[] args, EventContext context)
+- - public static void UpdateMinigame(Event @event, string[] args, EventContext context)
+- - public static void StartJittering(Event @event, string[] args, EventContext context)
+- - public static void Money(Event @event, string[] args, EventContext context)
+- - public static void StopJittering(Event @event, string[] args, EventContext context)
+- - public static void AddLantern(Event @event, string[] args, EventContext context)
+- - public static void RustyKey(Event @event, string[] args, EventContext context)
+- - public static void Swimming(Event @event, string[] args, EventContext context)
+- - public static void StopSwimming(Event @event, string[] args, EventContext context)
+- - public static void TutorialMenu(Event @event, string[] args, EventContext context)
+- - public static void AnimalNaming(Event @event, string[] args, EventContext context)
+- - public static void SplitSpeak(Event @event, string[] args, EventContext context)
+- - public static void CatQuestion(Event @event, string[] args, EventContext context)
+- - public static void AmbientLight(Event @event, string[] args, EventContext context)
+- - public static void BgColor(Event @event, string[] args, EventContext context)
+- - public static void ElliottBookTalk(Event @event, string[] args, EventContext context)
+- - public static void RemoveItem(Event @event, string[] args, EventContext context)
+- - public static void Friendship(Event @event, string[] args, EventContext context)
+- - public static void SetRunning(Event @event, string[] args, EventContext context)
+- - public static void ExtendSourceRect(Event @event, string[] args, EventContext context)
+- - public static void WaitForOtherPlayers(Event @event, string[] args, EventContext context)
+- - public static void RequestMovieEnd(Event @event, string[] args, EventContext context)
+- - public static void RestoreStashedItem(Event @event, string[] args, EventContext context)
+- - public static void AdvancedMove(Event @event, string[] args, EventContext context)
+- - public static void StopRunning(Event @event, string[] args, EventContext context)
+- - public static void Eyes(Event @event, string[] args, EventContext context)
+- - public static void AddMailReceived(Event @event, string[] args, EventContext context)
+- - public static void AddWorldState(Event @event, string[] args, EventContext context)
+- - public static void Fade(Event @event, string[] args, EventContext context)
+- - public static void ChangeMapTile(Event @event, string[] args, EventContext context)
+- - public static void ChangeSprite(Event @event, string[] args, EventContext context)
+- - public static void WaitForAllStationary(Event @event, string[] args, EventContext context)
+- - public static void ProceedPosition(Event @event, string[] args, EventContext context)
+- - public static void ChangePortrait(Event @event, string[] args, EventContext context)
+- - public static void ChangeYSourceRectOffset(Event @event, string[] args, EventContext context)
+- - public static void ChangeName(Event @event, string[] args, EventContext context)
+- - public static void TranslateName(Event @event, string[] args, EventContext context)
+- - public static void ReplaceWithClone(Event @event, string[] args, EventContext context)
+- - public static void PlayFramesAhead(Event @event, string[] args, EventContext context)
+- - public static void ShowKissFrame(Event @event, string[] args, EventContext context)
+- - public static void AddTemporaryActor(Event @event, string[] args, EventContext context)
+- - public static void ChangeToTemporaryMap(Event @event, string[] args, EventContext context)
+- - public static void PositionOffset(Event @event, string[] args, EventContext context)
+- - public static void Question(Event @event, string[] args, EventContext context)
+- - public static void QuickQuestion(Event @event, string[] args, EventContext context)
+- - public static void DrawOffset(Event @event, string[] args, EventContext context)
+- - public static void HideShadow(Event @event, string[] args, EventContext context)
+- - public static void AnimateHeight(Event @event, string[] args, EventContext context)
+- - public static void Jump(Event @event, string[] args, EventContext context)
+- - public static void FarmerEat(Event @event, string[] args, EventContext context)
+- - public static void SpriteText(Event @event, string[] args, EventContext context)
+- - public static void IgnoreCollisions(Event @event, string[] args, EventContext context)
+- - public static void ScreenFlash(Event @event, string[] args, EventContext context)
+- - public static void GrandpaCandles(Event @event, string[] args, EventContext context)
+- - public static void GrandpaEvaluation2(Event @event, string[] args, EventContext context)
+- - public static void GrandpaEvaluation(Event @event, string[] args, EventContext context)
+- - public static void LoadActors(Event @event, string[] args, EventContext context)
+- - public static void PlayerControl(Event @event, string[] args, EventContext context)
+- - public static void RemoveSprite(Event @event, string[] args, EventContext context)
+- - public static void Viewport(Event @event, string[] args, EventContext context)
+- - public static void BroadcastEvent(Event @event, string[] args, EventContext context)
+- - public static void AddConversationTopic(Event @event, string[] args, EventContext context)
+- - public static void Dump(Event @event, string[] args, EventContext context)
+- - public static void EventSeen(Event @event, string[] args, EventContext context)
+- - public static void QuestionAnswered(Event @event, string[] args, EventContext context)
+- - public static void GainSkill(Event @event, string[] args, EventContext context)
+- - public static void MoveToSoup(Event @event, string[] args, EventContext context)
+- - public const string festivalTextureName = "Maps\\Festivals";
+- - public string id = "-1";
+- - public string fromAssetName;
+- - public bool isFestival;
+- - public bool isWedding;
+- - public bool isMemory;
+- - public bool skippable;
+- - public string[] actionsOnSkip;
+- - public bool skipped;
+- - public bool forked;
+- - public bool eventSwitched;
+- - public string[] eventCommands;
+- - public int currentCommand;
+- - public static HashSet<string> invalidFestivals = new HashSet<string>();
+- - public List<NPC> actors = new List<NPC>();
+- - public List<Object> props = new List<Object>();
+- - public List<Prop> festivalProps = new List<Prop>();
+- - public List<Farmer> farmerActors = new List<Farmer>();
+- - public Dictionary<string, Dictionary<ISalable, ItemStockInformation>> festivalShops;
+- - public List<NPCController> npcControllers;
+- - public NPC secretSantaRecipient;
+- - public NPC mySecretSanta;
+- - public TemporaryAnimatedSpriteList underwaterSprites;
+- - public TemporaryAnimatedSpriteList aboveMapSprites;
+- - public IDictionary<string, List<ICue>> CustomSounds = new Dictionary<string, List<ICue>>();
+- - public ICustomEventScript currentCustomEventScript;
+- - public bool simultaneousCommand;
+- - public int farmerAddedSpeed;
+- - public int int_useMeForAnything;
+- - public int int_useMeForAnything2;
+- - public float float_useMeForAnything;
+- - public string playerControlSequenceID;
+- - public string spriteTextToDraw;
+- - public bool showActiveObject;
+- - public bool continueAfterMove;
+- - public bool specialEventVariable1;
+- - public bool specialEventVariable2;
+- - public bool showGroundObjects = true;
+- - public bool doingSecretSanta;
+- - public bool showWorldCharacters;
+- - public bool ignoreObjectCollisions = true;
+- - public Point playerControlTargetTile;
+- - public List<Vector2> characterWalkLocations = new List<Vector2>();
+- - public Vector2 eventPositionTileOffset = Vector2.Zero;
+- - public int festivalTimer;
+- - public int grangeScore = -1000;
+- - public bool grangeJudged;
+- - public bool ignoreTileOffsets;
+- - public LocationRequest exitLocation;
+- - public Action onEventFinished;
+- - public bool markEventSeen = true;
+- - public string FestivalName
+- - public bool playerControlSequence
+- - public Farmer farmer
+- - public Texture2D festivalTexture
+- - public int CurrentCommand
+- - public static void RegisterCommand(string name, EventCommandDelegate action)
+- - public static void RegisterCommandAlias(string alias, string commandName)
+- - public static bool TryResolveCommandName(string name, out string actualName)
+- - public static void RegisterPrecondition(string name, EventPreconditionDelegate action)
+- - public static void RegisterPreconditionAlias(string alias, string preconditionName)
+- - public static bool TryGetPreconditionHandler(string key, out EventPreconditionDelegate handler)
+- - public static bool CheckPrecondition(GameLocation location, string eventId, string precondition)
+- - public static bool TryGetEventCommandHandler(string key, out EventCommandDelegate handler)
+- - public virtual void tryEventCommand(GameLocation location, GameTime time, string[] args)
+- - public Event(string eventString, Farmer farmerActor = null)
+- - public Event(string eventString, string fromAssetName, string eventID, Farmer farmerActor = null)
+- - public Event()
+- - public static void OnNewDay()
+- - public static bool tryToLoadFestivalData(string festival, out string assetName, out Dictionary<string, string> data, out string locationName, out int startTime, out int endTime)
+- - public static bool tryToLoadFestival(string festival, out Event ev)
+- - public bool TryGetFestivalDialogueForYear(NPC npc, string key, out Dialogue dialogue)
+- - public bool TryGetFestivalDataForYear(string key, out string data, out string actualKey)
+- - public bool TryGetFestivalDataForYear(string key, out string data)
+- - public void setExitLocation(Warp warp)
+- - public void setExitLocation(string location, int x, int y)
+- - public void endBehaviors(GameLocation location = null)
+- - public void endBehaviors(string[] args, GameLocation location)
+- - public void exitEvent()
+- - public void notifyDone()
+- - public void resetDialogueIfNecessary(NPC n)
+- - public void incrementCommandAfterFade()
+- - public void cleanup()
+- - public void LogCommandError(string[] args, string error, bool willSkip = false)
+- - public void LogCommandErrorAndSkip(string[] args, string error, bool hideError = false)
+- - public void LogErrorAndHalt(string error, Exception e = null)
+- - public void LogErrorAndHalt(Exception e)
+- - public static bool LogPreconditionError(GameLocation location, string eventId, string[] args, string error)
+- - public void Update(GameLocation location, GameTime time)
+- - public string GetCurrentCommand()
+- - public void ReplaceCurrentCommand(string command)
+- - public void ReplaceAllCommands(params string[] commands)
+- - public void InsertNextCommand(string command)
+- - public void TrackSound(ICue cue)
+- - public void StopTrackedSound(string cueId, bool immediate)
+- - public void StopTrackedSounds()
+- - public bool isTileWalkedOn(int x, int y)
+- - public NPC getActorByName(string name, bool legacyReplaceUnderscores = false)
+- - public NPC getActorByName(string name, out bool isOptionalNpc, bool legacyReplaceUnderscores = false)
+- - public Farmer GetFarmerActor(int farmerNumber)
+- - public bool IsCurrentFarmerActorId(string actor)
+- - public bool IsCurrentFarmerActorId(int farmerNumber)
+- - public bool IsFarmerActorId(string actor, out int farmerNumber)
+- - public Character getCharacterByName(string name)
+- - public Vector3 getPositionAfterMove(Character c, int xMove, int yMove, int facingDirection)
+- - public virtual Vector2 OffsetPosition(Vector2 original)
+- - public virtual Vector2 OffsetTile(Vector2 original)
+- - public virtual float OffsetPositionX(float original)
+- - public virtual float OffsetPositionY(float original)
+- - public virtual int OffsetTileX(int original)
+- - public virtual int OffsetTileY(int original)
+- - public void receiveMouseClick(int x, int y)
+- - public void skipEvent()
+- - public void receiveActionPress(int xTile, int yTile)
+- - public void startSecretSantaEvent()
+- - public void festivalUpdate(GameTime time)
+- - public void drawFarmers(SpriteBatch b)
+- - public virtual bool ShouldHideCharacter(NPC n)
+- - public void draw(SpriteBatch b)
+- - public void drawUnderWater(SpriteBatch b)
+- - public void drawAfterMap(SpriteBatch b)
+- - public void EndPlayerControlSequence()
+- - public void OnPlayerControlSequenceEnd(string id)
+- - public void setUpPlayerControlSequence(string id)
+- - public bool canMoveAfterDialogue()
+- - public void forceFestivalContinue()
+- - public static string[] SplitPreconditions(string rawScript)
+- - public static string[] ParseCommands(string rawScript, Farmer player = null)
+- - public bool isSpecificFestival(string festivalId)
+- - public void setUpFestivalMainEvent()
+- - public void interpretGrangeResults()
+- - public void answerDialogueQuestion(NPC who, string answerKey)
+- - public void addItemToGrangeDisplay(Item i, int position, bool force)
+- - public bool canPlayerUseTool()
+- - public bool checkAction(Location tileLocation, Rectangle viewport, Farmer who)
+- - public void removeFestivalProps(Rectangle rect)
+- - public void checkForSpecialCharacterIconAtThisTile(Vector2 tileLocation)
+- - public void forceEndFestival(Farmer who)
+- - public bool checkForCollision(Rectangle position, Farmer who)
+- - public bool TryStartEndFestivalDialogue(Farmer who)
+- - public void answerDialogue(string questionKey, int answerChoice)
+- - public void chooseSecretSantaGift(Item i, Farmer who)
+- - public void perfectFishing()
+- - public void caughtFish(string itemId, int size, Farmer who)
+- - public void readFortune()
+- - public void fadeClearAndviewportUnfreeze()
+- - public void betStarTokens(int value, int price, Farmer who)
+- - public void buyStarTokens(int value, int price, Farmer who)
+- - public void clickToAddItemToLuauSoup(Item i, Farmer who)
+- - public void setUpAdvancedMove(string[] args, NPCController.endBehavior endBehavior = null)
+- - public static bool IsItemMayorShorts(Item i)
+- - public void addItemToLuauSoup(Item i, Farmer who)
+- - public void popBalloons(int x, int y)
+- - public virtual string GenerateLightSourceId(string suffix)
+
+## Private Members
+- - private static readonly Dictionary<string, string> PreconditionAliases = new Dictionary<string, string>();
+- - private const float timeBetweenSpeech = 500f;
+- - private string festivalDataAssetName;
+- - private readonly LocalizedContentManager festivalContent = Game1.content.CreateTemporary();
+- - private Dictionary<string, Vector3> actorPositionsAfterMove;
+- - private float timeAccumulator;
+- - private Vector3 viewportTarget;
+- - private Color previousAmbientLight;
+- - private HashSet<long> festivalWinners = new HashSet<long>();
+- - private GameLocation temporaryLocation;
+- - private Dictionary<string, string> festivalData;
+- - private Texture2D _festivalTexture;
+- - private bool drawTool;
+- - private string hostMessageKey;
+- - private int previousFacingDirection = -1;
+- - private int previousAnswerChoice = -1;
+- - private bool startSecretSantaAfterDialogue;
+- - private List<Farmer> iceFishWinners;
+- - private Stopwatch stopWatch;
+- - private bool eventFinished;
+- - private bool gotPet;
+- - private static void SetupEventCommandsIfNeeded()
+- - private void changeLocation(string locationName, int x, int y, Action onComplete = null)
+- - private void populateWalkLocationsList()
+- - private void addActor(string name, int x, int y, int facingDirection, GameLocation location)
+- - private void trySpecialSetUp(GameLocation location)
+- - private void setUpCharacters(string description, GameLocation location)
+- - private void beakerSmashEndFunction(int extraInfo)
+- - private void eggSmashEndFunction(int extraInfo)
+- - private void balloonInSky(int extraInfo)
+- - private void marcelloBalloonLand(int extraInfo)
+- - private void samPreOllie(int extraInfo)
+- - private void samOllie(int extraInfo)
+- - private void samGrind(int extraInfo)
+- - private void samDropOff(int extraInfo)
+- - private void samGround(int extraInfo)
+- - private void catchFootball(int extraInfo)
+- - private void footballLand(int extraInfo)
+- - private void parrotSplat(int extraInfo)
+- - private void addSpecificTemporarySprite(string key, GameLocation location, string[] args)
+- - private Rectangle skipBounds()
+- - private void setUpSecretSantaCommands()
+- - private void judgeGrange()
+- - private void lewisDoneJudgingGrange()
+- - private void initiateGrangeJudging()
+- - private bool onGrangeChange(Item i, int position, Item old, StorageContainer container, bool onRemoval)
+- - private void namePet(string name)
+- - private void governorTaste()
+- - private void eggHuntWinner()
+- - private void iceFishingWinner()
+- - private void iceFishingWinnerMP()
+
+## Protected Members
+- - protected static readonly Dictionary<string, EventCommandDelegate> Commands = new Dictionary<string, EventCommandDelegate>(StringComparer.OrdinalIgnoreCase);
+- - protected static readonly Dictionary<string, string> CommandAliases = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+- - protected static readonly HashSet<string> CommandNames = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+- - protected static readonly Dictionary<string, EventPreconditionDelegate> Preconditions = new Dictionary<string, EventPreconditionDelegate>(StringComparer.OrdinalIgnoreCase);
+- - protected static LocalizedContentManager FestivalReadContentLoader;
+- - protected bool _playerControlSequence;
+- - protected bool _repeatingLocationSpecificCommand;
+- - protected void InitializeEvent(GameLocation location, GameTime time)
+- - protected bool UpdateBeforeNextCommand(GameLocation location, GameTime time)
+- - protected void CheckForNextCommand(GameLocation location, GameTime time)
+
+## Internal Members
+- - internal bool notifyWhenDone;
+- - internal string notifyLocationName;
+- - internal byte notifyLocationIsStructure;
+- - internal NPC festivalHost;
+- - internal static void hostActionChooseCave(Farmer who, BinaryReader reader)
+- - internal static void hostActionNamePet(Farmer who, BinaryReader reader)
+
+## Other Members
+- *(None)*

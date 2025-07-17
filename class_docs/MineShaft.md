@@ -1,0 +1,205 @@
+# MineShaft
+
+**Summary:** Class purpose not automatically determined. Review members for details.
+
+## Public Members
+- - public const int mineFrostLevel = 40;
+- - public const int mineLavaLevel = 80;
+- - public const int upperArea = 0;
+- - public const int jungleArea = 10;
+- - public const int frostArea = 40;
+- - public const int lavaArea = 80;
+- - public const int desertArea = 121;
+- - public const int bottomOfMineLevel = 120;
+- - public const int quarryMineShaft = 77377;
+- - public const int numberOfLevelsPerArea = 40;
+- - public const int mineFeature_barrels = 0;
+- - public const int mineFeature_chests = 1;
+- - public const int mineFeature_coalCart = 2;
+- - public const int mineFeature_elevator = 3;
+- - public const double chanceForColoredGemstone = 0.008;
+- - public const double chanceForDiamond = 0.0005;
+- - public const double chanceForPrismaticShard = 0.0005;
+- - public const int monsterLimit = 30;
+- - public const string MineTileSheetId = "mine";
+- - public static SerializableDictionary<int, MineInfo> permanentMineChanges = new SerializableDictionary<int, MineInfo>();
+- - public static int numberOfCraftedStairsUsedThisRun;
+- - public Random mineRandom = new Random();
+- - public int loadedMapNumber;
+- - public int fogTime;
+- - public NetBool isFogUp = new NetBool();
+- - public static int timeSinceLastMusic = 200000;
+- - public bool ladderHasSpawned;
+- - public bool ghostAdded;
+- - public bool loadedDarkArea;
+- - public bool isFallingDownShaft;
+- - public Vector2 fogPos;
+- - public readonly NetString mapImageSource = new NetString();
+- - public readonly NetPoint calicoStatueSpot = new NetPoint();
+- - public readonly NetPoint recentlyActivatedCalicoStatue = new NetPoint();
+- - public static ICue bugLevelLoop;
+- - public readonly NetBool rainbowLights = new NetBool(value: false);
+- - public readonly NetBool isLightingDark = new NetBool(value: false);
+- - public static List<MineShaft> activeMines = new List<MineShaft>();
+- - public static HashSet<int> mushroomLevelsGeneratedToday = new HashSet<int>();
+- - public static int totalCalicoStatuesActivatedToday;
+- - public float calicoEggIconTimerShake;
+- - public static int lowestLevelReached
+- - public int mineLevel
+- - public int stonesLeftOnThisLevel
+- - public Vector2 tileBeneathLadder
+- - public Vector2 tileBeneathElevator
+- - public Point ElevatorLightSpot
+- - public bool isSlimeArea
+- - public bool isDinoArea
+- - public bool isMonsterArea
+- - public bool isQuarryArea
+- - public bool ambientFog
+- - public Color lighting
+- - public Color fogColor
+- - public int EnemyCount => characters.Count((NPC p) => p is Monster);
+- - public MineShaft()
+- - public MineShaft(int level, int? forceLayout = null)
+- - public override string GetLocationContextId()
+- - public override bool CanPlaceThisFurnitureHere(Furniture furniture)
+- - public void calicoStatueActivated(NetPoint field, Point oldVector, Point newVector)
+- - public override bool AllowMapModificationsInResetState()
+- - public override void UpdateWhenCurrentLocation(GameTime time)
+- - public override void cleanupBeforePlayerExit()
+- - public Vector2 mineEntrancePosition(Farmer who)
+- - public void chooseLevelType()
+- - public static void yearUpdate()
+- - public void updateMineLevelData(int feature, int amount = 1)
+- - public void chestConsumed()
+- - public bool isLevelSlimeArea()
+- - public void checkForMapAlterations(int x, int y)
+- - public void findLadder()
+- - public override void performTenMinuteUpdate(int timeOfDay)
+- - public void spawnFlyingMonsterOffScreen()
+- - public override void drawLightGlows(SpriteBatch b)
+- - public Monster BuffMonsterIfNecessary(Monster monster)
+- - public override Item getFish(float millisecondsAfterNibble, string bait, int waterDepth, Farmer who, double baitPotency, Vector2 bobberTile, string locationName = null)
+- - public bool AnyOnlineFarmerHasBuff(string which_buff)
+- - public void placeAppropriateOreAt(Vector2 tile)
+- - public Object getAppropriateOre(Vector2 tile)
+- - public void tryToAddOreClumps()
+- - public void tryToAddOldMinerPath()
+- - public void tryToAddAreaUniques()
+- - public bool tryToAddMonster(Monster m, int tileX, int tileY)
+- - public bool isContainerPlatform(int x, int y)
+- - public bool mustKillAllMonstersToAdvance()
+- - public void createLadderAt(Vector2 p, string sound = "hoeHit")
+- - public bool shouldCreateLadderOnThisLevel()
+- - public bool recursiveTryToCreateLadderDown(Vector2 centerTile, string sound = "hoeHit", int maxIterations = 16)
+- - public override void monsterDrop(Monster monster, int x, int y, Farmer who)
+- - public Item GetReplacementChestItem(int floor)
+- - public static Item getTreasureRoomItem()
+- - public static Item getSpecialItemForThisMineLevel(int level, int x, int y)
+- - public override bool IsLocationSpecificOccupantOnTile(Vector2 tileLocation)
+- - public bool isDarkArea()
+- - public bool isTileClearForMineObjects(Vector2 v)
+- - public override string getFootstepSoundReplacement(string footstep)
+- - public bool isTileOnClearAndSolidGround(Vector2 v)
+- - public bool isTileOnClearAndSolidGround(int x, int y)
+- - public bool isTileClearForMineObjects(int x, int y)
+- - public void loadLevel(int level)
+- - public static void CheckForQiChallengeCompletion()
+- - public void enterMineShaft()
+- - public override bool ShouldExcludeFromNpcPathfinding()
+- - public override bool checkAction(Location tileLocation, Rectangle viewport, Farmer who)
+- - public override string checkForBuriedItem(int xLocation, int yLocation, bool explosion, bool detectOnly, Farmer who)
+- - public override void drawAboveAlwaysFrontLayer(SpriteBatch b)
+- - public override void checkForMusic(GameTime time)
+- - public string getMineSong()
+- - public int GetAdditionalDifficulty()
+- - public bool isPlayingSongFromDifferentArea()
+- - public void playMineSong()
+- - public virtual void ApplyDiggableTileFixes()
+- - public void createLadderDown(int x, int y, bool forceShaft = false)
+- - public void checkStoneForItems(string stoneId, int x, int y, Farmer who)
+- - public string getOreIdForLevel(int mineLevel, Random r)
+- - public bool shouldUseSnowTextureHoeDirt()
+- - public int getMineArea(int level = -1)
+- - public bool isSideBranch(int level = -1)
+- - public byte getWallAt(int x, int y)
+- - public Color getLightingColor(GameTime time)
+- - public Object getRandomItemForThisLevel(int level, Vector2 tile)
+- - public bool shouldShowDarkHoeDirt()
+- - public string getRandomGemRichStoneForThisLevel(int level)
+- - public float getDistanceFromStart(int xTile, int yTile)
+- - public Monster getMonsterForThisLevel(int level, int xTile, int yTile)
+- - public static void OnLeftMines()
+- - public static void clearActiveMines()
+- - public static void UpdateMines10Minutes(int timeOfDay)
+- - public override void updateEvenIfFarmerIsntHere(GameTime time, bool ignoreWasUpdatedFlush = false)
+- - public static void UpdateMines(GameTime time)
+- - public override void OnRemoved()
+- - public static string GetLevelName(int level, int? forceLayout = null)
+- - public static bool IsGeneratedLevel(GameLocation location)
+- - public static bool IsGeneratedLevel(GameLocation location, out int level)
+- - public static bool IsGeneratedLevel(GameLocation location, out int level, out int? forceLayout)
+- - public static bool IsGeneratedLevel(string locationName)
+- - public static bool IsGeneratedLevel(string locationName, out int level)
+- - public static bool IsGeneratedLevel(string locationName, out int level, out int? forceLayout)
+- - public static MineShaft GetMine(string name)
+- - public static void ForEach(Action<MineShaft> action)
+
+## Private Members
+- - private LocalizedContentManager mineLoader = Game1.content.CreateTemporary();
+- - private int timeUntilElevatorLightUp;
+- - private readonly NetBool elevatorShouldDing = new NetBool();
+- - private readonly NetInt netMineLevel = new NetInt();
+- - private readonly NetIntDelta netStonesLeftOnThisLevel = new NetIntDelta();
+- - private readonly NetVector2 netTileBeneathLadder = new NetVector2();
+- - private readonly NetVector2 netTileBeneathElevator = new NetVector2();
+- - private readonly NetPoint netElevatorLightSpot = new NetPoint();
+- - private readonly NetBool netIsSlimeArea = new NetBool();
+- - private readonly NetBool netIsMonsterArea = new NetBool();
+- - private readonly NetBool netIsTreasureRoom = new NetBool();
+- - private readonly NetBool netIsDinoArea = new NetBool();
+- - private readonly NetBool netIsQuarryArea = new NetBool();
+- - private readonly NetBool netAmbientFog = new NetBool();
+- - private readonly NetColor netLighting = new NetColor(Color.White);
+- - private readonly NetColor netFogColor = new NetColor();
+- - private readonly NetVector2Dictionary<bool, NetBool> createLadderAtEvent = new NetVector2Dictionary<bool, NetBool>();
+- - private readonly NetPointDictionary<bool, NetBool> createLadderDownEvent = new NetPointDictionary<bool, NetBool>();
+- - private float fogAlpha;
+- - private readonly int? forceLayout;
+- - private LocalizedContentManager mapContent;
+- - private int recentCalicoStatueEffect;
+- - private bool forceFirstTime;
+- - private static int deepestLevelOnCurrentDesertFestivalRun;
+- - private int lastLevelsDownFallen;
+- - private Rectangle fogSource = new Rectangle(640, 0, 64, 64);
+- - private List<Vector2> brownSpots = new List<Vector2>();
+- - private int lifespan;
+- - private bool hasAddedDesertFestivalStatue;
+- - private void signalCalicoStatueActivation(int whichEffect)
+- - private bool tryToAddCalicoStatueEffect(Random r, double chance, int which, bool effectCanStack = false)
+- - private void setElevatorLit()
+- - private void generateContents()
+- - private bool canAdd(int typeOfFeature, int numberSoFar)
+- - private void setMonsterTextureToDangerousVersion(Monster monster)
+- - private void adjustLevelChances(ref double stoneChance, ref double monsterChance, ref double itemChance, ref double gemStoneChance)
+- - private void populateLevel()
+- - private void doCreateLadderAt(Vector2 p)
+- - private void addLevelChests()
+- - private bool isForcedChestLevel(int level)
+- - private void addBlueFlamesToChallengeShrine()
+- - private void prepareElevator()
+- - private void afterFall()
+- - private void doCreateLadderDown(Point point, bool shaft)
+- - private Object createLitterObject(double chanceForPurpleStone, double chanceForMysticStone, double gemStoneChance, Vector2 tile)
+- - private static void clearInactiveMines(bool keepUntickedLevels = true)
+
+## Protected Members
+- - protected override void initNetFields()
+- - protected override LocalizedContentManager getMapLoader()
+- - protected override void resetLocalState()
+- - protected override void updateCharacters(GameTime time)
+
+## Internal Members
+- *(None)*
+
+## Other Members
+- *(None)*

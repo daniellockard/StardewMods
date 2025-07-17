@@ -1,0 +1,145 @@
+# Stats
+
+**Summary:** Class purpose not automatically determined. Review members for details.
+
+## Public Members
+- - public StatsDictionary<int> specificMonstersKilled = new StatsDictionary<int>();
+- - public StatsDictionary<uint> Values = new StatsDictionary<uint>();
+- - public SerializableDictionary<string, uint> obsolete_stat_dictionary;
+- - public uint? obsolete_averageBedtime;
+- - public uint? obsolete_beveragesMade;
+- - public uint? obsolete_caveCarrotsFound;
+- - public uint? obsolete_cheeseMade;
+- - public uint? obsolete_chickenEggsLayed;
+- - public uint? obsolete_copperFound;
+- - public uint? obsolete_cowMilkProduced;
+- - public uint? obsolete_cropsShipped;
+- - public uint? obsolete_daysPlayed;
+- - public uint? obsolete_diamondsFound;
+- - public uint? obsolete_dirtHoed;
+- - public uint? obsolete_duckEggsLayed;
+- - public uint? obsolete_fishCaught;
+- - public uint? obsolete_geodesCracked;
+- - public uint? obsolete_giftsGiven;
+- - public uint? obsolete_goatCheeseMade;
+- - public uint? obsolete_goatMilkProduced;
+- - public uint? obsolete_goldFound;
+- - public uint? obsolete_goodFriends;
+- - public uint? obsolete_individualMoneyEarned;
+- - public uint? obsolete_iridiumFound;
+- - public uint? obsolete_ironFound;
+- - public uint? obsolete_itemsCooked;
+- - public uint? obsolete_itemsCrafted;
+- - public uint? obsolete_itemsForaged;
+- - public uint? obsolete_itemsShipped;
+- - public uint? obsolete_monstersKilled;
+- - public uint? obsolete_mysticStonesCrushed;
+- - public uint? obsolete_notesFound;
+- - public uint? obsolete_otherPreciousGemsFound;
+- - public uint? obsolete_piecesOfTrashRecycled;
+- - public uint? obsolete_preservesMade;
+- - public uint? obsolete_prismaticShardsFound;
+- - public uint? obsolete_questsCompleted;
+- - public uint? obsolete_rabbitWoolProduced;
+- - public uint? obsolete_rocksCrushed;
+- - public uint? obsolete_sheepWoolProduced;
+- - public uint? obsolete_slimesKilled;
+- - public uint? obsolete_stepsTaken;
+- - public uint? obsolete_stoneGathered;
+- - public uint? obsolete_stumpsChopped;
+- - public uint? obsolete_timesFished;
+- - public uint? obsolete_timesUnconscious;
+- - public uint? obsolete_totalMoneyGifted;
+- - public uint? obsolete_trufflesFound;
+- - public uint? obsolete_weedsEliminated;
+- - public uint? obsolete_seedsSown;
+- - public static bool AllowRetroactiveAchievements => Program.sdk.RetroactiveAchievementsAllowed();
+- - public uint AverageBedtime
+- - public uint DaysPlayed
+- - public uint IndividualMoneyEarned
+- - public uint ItemsCooked
+- - public uint ItemsCrafted
+- - public uint ItemsForaged
+- - public uint ItemsShipped
+- - public uint NotesFound
+- - public uint StepsTaken
+- - public uint StumpsChopped
+- - public uint TimesUnconscious
+- - public uint BeveragesMade
+- - public uint CheeseMade
+- - public uint ChickenEggsLayed
+- - public uint CowMilkProduced
+- - public uint CropsShipped
+- - public uint DirtHoed
+- - public uint DuckEggsLayed
+- - public uint GoatCheeseMade
+- - public uint GoatMilkProduced
+- - public uint PiecesOfTrashRecycled
+- - public uint PreservesMade
+- - public uint RabbitWoolProduced
+- - public uint SeedsSown
+- - public uint SheepWoolProduced
+- - public uint TrufflesFound
+- - public uint WeedsEliminated
+- - public uint MonstersKilled
+- - public uint SlimesKilled
+- - public uint FishCaught
+- - public uint TimesFished
+- - public uint CaveCarrotsFound
+- - public uint CopperFound
+- - public uint DiamondsFound
+- - public uint GeodesCracked
+- - public uint GoldFound
+- - public uint IridiumFound
+- - public uint IronFound
+- - public uint MysticStonesCrushed
+- - public uint OtherPreciousGemsFound
+- - public uint PrismaticShardsFound
+- - public uint RocksCrushed
+- - public uint StoneGathered
+- - public uint GiftsGiven
+- - public uint GoodFriends
+- - public uint QuestsCompleted
+- - public uint Get(string key)
+- - public void Set(string key, uint value)
+- - public void Set(string key, int value)
+- - public uint Decrement(string key, uint amount = 1u)
+- - public uint Increment(string key, uint amount = 1u)
+- - public uint Increment(string key, int amount)
+- - public void monsterKilled(string name)
+- - public int getMonstersKilled(string name)
+- - public void onMoneyGifted(uint amount)
+- - public void takeStep()
+- - public void checkForBooksReadAchievement()
+- - public void checkForCookingAchievements()
+- - public void checkForCraftingAchievements()
+- - public void checkForShippingAchievements()
+- - public void checkForFishingAchievements()
+- - public void checkForArchaeologyAchievements()
+- - public void checkForHeldItemAchievements()
+- - public void checkForMoneyAchievements()
+- - public void checkForBuildingUpgradeAchievements()
+- - public void checkForQuestAchievements()
+- - public void checkForFriendshipAchievements()
+- - public void checkForCommunityCenterOrJojaAchievements(bool isDirectUnlock)
+- - public void checkForMiniGameAchievements(bool isDirectUnlock)
+- - public void checkForFullHouseAchievement(bool isDirectUnlock)
+- - public void checkForMineAchievement(bool isDirectUnlock, bool assumeDeepestLevel = false)
+- - public void checkForMonsterSlayerAchievement(bool isDirectUnlock)
+- - public void checkForSkillAchievements(bool isDirectUnlock)
+- - public void checkForStardropAchievement(bool isDirectUnlock)
+- - public bool isSharedAchievement(int which)
+- - public void checkForAchievements()
+- - public bool CanUnlockPlatformAchievements(bool isDirectUnlock)
+
+## Private Members
+- *(None)*
+
+## Protected Members
+- *(None)*
+
+## Internal Members
+- *(None)*
+
+## Other Members
+- - static bool DidFarmerShip(string itemId, int number)

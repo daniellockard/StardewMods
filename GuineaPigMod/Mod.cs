@@ -107,11 +107,11 @@ namespace GuineaPigMod
                             UseFlippedRightForLeft = false,
                             UseDoubleUniqueAnimationFrames = true,
                             Gender = FarmAnimalGender.Female,
-                            // Set hitbox size for 32x32 sprites
-                            UpDownPetHitboxTileSize = new Microsoft.Xna.Framework.Vector2(2, 2),
-                            LeftRightPetHitboxTileSize = new Microsoft.Xna.Framework.Vector2(2, 2),
-                            BabyUpDownPetHitboxTileSize = new Microsoft.Xna.Framework.Vector2(2, 2),
-                            BabyLeftRightPetHitboxTileSize = new Microsoft.Xna.Framework.Vector2(2, 2)
+                            // Set hitbox size for 32x32 sprites to 1x1 for smoother pathfinding
+                            UpDownPetHitboxTileSize = new Microsoft.Xna.Framework.Vector2(1, 1),
+                            LeftRightPetHitboxTileSize = new Microsoft.Xna.Framework.Vector2(1, 1),
+                            BabyUpDownPetHitboxTileSize = new Microsoft.Xna.Framework.Vector2(1, 1),
+                            BabyLeftRightPetHitboxTileSize = new Microsoft.Xna.Framework.Vector2(1, 1)
                         };
                         
                         var entryKey = "GuineaPigMod.GuineaPig";
@@ -154,7 +154,7 @@ namespace GuineaPigMod
                             },
                             ["DaysToProduce"] = 1,
                             ["ProduceOnMature"] = true,
-                            ["ProduceWhenYoung"] = true,
+                            // Note: Babies cannot produce via data model alone; only adults will produce poop.
                             ["HarvestType"] = "DigUp",
                             ["Home"] = "Coop",
                             ["CanBePurchased"] = true
@@ -258,7 +258,35 @@ namespace GuineaPigMod
         static void HandleStuckAnimals(FarmAnimal animal, GameLocation location)
         {
             if (animal.type.Value != "GuineaPigMod.GuineaPig") return;
-            
+
+            // Helper: teleport inside
+            void TeleportInside()
+            {
+                Instance.Monitor.Log($"Teleporting {animal.type.Value} inside to prevent getting stuck.", LogLevel.Info);
+                animal.currentLocation = animal.home.indoors.Value;
+                animal.Position = animal.home.indoors.Value.getRandomTile().ToVector2() * 64f;
+                animal.setRandomPosition(animal.home.indoors.Value);
+                animal.controller = null;
+                animal.faceDirection(2); // face down
+                animal.forceUpdateTimer = 0;
+                animal.reload();
+            }
+
+            // If after 5pm and guinea pig is near the coop door, teleport inside
+            if (Game1.timeOfDay >= 1700 && animal.home != null && animal.currentLocation != animal.home.indoors.Value)
+            {
+                var doorRect = animal.home.getRectForAnimalDoor();
+                var animalBox = animal.GetBoundingBox();
+                // Consider 'near' if within 2 tiles (64 pixels) of the door
+                Rectangle expandedDoor = new Rectangle(doorRect.X - 64, doorRect.Y - 64, doorRect.Width + 128, doorRect.Height + 128);
+                if (expandedDoor.Intersects(animalBox))
+                {
+                    TeleportInside();
+                    return;
+                }
+            }
+
+            // Existing logic for door squeeze (optional, can keep for extra safety)
             if (animal.home is not null &&
                 (animal.GetAnimalData()?.SpriteWidth ?? 16) / 16 > (animal.home.GetData()?.AnimalDoor.Width ?? 1) &&
                 location.buildings.Contains(animal.home) &&

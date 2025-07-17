@@ -1,7 +1,7 @@
 {
   "Name": "Guinea Pig Coop Animal",
   "Author": "YourName",
-  "Version": "1.0.14",
+  "Version": "1.0.25",
   "Description": "Adds Guinea Pig as a new custom coop animal with unique product and behaviors.",
   "UniqueID": "YourName.GuineaPigCoopAnimal",
   "EntryDll": "GuineaPigMod.dll",

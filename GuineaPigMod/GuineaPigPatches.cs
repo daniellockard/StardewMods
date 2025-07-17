@@ -6,6 +6,8 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Reflection.Emit;
+using Microsoft.Xna.Framework;
+using StardewModdingAPI;
 using Object = StardewValley.Object;
 
 namespace GuineaPigMod
@@ -77,6 +79,35 @@ namespace GuineaPigMod
                 return;
             __instance.type.Value = __state;
             __instance.ReloadTextureIfNeeded(true);
+        }
+    }
+
+    // Patch FarmAnimal update to fix collision issues for guinea pigs
+    [HarmonyPatch(typeof(FarmAnimal), "updateWhenCurrentLocation")]
+    public class FarmAnimal_Update_Patch
+    {
+        public static void Postfix(FarmAnimal __instance, GameTime time)
+        {
+            var mod = Mod.Instance;
+            if (mod?.Config?.EnableMod != true || __instance.type.Value != "GuineaPigMod.GuineaPig")
+                return;
+
+            // Handle stuck guinea pigs using logic from AnimalSqueezeThrough mod
+            HandleStuckGuineaPigs(__instance, __instance.currentLocation);
+        }
+
+        private static void HandleStuckGuineaPigs(FarmAnimal animal, GameLocation location)
+        {
+            if (animal.home is not null &&
+                (animal.GetAnimalData()?.SpriteWidth ?? 16) / 16 > (animal.home.GetData()?.AnimalDoor.Width ?? 1) &&
+                location.buildings.Contains(animal.home) &&
+                animal.home.intersects(animal.GetBoundingBox()))
+            {
+                Mod.Instance.Monitor.Log($"Squeezing the big {animal.type.Value} through the {animal.home.buildingType.Value}'s teeny door", LogLevel.Info);
+                var rectForAnimalDoor = animal.home.getRectForAnimalDoor();
+                animal.Position = new Vector2(rectForAnimalDoor.X - 64, rectForAnimalDoor.Y);
+                return;
+            }
         }
     }
 } 

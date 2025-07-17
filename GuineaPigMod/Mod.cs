@@ -7,6 +7,8 @@ using System.Linq;
 using StardewValley.GameData.FarmAnimals;
 using StardewValley.GameData;
 using HarmonyLib;
+using StardewValley;
+using Microsoft.Xna.Framework;
 
 namespace GuineaPigMod
 {
@@ -25,8 +27,11 @@ namespace GuineaPigMod
             Monitor.Log("=== GUINEA PIG MOD STARTING ===", LogLevel.Info);
             Monitor.Log("Guinea Pig Coop Animal mod loaded!", LogLevel.Info);
             Monitor.Log($"Helper type: {helper.GetType().Name}", LogLevel.Info);
-            // Only set up asset injection
+            // Set up asset injection
             helper.Events.Content.AssetRequested += OnAssetRequested;
+            // Set up stuck animal handling
+            helper.Events.GameLoop.SaveLoaded += OnSaveLoaded;
+            helper.Events.World.LocationListChanged += OnLocationListChanged;
             Monitor.Log("AssetRequested event handler registered successfully", LogLevel.Info);
             Monitor.Log("=== GUINEA PIG MOD STARTUP COMPLETE ===", LogLevel.Info);
         }
@@ -78,7 +83,6 @@ namespace GuineaPigMod
                             PurchasePrice = 2000,
                             DaysToMature = 3,
                             Texture = "Mods/GuineaPigMod/assets/texture_1.png",
-                            Sound = "guineapig",
                             ShopTexture = "Mods/GuineaPigMod/assets/gpicon.png",
                             CanGetPregnant = false,
                             DaysToProduce = 1,
@@ -91,10 +95,15 @@ namespace GuineaPigMod
                             SellPrice = 1000,
                             SleepFrame = 12,
                             SpriteWidth = 32,
-                            SpriteHeight = 36,
+                            SpriteHeight = 32,
                             UseFlippedRightForLeft = false,
                             UseDoubleUniqueAnimationFrames = true,
-                            Gender = FarmAnimalGender.Female
+                            Gender = FarmAnimalGender.Female,
+                            // Set hitbox size for 32x32 sprites
+                            UpDownPetHitboxTileSize = new Microsoft.Xna.Framework.Vector2(2, 2),
+                            LeftRightPetHitboxTileSize = new Microsoft.Xna.Framework.Vector2(2, 2),
+                            BabyUpDownPetHitboxTileSize = new Microsoft.Xna.Framework.Vector2(2, 2),
+                            BabyLeftRightPetHitboxTileSize = new Microsoft.Xna.Framework.Vector2(2, 2)
                         };
                         
                         var entryKey = "GuineaPigMod.GuineaPig";
@@ -124,14 +133,7 @@ namespace GuineaPigMod
                             ["Price"] = 2000,
                             ["DaysToMature"] = 3,
                             ["Sprite"] = "Mods/GuineaPigMod/assets/texture_1.png",
-                            ["TextureVariants"] = new List<object>
-                            {
-                                "Mods/GuineaPigMod/assets/texture_1.png",
-                                "Mods/GuineaPigMod/assets/texture_2.png",
-                                "Mods/GuineaPigMod/assets/texture_3.png"
-                            },
                             ["ShopIcon"] = "Mods/GuineaPigMod/assets/gpicon.png",
-                            ["Sound"] = "guineapig",
                             ["Products"] = new List<object>
                             {
                                 new Dictionary<string, object>
@@ -161,18 +163,6 @@ namespace GuineaPigMod
                     e.LoadFrom(() => Helper.ModContent.Load<Texture2D>("assets/texture_1.png"), AssetLoadPriority.Medium);
                     Monitor.Log("texture_1.png asset loaded successfully", LogLevel.Info);
                 }
-                if (e.NameWithoutLocale.IsEquivalentTo("Mods/GuineaPigMod/assets/texture_2.png"))
-                {
-                    Monitor.Log("Loading texture_2.png asset...", LogLevel.Info);
-                    e.LoadFrom(() => Helper.ModContent.Load<Texture2D>("assets/texture_2.png"), AssetLoadPriority.Medium);
-                    Monitor.Log("texture_2.png asset loaded successfully", LogLevel.Info);
-                }
-                if (e.NameWithoutLocale.IsEquivalentTo("Mods/GuineaPigMod/assets/texture_3.png"))
-                {
-                    Monitor.Log("Loading texture_3.png asset...", LogLevel.Info);
-                    e.LoadFrom(() => Helper.ModContent.Load<Texture2D>("assets/texture_3.png"), AssetLoadPriority.Medium);
-                    Monitor.Log("texture_3.png asset loaded successfully", LogLevel.Info);
-                }
                 if (e.NameWithoutLocale.IsEquivalentTo("Mods/GuineaPigMod/assets/gpicon.png"))
                 {
                     Monitor.Log("Loading gpicon.png asset...", LogLevel.Info);
@@ -193,6 +183,47 @@ namespace GuineaPigMod
                 Monitor.Log($"Exception message: {ex.Message}", LogLevel.Error);
                 Monitor.Log($"Stack trace: {ex.StackTrace}", LogLevel.Error);
                 Monitor.Log($"=== END EXCEPTION ===", LogLevel.Error);
+            }
+        }
+
+        static void OnSaveLoaded(object sender, SaveLoadedEventArgs e)
+        {
+            if (!Context.IsMainPlayer) return;
+            Utility.ForEachLocation((GameLocation location) =>
+            {
+                location.animals.OnValueAdded += (long id, FarmAnimal animal) =>
+                {
+                    DelayedAction.functionAfterDelay(() => HandleStuckAnimals(animal, location), 10);
+                };
+                return true;
+            });
+        }
+
+        static void OnLocationListChanged(object sender, LocationListChangedEventArgs e)
+        {
+            if (!Context.IsMainPlayer) return;
+            foreach (var location in e.Added)
+            {
+                location.animals.OnValueAdded += (long id, FarmAnimal animal) =>
+                {
+                    DelayedAction.functionAfterDelay(() => HandleStuckAnimals(animal, location), 10);
+                };
+            }
+        }
+
+        static void HandleStuckAnimals(FarmAnimal animal, GameLocation location)
+        {
+            if (animal.type.Value != "GuineaPigMod.GuineaPig") return;
+            
+            if (animal.home is not null &&
+                (animal.GetAnimalData()?.SpriteWidth ?? 16) / 16 > (animal.home.GetData()?.AnimalDoor.Width ?? 1) &&
+                location.buildings.Contains(animal.home) &&
+                animal.home.intersects(animal.GetBoundingBox()))
+            {
+                Instance.Monitor.Log($"Squeezing the big {animal.type.Value} through the {animal.home.buildingType.Value}'s teeny door", LogLevel.Info);
+                var rectForAnimalDoor = animal.home.getRectForAnimalDoor();
+                animal.Position = new Vector2(rectForAnimalDoor.X - 64, rectForAnimalDoor.Y);
+                return;
             }
         }
     }
